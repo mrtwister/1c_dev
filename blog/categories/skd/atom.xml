@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[1C-developer]]></title>
-  <link href="http://mrtwister.github.com/1c_dev/atom.xml" rel="self"/>
+  <title><![CDATA[Category: SKD | 1C-developer]]></title>
+  <link href="http://mrtwister.github.com/1c_dev/blog/categories/skd/atom.xml" rel="self"/>
   <link href="http://mrtwister.github.com/1c_dev/"/>
   <updated>2012-09-04T15:08:44+11:00</updated>
   <id>http://mrtwister.github.com/1c_dev/</id>
