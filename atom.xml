@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[1C-developer]]></title>
   <link href="http://mrtwister.github.com/1c_dev/atom.xml" rel="self"/>
   <link href="http://mrtwister.github.com/1c_dev/"/>
-  <updated>2012-09-04T13:08:27+11:00</updated>
+  <updated>2012-09-04T13:54:25+11:00</updated>
   <id>http://mrtwister.github.com/1c_dev/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
-    
+    <name><![CDATA[roman]]></name>
+    <email><![CDATA[belyaev.rs@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Пост номер раз]]></title>
+    <link href="http://mrtwister.github.com/1c_dev/blog/2012/09/04/post-nomier-raz/"/>
+    <updated>2012-09-04T13:37:00+11:00</updated>
+    <id>http://mrtwister.github.com/1c_dev/blog/2012/09/04/post-nomier-raz</id>
+    <content type="html"><![CDATA[<p>Вот такой пост а что делать?</p>
+]]></content>
+  </entry>
   
 </feed>
