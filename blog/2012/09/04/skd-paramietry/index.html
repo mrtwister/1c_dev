@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>СКД: Параметры - 1C-developer</title>
+  <meta name="author" content="Роман Беляев">
+
+  
+  <meta name="description" content="В данном топике я хотел бы затронуть, некоторые моменты работы с СКД: работа с формой отчета, использование нескольких схем, работа с параметрами и &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mrtwister.github.com/1c_dev/blog/2012/09/04/skd-paramietry/">
+  <link href="/1c_dev/favicon.png" rel="icon">
+  <link href="/1c_dev/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/1c_dev/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/1c_dev/javascripts/modernizr-2.0.js"></script>
+  <script src="/1c_dev/javascripts/ender.js"></script>
+  <script src="/1c_dev/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/1c_dev/atom.xml" rel="alternate" title="1C-developer" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <!-- <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/1c_dev/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:mrtwister.github.com/1c_dev" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/1c_dev/">Blog</a></li>
+  <li><a href="/1c_dev/blog/archives">Archives</a></li>
+</ul>
+
+</nav> -->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">СКД: Параметры</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-04T22:17:00+11:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>В данном топике я хотел бы затронуть, некоторые моменты работы с СКД: работа с формой отчета, использование нескольких схем, работа с параметрами и так по мелочи, что накопилось за время использования СКД. Итак:<!-- more --></p>
+
+<h1>Как использовать параметры в СКД?</h1>
+
+<p>При написании отчета для СКД иногда возникает потребность в использовании параметров, какие есть варианты? Для начала надо определиться что для того что бы параметры стали доступными, необходимо поставить галочку в схеме вот здесь:
+https://dl.dropbox.com/u/4717681/%D0%A4%D0%BE%D1%82%D0%BA%D0%B8%D0%92%D0%91%D0%BB%D0%BE%D0%B3/pic001.png</p>
+
+<ol>
+<li>Тыкнуть по кнопочке настройки, и задать настройки на стандартной форме. Мы этот вариант даже рассматривать не будем, по той простой причине, что их видно на стандартной форме невооруженным глазом, достаточно тыкнуть на кнопку&#8230; Настройки конечно же.</li>
+<li>Сделать таблицу на форме и указать у нее источник???.</li>
+<li>Добавить на форму отчета поля ввода и прописать изменение параметров СКД при их изменении</li>
+</ol>
+
+
+<p>Рассмотрим  все варианты по подробнее.</p>
+
+<h2>2. Вывод всех прописанных настроек в одной таблице</h2>
+
+<p>Это делается очень просто, добавляется таблица значений на форму а источником данных нужно указать: ОтчетОбъект -> КомпоновщикНастроек -> Настройки -> Параметры данных.</p>
+
+<h2>3. Вынесение параметров отчета на форму, как правило самый нужный и удобный метод установки параметров.</h2>
+
+<p>Для этого создадим форму отчета, если вы ее еще не создали (куда то, нам надо вынести параметры которые мы будем передавать в СКД) и добавим поле ввода нужного нам типа. И в событии &#8220;ПриИзменении&#8221; укажем следующий код:</p>
+
+<figure class='code'><figcaption><span>ПриИзменении </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Параметры = КомпоновщикНастроек.Настройки.ПараметрыДанных;
+</span><span class='line'>Параметр = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("НашСклад"));
+</span><span class='line'>Если Параметр &lt;> Неопределено Тогда
+</span><span class='line'>  Параметр.Значение = Справочники.Склады.НайтиПоНаименованию("Основной склад");
+</span><span class='line'>  Параметр.Использование = Истина;
+</span><span class='line'>КонецЕсли;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Готово! Теперь при изменении элемента на форме параметр будет автоматически загружаться в СКД.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Роман Беляев</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-04T22:17:00+11:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/1c_dev/blog/categories/СКД/'>СКД</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://mrtwister.github.com/1c_dev/blog/2012/09/04/skd-paramietry/" data-via="" data-counturl="http://mrtwister.github.com/1c_dev/blog/2012/09/04/skd-paramietry/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/1c_dev/blog/2012/09/04/skd-paramietry/">СКД: Параметры</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Роман Беляев -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

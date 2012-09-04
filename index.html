@@ -9,7 +9,7 @@
   <meta name="author" content="Роман Беляев">
 
   
-  <meta name="description" content="Когда я читал негодующие посты о Почте РФ и EMS в частности, я всегда сопереживал. То на таможне задержат, то по пути потеряют, то через пол года &hellip;">
+  <meta name="description" content="В данном топике я хотел бы затронуть, некоторые моменты работы с СКД: работа с формой отчета, использование нескольких схем, работа с параметрами и &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,7 +69,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/1c_dev/blog/2012/09/04/mnogho-tieksta-s-khabra/">Много текста с хабра</a></h1>
+      <h1 class="entry-title"><a href="/1c_dev/blog/2012/09/04/skd-paramietry/">СКД: Параметры</a></h1>
     
     
       <p class="meta">
@@ -85,211 +85,19 @@
   
 
 
-<time datetime="2012-09-04T20:54:00+11:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+<time datetime="2012-09-04T22:17:00+11:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Когда я читал негодующие посты о Почте РФ и EMS в частности, я всегда сопереживал. То на таможне задержат, то по пути потеряют, то через пол года доставят… Видать, Почта РФ решила мне отомстить за мое сочувствие. На мой взгляд, то, что произошло со мной, просто за гранью добра и зла…</p>
-
-<p>Итак, к сути истории. Много работаем с Китаем, они часто отправляют нашим представителям в Москве документы через DHL. За 8 лет ни разу ничего не потерялось. Но вот, при очередной попытке отправить документы, офис DHL в городе отправителя в Китае был закрыт по каким-то причинам. Ничего не подозревающий китайский партнер просто отправил нам очень важные (и практически не восстанавливаемые!) документы EMS. Китайские представители EMS заверили его, что пересылка отслеживаемая и ничего никогда не теряется…</p>
-
-</div>
+  <div class="entry-content"><p>В данном топике я хотел бы затронуть, некоторые моменты работы с СКД: работа с формой отчета, использование нескольких схем, работа с параметрами и так по мелочи, что накопилось за время использования СКД. Итак:</div>
   
   
     <footer>
-      <a rel="full-article" href="/1c_dev/blog/2012/09/04/mnogho-tieksta-s-khabra/">Читать дальше &rarr;</a>
+      <a rel="full-article" href="/1c_dev/blog/2012/09/04/skd-paramietry/">Читать дальше &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/1c_dev/blog/2012/09/04/provierka-kak-pokkazyvaietsia-kod/">Проверка как покказывается код</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-04T18:39:00+11:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content">
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Процедура ДействияФормыСформировать(Кнопка)
-</span><span class='line'>  ЭлементыФормы.Результат.Очистить();
-</span><span class='line'>  
-</span><span class='line'>  //Скрипт=Новый COMОбъект("MSScriptControl.ScriptControl");
-</span><span class='line'>  //Скрипт.Language="javascript";
-</span><span class='line'>  //ТочкаСтарт=Скрипт.eval("new Date().getTime()");
-</span><span class='line'>  
-</span><span class='line'>  Заказы = КомпоновщикНастроек.Настройки.ПараметрыДанных.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("Заказ")).Значение;
-</span><span class='line'>  Если Заказы.Количество() = 1 Тогда
-</span><span class='line'>      СтрокаВЗаголовок = "Анализ заказа: ";
-</span><span class='line'>  Иначе
-</span><span class='line'>      СтрокаВЗаголовок = "Анализ заказов: ";
-</span><span class='line'>  КонецЕсли;
-</span><span class='line'>  
-</span><span class='line'>  Для Каждого СтрокаСЗаказом Из Заказы Цикл
-</span><span class='line'>      СтрокаВЗаголовок = СтрокаВЗаголовок + "№"+СтрокаСЗаказом.Значение.Номер+" от "+СтрокаСЗаказом.Значение.Дата+"; ";
-</span><span class='line'>  КонецЦикла;   
-</span><span class='line'>  КомпоновщикНастроек.Настройки.ПараметрыВывода.Элементы.Найти("Title").Значение = СтрокаВЗаголовок;
-</span><span class='line'>  
-</span><span class='line'>  КомпоновщикМакета=Новый КомпоновщикМакетаКомпоновкиДанных;
-</span><span class='line'>  МакетКомпоновкиДанных=КомпоновщикМакета.Выполнить(СхемаКомпоновкиДанных,КомпоновщикНастроек.Настройки,ДанныеРасшифровки);
-</span><span class='line'>  ПроцессорКомпоновкиДанных=Новый ПроцессорКомпоновкиДанных;
-</span><span class='line'>  // Здесь, при необходимости, следует добавить инициализацию внешних данных, если используется источник данных типа Объект.
-</span><span class='line'>  ПроцессорКомпоновкиДанных.Инициализировать(МакетКомпоновкиДанных,,ДанныеРасшифровки,Истина);
-</span><span class='line'>  ПроцессорВывода=Новый ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент;
-</span><span class='line'>  ПроцессорВывода.УстановитьДокумент(ЭлементыФормы.Результат);
-</span><span class='line'>  ПроцессорВывода.Вывести(ПроцессорКомпоновкиДанных);
-</span><span class='line'>  
-</span><span class='line'>  Если СвернутьГруппировки Тогда
-</span><span class='line'>      ЭлементыФормы.Результат.ПоказатьУровеньГруппировокСтрок(0);
-</span><span class='line'>  КонецЕсли;
-</span><span class='line'>  
-</span><span class='line'>  //ТочкаФиниш=Скрипт.eval("new Date().getTime()");
-</span><span class='line'>  //ЭлементыФормы.НадписьВремяФормирования.Заголовок=" Время формирования отчета: "+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+" мс";
-</span><span class='line'>  
-</span><span class='line'>  ЭлементыФормы.ДействияФормы.Кнопки.БазовыеНастройки.Пометка=Ложь;
-</span><span class='line'>  ЭлементыФормы.ПанельОсновная.ТекущаяСтраница=ЭлементыФормы.ПанельОсновная.Страницы.Отчет;
-</span><span class='line'>КонецПроцедуры</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/1c_dev/blog/2012/09/04/post-nomier-dva/">Пост номер два</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-04T15:02:00+11:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ниче не работает</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/1c_dev/blog/2012/09/04/post-nomier-raz/">Пост номер раз</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-04T13:37:00+11:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Вот такой пост а что делать? Я что то хрен его знает</p>
-</div>
-  
   
 
 
@@ -308,19 +116,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/1c_dev/blog/2012/09/04/mnogho-tieksta-s-khabra/">Много текста с хабра</a>
-      </li>
-    
-      <li class="post">
-        <a href="/1c_dev/blog/2012/09/04/provierka-kak-pokkazyvaietsia-kod/">Проверка как покказывается код</a>
-      </li>
-    
-      <li class="post">
-        <a href="/1c_dev/blog/2012/09/04/post-nomier-dva/">Пост номер два</a>
-      </li>
-    
-      <li class="post">
-        <a href="/1c_dev/blog/2012/09/04/post-nomier-raz/">Пост номер раз</a>
+        <a href="/1c_dev/blog/2012/09/04/skd-paramietry/">СКД: Параметры</a>
       </li>
     
   </ul>
