@@ -4,7 +4,7 @@
   <title><![CDATA[1C-developer]]></title>
   <link href="http://mrtwister.github.com/1c_dev/atom.xml" rel="self"/>
   <link href="http://mrtwister.github.com/1c_dev/"/>
-  <updated>2012-09-04T21:57:21+11:00</updated>
+  <updated>2012-09-04T21:59:51+11:00</updated>
   <id>http://mrtwister.github.com/1c_dev/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -42,7 +42,7 @@
     <link href="http://mrtwister.github.com/1c_dev/blog/2012/09/04/provierka-kak-pokkazyvaietsia-kod/"/>
     <updated>2012-09-04T18:39:00+11:00</updated>
     <id>http://mrtwister.github.com/1c_dev/blog/2012/09/04/provierka-kak-pokkazyvaietsia-kod</id>
-    <content type="html"><![CDATA[<p>Liquid error: ClassNotFound: no lexer for alias &#8216;1s&#8217; found</p>
+    <content type="html"><![CDATA[<p>Liquid error: ClassNotFound: no lexer for alias &#8216;1S&#8217; found</p>
 ]]></content>
   </entry>
   
