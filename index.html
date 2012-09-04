@@ -137,7 +137,7 @@
 
   <div class="entry-content">
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -175,44 +175,45 @@
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
 <span class='line-number'>38</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Процедура ДействияФормыСформировать(Кнопка)
-</span><span class='line'>  ЭлементыФормы.Результат.Очистить();
+</pre></td><td class='code'><pre><code class='DASM16'><span class='line'><span class="err">Процедура</span> <span class="err">ДействияФормыСформировать(Кнопка)</span>
+</span><span class='line'>  <span class="err">ЭлементыФормы.Результат.Очистить()</span><span class="c">;</span>
 </span><span class='line'>  
-</span><span class='line'>  //Скрипт=Новый COMОбъект("MSScriptControl.ScriptControl");
-</span><span class='line'>  //Скрипт.Language="javascript";
-</span><span class='line'>  //ТочкаСтарт=Скрипт.eval("new Date().getTime()");
+</span><span class='line'>  <span class="err">//Скрипт=Новый</span> <span class="err">COMОбъект(&quot;MSScriptControl</span><span class="nf">.ScriptControl</span><span class="s">&quot;);</span>
+</span><span class='line'><span class="s">  //Скрипт.Language=&quot;</span><span class="err">javascript</span><span class="s">&quot;;</span>
+</span><span class='line'><span class="s">  //ТочкаСтарт=Скрипт.eval(&quot;</span><span class="err">new</span> <span class="err">Date().getTime()</span><span class="s">&quot;);</span>
+</span><span class='line'><span class="s">  </span>
+</span><span class='line'><span class="s">  Заказы = КомпоновщикНастроек.Настройки.ПараметрыДанных.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных(&quot;</span><span class="err">Заказ</span><span class="s">&quot;)).Значение;</span>
+</span><span class='line'><span class="s">  Если Заказы.Количество() = 1 Тогда</span>
+</span><span class='line'><span class="s">      СтрокаВЗаголовок = &quot;</span><span class="err">Анализ</span> <span class="err">заказа:</span> <span class="s">&quot;;</span>
+</span><span class='line'><span class="s">  Иначе</span>
+</span><span class='line'><span class="s">      СтрокаВЗаголовок = &quot;</span><span class="err">Анализ</span> <span class="err">заказов:</span> <span class="s">&quot;;</span>
+</span><span class='line'><span class="s">  КонецЕсли;</span>
+</span><span class='line'><span class="s">  </span>
+</span><span class='line'><span class="s">  Для Каждого СтрокаСЗаказом Из Заказы Цикл</span>
+</span><span class='line'><span class="s">      СтрокаВЗаголовок = СтрокаВЗаголовок + &quot;</span><span class="err">№</span><span class="s">&quot;+СтрокаСЗаказом.Значение.Номер+&quot;</span> <span class="err">от</span> <span class="s">&quot;+СтрокаСЗаказом.Значение.Дата+&quot;</span><span class="c">; &quot;;</span>
+</span><span class='line'>  <span class="err">КонецЦикла</span><span class="c">;  </span>
+</span><span class='line'>  <span class="err">КомпоновщикНастроек.Настройки.ПараметрыВывода.Элементы.Найти(&quot;Title&quot;).Значение</span> <span class="err">=</span> <span class="err">СтрокаВЗаголовок</span><span class="c">;</span>
 </span><span class='line'>  
-</span><span class='line'>  Заказы = КомпоновщикНастроек.Настройки.ПараметрыДанных.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("Заказ")).Значение;
-</span><span class='line'>  Если Заказы.Количество() = 1 Тогда
-</span><span class='line'>      СтрокаВЗаголовок = "Анализ заказа: ";
-</span><span class='line'>  Иначе
-</span><span class='line'>      СтрокаВЗаголовок = "Анализ заказов: ";
-</span><span class='line'>  КонецЕсли;
+</span><span class='line'>  <span class="err">КомпоновщикМакета=Новый</span> <span class="err">КомпоновщикМакетаКомпоновкиДанных</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">МакетКомпоновкиДанных=КомпоновщикМакета.Выполнить(СхемаКомпоновкиДанных,КомпоновщикНастроек.Настройки,ДанныеРасшифровки)</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">ПроцессорКомпоновкиДанных=Новый</span> <span class="err">ПроцессорКомпоновкиДанных</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">//</span> <span class="err">Здесь,</span> <span class="err">при</span> <span class="err">необходимости,</span> <span class="err">следует</span> <span class="err">добавить</span> <span class="err">инициализацию</span> <span class="err">внешних</span> <span class="err">данных,</span> <span class="err">если</span> <span class="err">используется</span> <span class="err">источник</span> <span class="err">данных</span> <span class="err">типа</span> <span class="err">Объект.</span>
+</span><span class='line'>  <span class="err">ПроцессорКомпоновкиДанных.Инициализировать(МакетКомпоновкиДанных,,ДанныеРасшифровки,Истина)</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">ПроцессорВывода=Новый</span> <span class="err">ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">ПроцессорВывода.УстановитьДокумент(ЭлементыФормы.Результат)</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">ПроцессорВывода.Вывести(ПроцессорКомпоновкиДанных)</span><span class="c">;</span>
 </span><span class='line'>  
-</span><span class='line'>  Для Каждого СтрокаСЗаказом Из Заказы Цикл
-</span><span class='line'>      СтрокаВЗаголовок = СтрокаВЗаголовок + "№"+СтрокаСЗаказом.Значение.Номер+" от "+СтрокаСЗаказом.Значение.Дата+"; ";
-</span><span class='line'>  КонецЦикла;   
-</span><span class='line'>  КомпоновщикНастроек.Настройки.ПараметрыВывода.Элементы.Найти("Title").Значение = СтрокаВЗаголовок;
+</span><span class='line'>  <span class="err">Если</span> <span class="err">СвернутьГруппировки</span> <span class="err">Тогда</span>
+</span><span class='line'>      <span class="err">ЭлементыФормы.Результат.ПоказатьУровеньГруппировокСтрок(0)</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">КонецЕсли</span><span class="c">;</span>
 </span><span class='line'>  
-</span><span class='line'>  КомпоновщикМакета=Новый КомпоновщикМакетаКомпоновкиДанных;
-</span><span class='line'>  МакетКомпоновкиДанных=КомпоновщикМакета.Выполнить(СхемаКомпоновкиДанных,КомпоновщикНастроек.Настройки,ДанныеРасшифровки);
-</span><span class='line'>  ПроцессорКомпоновкиДанных=Новый ПроцессорКомпоновкиДанных;
-</span><span class='line'>  // Здесь, при необходимости, следует добавить инициализацию внешних данных, если используется источник данных типа Объект.
-</span><span class='line'>  ПроцессорКомпоновкиДанных.Инициализировать(МакетКомпоновкиДанных,,ДанныеРасшифровки,Истина);
-</span><span class='line'>  ПроцессорВывода=Новый ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент;
-</span><span class='line'>  ПроцессорВывода.УстановитьДокумент(ЭлементыФормы.Результат);
-</span><span class='line'>  ПроцессорВывода.Вывести(ПроцессорКомпоновкиДанных);
+</span><span class='line'>  <span class="err">//ТочкаФиниш=Скрипт</span><span class="nf">.eval</span><span class="err">(</span><span class="s">&quot;new Date().getTime()&quot;</span><span class="err">)</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">//ЭлементыФормы.НадписьВремяФормирования.Заголовок=&quot;</span> <span class="err">Время</span> <span class="err">формирования</span> <span class="err">отчета:</span> <span class="err">&quot;+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+&quot;</span> <span class="err">мс&quot;</span><span class="c">;</span>
 </span><span class='line'>  
-</span><span class='line'>  Если СвернутьГруппировки Тогда
-</span><span class='line'>      ЭлементыФормы.Результат.ПоказатьУровеньГруппировокСтрок(0);
-</span><span class='line'>  КонецЕсли;
-</span><span class='line'>  
-</span><span class='line'>  //ТочкаФиниш=Скрипт.eval("new Date().getTime()");
-</span><span class='line'>  //ЭлементыФормы.НадписьВремяФормирования.Заголовок=" Время формирования отчета: "+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+" мс";
-</span><span class='line'>  
-</span><span class='line'>  ЭлементыФормы.ДействияФормы.Кнопки.БазовыеНастройки.Пометка=Ложь;
-</span><span class='line'>  ЭлементыФормы.ПанельОсновная.ТекущаяСтраница=ЭлементыФормы.ПанельОсновная.Страницы.Отчет;
-</span><span class='line'>КонецПроцедуры</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>  <span class="err">ЭлементыФормы.ДействияФормы.Кнопки.БазовыеНастройки.Пометка=Ложь</span><span class="c">;</span>
+</span><span class='line'>  <span class="err">ЭлементыФормы.ПанельОсновная.ТекущаяСтраница=ЭлементыФормы.ПанельОсновная.Страницы.Отчет</span><span class="c">;</span>
+</span><span class='line'><span class="err">КонецПроцедуры</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
