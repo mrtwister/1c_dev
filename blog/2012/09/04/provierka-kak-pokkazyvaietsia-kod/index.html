@@ -9,8 +9,48 @@
   <meta name="author" content="Роман Беляев">
 
   
-  <meta name="description" content="Процедура ДействияФормыСформировать(Кнопка)
-&nbsp; &nbsp; ЭлементыФормы.Результат.Очистить(); &nbsp; &nbsp; //Скрипт=Новый COMОбъект(&#8220; &hellip;">
+  <meta name="description" content="1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+&lt;p style="text-align: left; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,47 +131,92 @@
   </header>
 
 
-<div class="entry-content"><p style="text-align: left; font-family: courier new,courier; color: blue">
-<font color=red>Процедура </font>ДействияФормыСформировать<font color=red>(</font>Кнопка<font color=red>)<br>
-&nbsp; &nbsp; </font>ЭлементыФормы<font color=red>.</font>Результат<font color=red>.</font>Очистить<font color=red>();<br>
-<br>
-&nbsp; &nbsp; </font><font color=green>//Скрипт=Новый COMОбъект(&#8220;MSScriptControl.ScriptControl&#8221;);<br>
-&nbsp; &nbsp; //Скрипт.Language=&#8221;javascript&#8221;;<br>
-&nbsp; &nbsp; //ТочкаСтарт=Скрипт.eval(&#8220;new Date().getTime()&#8221;);<br>
-<br>
-&nbsp; &nbsp; </font>Заказы <font color=red>= </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыДанных<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font><font color=black>&#8220;Заказ&#8221;</font><font color=red>)).</font>Значение<font color=red>;<br>
-&nbsp; &nbsp; Если </font>Заказы<font color=red>.</font>Количество<font color=red>() = </font><font color=black>1 </font><font color=red>Тогда<br>
-&nbsp; &nbsp; &nbsp; &nbsp; </font>СтрокаВЗаголовок <font color=red>= </font><font color=black>&#8220;Анализ заказа: &#8221;</font><font color=red>;<br>
-&nbsp; &nbsp; Иначе<br>
-&nbsp; &nbsp; &nbsp; &nbsp; </font>СтрокаВЗаголовок <font color=red>= </font><font color=black>&#8220;Анализ заказов: &#8221;</font><font color=red>;<br>
-&nbsp; &nbsp; КонецЕсли;<br>
-<br>
-&nbsp; &nbsp; Для Каждого </font>СтрокаСЗаказом <font color=red>Из </font>Заказы <font color=red>Цикл<br>
-&nbsp; &nbsp; &nbsp; &nbsp; </font>СтрокаВЗаголовок <font color=red>= </font>СтрокаВЗаголовок <font color=red>+ </font><font color=black>&#8220;№&#8221;</font><font color=red>+</font>СтрокаСЗаказом<font color=red>.</font>Значение<font color=red>.</font>Номер<font color=red>+</font><font color=black>&#8221; от &#8221;</font><font color=red>+</font>СтрокаСЗаказом<font color=red>.</font>Значение<font color=red>.</font>Дата<font color=red>+</font><font color=black>&#8221;; &#8221;</font><font color=red>;<br>
-&nbsp; &nbsp; КонецЦикла;<br>
-&nbsp; &nbsp; </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыВывода<font color=red>.</font>Элементы<font color=red>.</font>Найти<font color=red>(</font><font color=black>&#8220;Title&#8221;</font><font color=red>).</font>Значение <font color=red>= </font>СтрокаВЗаголовок<font color=red>;<br>
-<br>
-&nbsp; &nbsp; </font>КомпоновщикМакета<font color=red>=Новый </font>КомпоновщикМакетаКомпоновкиДанных<font color=red>;<br>
-&nbsp; &nbsp; </font>МакетКомпоновкиДанных<font color=red>=</font>КомпоновщикМакета<font color=red>.</font>Выполнить<font color=red>(</font>СхемаКомпоновкиДанных<font color=red>,</font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>,</font>ДанныеРасшифровки<font color=red>);<br>
-&nbsp; &nbsp; </font>ПроцессорКомпоновкиДанных<font color=red>=Новый </font>ПроцессорКомпоновкиДанных<font color=red>;<br>
-&nbsp; &nbsp; </font><font color=green>// Здесь, при необходимости, следует добавить инициализацию внешних данных, если используется источник данных типа Объект.<br>
-&nbsp; &nbsp; </font>ПроцессорКомпоновкиДанных<font color=red>.</font>Инициализировать<font color=red>(</font>МакетКомпоновкиДанных<font color=red>,,</font>ДанныеРасшифровки<font color=red>,</font>Истина<font color=red>);<br>
-&nbsp; &nbsp; </font>ПроцессорВывода<font color=red>=Новый </font>ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент<font color=red>;<br>
-&nbsp; &nbsp; </font>ПроцессорВывода<font color=red>.</font>УстановитьДокумент<font color=red>(</font>ЭлементыФормы<font color=red>.</font>Результат<font color=red>);<br>
-&nbsp; &nbsp; </font>ПроцессорВывода<font color=red>.</font>Вывести<font color=red>(</font>ПроцессорКомпоновкиДанных<font color=red>);<br>
-<br>
-&nbsp; &nbsp; Если </font>СвернутьГруппировки <font color=red>Тогда<br>
-&nbsp; &nbsp; &nbsp; &nbsp; </font>ЭлементыФормы<font color=red>.</font>Результат<font color=red>.</font>ПоказатьУровеньГруппировокСтрок<font color=red>(</font><font color=black>0</font><font color=red>);<br>
-&nbsp; &nbsp; КонецЕсли;<br>
-<br>
-&nbsp; &nbsp; </font><font color=green>//ТочкаФиниш=Скрипт.eval(&#8220;new Date().getTime()&#8221;);<br>
-&nbsp; &nbsp; //ЭлементыФормы.НадписьВремяФормирования.Заголовок=&#8221; Время формирования отчета: &#8220;+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+&#8221; мс&#8221;;<br>
-<br>
-&nbsp; &nbsp; </font>ЭлементыФормы<font color=red>.</font>ДействияФормы<font color=red>.</font>Кнопки<font color=red>.</font>БазовыеНастройки<font color=red>.</font>Пометка<font color=red>=</font>Ложь<font color=red>;<br>
-&nbsp; &nbsp; </font>ЭлементыФормы<font color=red>.</font>ПанельОсновная<font color=red>.</font>ТекущаяСтраница<font color=red>=</font>ЭлементыФормы<font color=red>.</font>ПанельОсновная<font color=red>.</font>Страницы<font color=red>.</font>Отчет<font color=red>;<br>
-КонецПроцедуры<br>
-<br>
-</font></p>
+<div class="entry-content">
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;p style="text-align: left; font-family: courier new,courier; color: blue">
+</span><span class='line'>&lt;font color=red>Процедура &lt;/font>ДействияФормыСформировать&lt;font color=red>(&lt;/font>Кнопка&lt;font color=red>)&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>Результат&lt;font color=red>.&lt;/font>Очистить&lt;font color=red>();&lt;br>
+</span><span class='line'>&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>&lt;font color=green>//Скрипт=Новый COMОбъект("MSScriptControl.ScriptControl");&lt;br>
+</span><span class='line'>&nbsp; &nbsp; //Скрипт.Language="javascript";&lt;br>
+</span><span class='line'>&nbsp; &nbsp; //ТочкаСтарт=Скрипт.eval("new Date().getTime()");&lt;br>
+</span><span class='line'>&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>Заказы &lt;font color=red>= &lt;/font>КомпоновщикНастроек&lt;font color=red>.&lt;/font>Настройки&lt;font color=red>.&lt;/font>ПараметрыДанных&lt;font color=red>.&lt;/font>НайтиЗначениеПараметра&lt;font color=red>(Новый &lt;/font>ПараметрКомпоновкиДанных&lt;font color=red>(&lt;/font>&lt;font color=black>"Заказ"&lt;/font>&lt;font color=red>)).&lt;/font>Значение&lt;font color=red>;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; Если &lt;/font>Заказы&lt;font color=red>.&lt;/font>Количество&lt;font color=red>() = &lt;/font>&lt;font color=black>1 &lt;/font>&lt;font color=red>Тогда&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/font>СтрокаВЗаголовок &lt;font color=red>= &lt;/font>&lt;font color=black>"Анализ заказа: "&lt;/font>&lt;font color=red>;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; Иначе&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/font>СтрокаВЗаголовок &lt;font color=red>= &lt;/font>&lt;font color=black>"Анализ заказов: "&lt;/font>&lt;font color=red>;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; КонецЕсли;&lt;br>
+</span><span class='line'>&lt;br>
+</span><span class='line'>&nbsp; &nbsp; Для Каждого &lt;/font>СтрокаСЗаказом &lt;font color=red>Из &lt;/font>Заказы &lt;font color=red>Цикл&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/font>СтрокаВЗаголовок &lt;font color=red>= &lt;/font>СтрокаВЗаголовок &lt;font color=red>+ &lt;/font>&lt;font color=black>"№"&lt;/font>&lt;font color=red>+&lt;/font>СтрокаСЗаказом&lt;font color=red>.&lt;/font>Значение&lt;font color=red>.&lt;/font>Номер&lt;font color=red>+&lt;/font>&lt;font color=black>" от "&lt;/font>&lt;font color=red>+&lt;/font>СтрокаСЗаказом&lt;font color=red>.&lt;/font>Значение&lt;font color=red>.&lt;/font>Дата&lt;font color=red>+&lt;/font>&lt;font color=black>"; "&lt;/font>&lt;font color=red>;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; КонецЦикла;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>КомпоновщикНастроек&lt;font color=red>.&lt;/font>Настройки&lt;font color=red>.&lt;/font>ПараметрыВывода&lt;font color=red>.&lt;/font>Элементы&lt;font color=red>.&lt;/font>Найти&lt;font color=red>(&lt;/font>&lt;font color=black>"Title"&lt;/font>&lt;font color=red>).&lt;/font>Значение &lt;font color=red>= &lt;/font>СтрокаВЗаголовок&lt;font color=red>;&lt;br>
+</span><span class='line'>&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>КомпоновщикМакета&lt;font color=red>=Новый &lt;/font>КомпоновщикМакетаКомпоновкиДанных&lt;font color=red>;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>МакетКомпоновкиДанных&lt;font color=red>=&lt;/font>КомпоновщикМакета&lt;font color=red>.&lt;/font>Выполнить&lt;font color=red>(&lt;/font>СхемаКомпоновкиДанных&lt;font color=red>,&lt;/font>КомпоновщикНастроек&lt;font color=red>.&lt;/font>Настройки&lt;font color=red>,&lt;/font>ДанныеРасшифровки&lt;font color=red>);&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорКомпоновкиДанных&lt;font color=red>=Новый &lt;/font>ПроцессорКомпоновкиДанных&lt;font color=red>;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>&lt;font color=green>// Здесь, при необходимости, следует добавить инициализацию внешних данных, если используется источник данных типа Объект.&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорКомпоновкиДанных&lt;font color=red>.&lt;/font>Инициализировать&lt;font color=red>(&lt;/font>МакетКомпоновкиДанных&lt;font color=red>,,&lt;/font>ДанныеРасшифровки&lt;font color=red>,&lt;/font>Истина&lt;font color=red>);&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорВывода&lt;font color=red>=Новый &lt;/font>ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент&lt;font color=red>;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорВывода&lt;font color=red>.&lt;/font>УстановитьДокумент&lt;font color=red>(&lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>Результат&lt;font color=red>);&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорВывода&lt;font color=red>.&lt;/font>Вывести&lt;font color=red>(&lt;/font>ПроцессорКомпоновкиДанных&lt;font color=red>);&lt;br>
+</span><span class='line'>&lt;br>
+</span><span class='line'>&nbsp; &nbsp; Если &lt;/font>СвернутьГруппировки &lt;font color=red>Тогда&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>Результат&lt;font color=red>.&lt;/font>ПоказатьУровеньГруппировокСтрок&lt;font color=red>(&lt;/font>&lt;font color=black>0&lt;/font>&lt;font color=red>);&lt;br>
+</span><span class='line'>&nbsp; &nbsp; КонецЕсли;&lt;br>
+</span><span class='line'>&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>&lt;font color=green>//ТочкаФиниш=Скрипт.eval("new Date().getTime()");&lt;br>
+</span><span class='line'>&nbsp; &nbsp; //ЭлементыФормы.НадписьВремяФормирования.Заголовок=" Время формирования отчета: "+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+" мс";&lt;br>
+</span><span class='line'>&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>ДействияФормы&lt;font color=red>.&lt;/font>Кнопки&lt;font color=red>.&lt;/font>БазовыеНастройки&lt;font color=red>.&lt;/font>Пометка&lt;font color=red>=&lt;/font>Ложь&lt;font color=red>;&lt;br>
+</span><span class='line'>&nbsp; &nbsp; &lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>ПанельОсновная&lt;font color=red>.&lt;/font>ТекущаяСтраница&lt;font color=red>=&lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>ПанельОсновная&lt;font color=red>.&lt;/font>Страницы&lt;font color=red>.&lt;/font>Отчет&lt;font color=red>;&lt;br>
+</span><span class='line'>КонецПроцедуры&lt;br>
+</span><span class='line'>&lt;br>
+</span><span class='line'>&lt;/font>&lt;/p></span></code></pre></td></tr></table></div></figure>
+
+
 
 </div>
 
