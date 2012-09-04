@@ -4,7 +4,7 @@
   <title><![CDATA[1C-developer]]></title>
   <link href="http://mrtwister.github.com/1c_dev/atom.xml" rel="self"/>
   <link href="http://mrtwister.github.com/1c_dev/"/>
-  <updated>2012-09-04T15:10:09+11:00</updated>
+  <updated>2012-09-04T18:48:16+11:00</updated>
   <id>http://mrtwister.github.com/1c_dev/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Проверка как покказывается код]]></title>
+    <link href="http://mrtwister.github.com/1c_dev/blog/2012/09/04/provierka-kak-pokkazyvaietsia-kod/"/>
+    <updated>2012-09-04T18:39:00+11:00</updated>
+    <id>http://mrtwister.github.com/1c_dev/blog/2012/09/04/provierka-kak-pokkazyvaietsia-kod</id>
+    <content type="html"><![CDATA[<p style="text-align: left; font-family: courier new,courier; color: blue">
+<font color=red>Процедура </font>ДействияФормыСформировать<font color=red>(</font>Кнопка<font color=red>)<br>
+&nbsp; &nbsp; </font>ЭлементыФормы<font color=red>.</font>Результат<font color=red>.</font>Очистить<font color=red>();<br>
+<br>
+&nbsp; &nbsp; </font><font color=green>//Скрипт=Новый COMОбъект(&#8220;MSScriptControl.ScriptControl&#8221;);<br>
+&nbsp; &nbsp; //Скрипт.Language=&#8221;javascript&#8221;;<br>
+&nbsp; &nbsp; //ТочкаСтарт=Скрипт.eval(&#8220;new Date().getTime()&#8221;);<br>
+<br>
+&nbsp; &nbsp; </font>Заказы <font color=red>= </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыДанных<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font><font color=black>&#8220;Заказ&#8221;</font><font color=red>)).</font>Значение<font color=red>;<br>
+&nbsp; &nbsp; Если </font>Заказы<font color=red>.</font>Количество<font color=red>() = </font><font color=black>1 </font><font color=red>Тогда<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтрокаВЗаголовок <font color=red>= </font><font color=black>&#8220;Анализ заказа: &#8221;</font><font color=red>;<br>
+&nbsp; &nbsp; Иначе<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтрокаВЗаголовок <font color=red>= </font><font color=black>&#8220;Анализ заказов: &#8221;</font><font color=red>;<br>
+&nbsp; &nbsp; КонецЕсли;<br>
+<br>
+&nbsp; &nbsp; Для Каждого </font>СтрокаСЗаказом <font color=red>Из </font>Заказы <font color=red>Цикл<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтрокаВЗаголовок <font color=red>= </font>СтрокаВЗаголовок <font color=red>+ </font><font color=black>&#8220;№&#8221;</font><font color=red>+</font>СтрокаСЗаказом<font color=red>.</font>Значение<font color=red>.</font>Номер<font color=red>+</font><font color=black>&#8221; от &#8221;</font><font color=red>+</font>СтрокаСЗаказом<font color=red>.</font>Значение<font color=red>.</font>Дата<font color=red>+</font><font color=black>&#8221;; &#8221;</font><font color=red>;<br>
+&nbsp; &nbsp; КонецЦикла;<br>
+&nbsp; &nbsp; </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыВывода<font color=red>.</font>Элементы<font color=red>.</font>Найти<font color=red>(</font><font color=black>&#8220;Title&#8221;</font><font color=red>).</font>Значение <font color=red>= </font>СтрокаВЗаголовок<font color=red>;<br>
+<br>
+&nbsp; &nbsp; </font>КомпоновщикМакета<font color=red>=Новый </font>КомпоновщикМакетаКомпоновкиДанных<font color=red>;<br>
+&nbsp; &nbsp; </font>МакетКомпоновкиДанных<font color=red>=</font>КомпоновщикМакета<font color=red>.</font>Выполнить<font color=red>(</font>СхемаКомпоновкиДанных<font color=red>,</font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>,</font>ДанныеРасшифровки<font color=red>);<br>
+&nbsp; &nbsp; </font>ПроцессорКомпоновкиДанных<font color=red>=Новый </font>ПроцессорКомпоновкиДанных<font color=red>;<br>
+&nbsp; &nbsp; </font><font color=green>// Здесь, при необходимости, следует добавить инициализацию внешних данных, если используется источник данных типа Объект.<br>
+&nbsp; &nbsp; </font>ПроцессорКомпоновкиДанных<font color=red>.</font>Инициализировать<font color=red>(</font>МакетКомпоновкиДанных<font color=red>,,</font>ДанныеРасшифровки<font color=red>,</font>Истина<font color=red>);<br>
+&nbsp; &nbsp; </font>ПроцессорВывода<font color=red>=Новый </font>ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент<font color=red>;<br>
+&nbsp; &nbsp; </font>ПроцессорВывода<font color=red>.</font>УстановитьДокумент<font color=red>(</font>ЭлементыФормы<font color=red>.</font>Результат<font color=red>);<br>
+&nbsp; &nbsp; </font>ПроцессорВывода<font color=red>.</font>Вывести<font color=red>(</font>ПроцессорКомпоновкиДанных<font color=red>);<br>
+<br>
+&nbsp; &nbsp; Если </font>СвернутьГруппировки <font color=red>Тогда<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>ЭлементыФормы<font color=red>.</font>Результат<font color=red>.</font>ПоказатьУровеньГруппировокСтрок<font color=red>(</font><font color=black>0</font><font color=red>);<br>
+&nbsp; &nbsp; КонецЕсли;<br>
+<br>
+&nbsp; &nbsp; </font><font color=green>//ТочкаФиниш=Скрипт.eval(&#8220;new Date().getTime()&#8221;);<br>
+&nbsp; &nbsp; //ЭлементыФормы.НадписьВремяФормирования.Заголовок=&#8221; Время формирования отчета: &#8220;+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+&#8221; мс&#8221;;<br>
+<br>
+&nbsp; &nbsp; </font>ЭлементыФормы<font color=red>.</font>ДействияФормы<font color=red>.</font>Кнопки<font color=red>.</font>БазовыеНастройки<font color=red>.</font>Пометка<font color=red>=</font>Ложь<font color=red>;<br>
+&nbsp; &nbsp; </font>ЭлементыФормы<font color=red>.</font>ПанельОсновная<font color=red>.</font>ТекущаяСтраница<font color=red>=</font>ЭлементыФормы<font color=red>.</font>ПанельОсновная<font color=red>.</font>Страницы<font color=red>.</font>Отчет<font color=red>;<br>
+КонецПроцедуры<br>
+<br>
+</font></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Пост номер два]]></title>
