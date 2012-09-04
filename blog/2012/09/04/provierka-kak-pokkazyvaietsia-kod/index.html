@@ -47,10 +47,7 @@
 36
 37
 38
-39
-40
-41
-&lt;p style="text-align: left; &hellip;">
+Процедура ДействияФормыСформировать(Кнопка &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -171,50 +168,44 @@
 <span class='line-number'>36</span>
 <span class='line-number'>37</span>
 <span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;p style="text-align: left; font-family: courier new,courier; color: blue">
-</span><span class='line'>&lt;font color=red>Процедура &lt;/font>ДействияФормыСформировать&lt;font color=red>(&lt;/font>Кнопка&lt;font color=red>)&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>Результат&lt;font color=red>.&lt;/font>Очистить&lt;font color=red>();&lt;br>
-</span><span class='line'>&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>&lt;font color=green>//Скрипт=Новый COMОбъект("MSScriptControl.ScriptControl");&lt;br>
-</span><span class='line'>&nbsp; &nbsp; //Скрипт.Language="javascript";&lt;br>
-</span><span class='line'>&nbsp; &nbsp; //ТочкаСтарт=Скрипт.eval("new Date().getTime()");&lt;br>
-</span><span class='line'>&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>Заказы &lt;font color=red>= &lt;/font>КомпоновщикНастроек&lt;font color=red>.&lt;/font>Настройки&lt;font color=red>.&lt;/font>ПараметрыДанных&lt;font color=red>.&lt;/font>НайтиЗначениеПараметра&lt;font color=red>(Новый &lt;/font>ПараметрКомпоновкиДанных&lt;font color=red>(&lt;/font>&lt;font color=black>"Заказ"&lt;/font>&lt;font color=red>)).&lt;/font>Значение&lt;font color=red>;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; Если &lt;/font>Заказы&lt;font color=red>.&lt;/font>Количество&lt;font color=red>() = &lt;/font>&lt;font color=black>1 &lt;/font>&lt;font color=red>Тогда&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/font>СтрокаВЗаголовок &lt;font color=red>= &lt;/font>&lt;font color=black>"Анализ заказа: "&lt;/font>&lt;font color=red>;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; Иначе&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/font>СтрокаВЗаголовок &lt;font color=red>= &lt;/font>&lt;font color=black>"Анализ заказов: "&lt;/font>&lt;font color=red>;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; КонецЕсли;&lt;br>
-</span><span class='line'>&lt;br>
-</span><span class='line'>&nbsp; &nbsp; Для Каждого &lt;/font>СтрокаСЗаказом &lt;font color=red>Из &lt;/font>Заказы &lt;font color=red>Цикл&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/font>СтрокаВЗаголовок &lt;font color=red>= &lt;/font>СтрокаВЗаголовок &lt;font color=red>+ &lt;/font>&lt;font color=black>"№"&lt;/font>&lt;font color=red>+&lt;/font>СтрокаСЗаказом&lt;font color=red>.&lt;/font>Значение&lt;font color=red>.&lt;/font>Номер&lt;font color=red>+&lt;/font>&lt;font color=black>" от "&lt;/font>&lt;font color=red>+&lt;/font>СтрокаСЗаказом&lt;font color=red>.&lt;/font>Значение&lt;font color=red>.&lt;/font>Дата&lt;font color=red>+&lt;/font>&lt;font color=black>"; "&lt;/font>&lt;font color=red>;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; КонецЦикла;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>КомпоновщикНастроек&lt;font color=red>.&lt;/font>Настройки&lt;font color=red>.&lt;/font>ПараметрыВывода&lt;font color=red>.&lt;/font>Элементы&lt;font color=red>.&lt;/font>Найти&lt;font color=red>(&lt;/font>&lt;font color=black>"Title"&lt;/font>&lt;font color=red>).&lt;/font>Значение &lt;font color=red>= &lt;/font>СтрокаВЗаголовок&lt;font color=red>;&lt;br>
-</span><span class='line'>&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>КомпоновщикМакета&lt;font color=red>=Новый &lt;/font>КомпоновщикМакетаКомпоновкиДанных&lt;font color=red>;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>МакетКомпоновкиДанных&lt;font color=red>=&lt;/font>КомпоновщикМакета&lt;font color=red>.&lt;/font>Выполнить&lt;font color=red>(&lt;/font>СхемаКомпоновкиДанных&lt;font color=red>,&lt;/font>КомпоновщикНастроек&lt;font color=red>.&lt;/font>Настройки&lt;font color=red>,&lt;/font>ДанныеРасшифровки&lt;font color=red>);&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорКомпоновкиДанных&lt;font color=red>=Новый &lt;/font>ПроцессорКомпоновкиДанных&lt;font color=red>;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>&lt;font color=green>// Здесь, при необходимости, следует добавить инициализацию внешних данных, если используется источник данных типа Объект.&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорКомпоновкиДанных&lt;font color=red>.&lt;/font>Инициализировать&lt;font color=red>(&lt;/font>МакетКомпоновкиДанных&lt;font color=red>,,&lt;/font>ДанныеРасшифровки&lt;font color=red>,&lt;/font>Истина&lt;font color=red>);&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорВывода&lt;font color=red>=Новый &lt;/font>ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент&lt;font color=red>;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорВывода&lt;font color=red>.&lt;/font>УстановитьДокумент&lt;font color=red>(&lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>Результат&lt;font color=red>);&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>ПроцессорВывода&lt;font color=red>.&lt;/font>Вывести&lt;font color=red>(&lt;/font>ПроцессорКомпоновкиДанных&lt;font color=red>);&lt;br>
-</span><span class='line'>&lt;br>
-</span><span class='line'>&nbsp; &nbsp; Если &lt;/font>СвернутьГруппировки &lt;font color=red>Тогда&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &nbsp; &nbsp; &lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>Результат&lt;font color=red>.&lt;/font>ПоказатьУровеньГруппировокСтрок&lt;font color=red>(&lt;/font>&lt;font color=black>0&lt;/font>&lt;font color=red>);&lt;br>
-</span><span class='line'>&nbsp; &nbsp; КонецЕсли;&lt;br>
-</span><span class='line'>&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>&lt;font color=green>//ТочкаФиниш=Скрипт.eval("new Date().getTime()");&lt;br>
-</span><span class='line'>&nbsp; &nbsp; //ЭлементыФормы.НадписьВремяФормирования.Заголовок=" Время формирования отчета: "+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+" мс";&lt;br>
-</span><span class='line'>&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>ДействияФормы&lt;font color=red>.&lt;/font>Кнопки&lt;font color=red>.&lt;/font>БазовыеНастройки&lt;font color=red>.&lt;/font>Пометка&lt;font color=red>=&lt;/font>Ложь&lt;font color=red>;&lt;br>
-</span><span class='line'>&nbsp; &nbsp; &lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>ПанельОсновная&lt;font color=red>.&lt;/font>ТекущаяСтраница&lt;font color=red>=&lt;/font>ЭлементыФормы&lt;font color=red>.&lt;/font>ПанельОсновная&lt;font color=red>.&lt;/font>Страницы&lt;font color=red>.&lt;/font>Отчет&lt;font color=red>;&lt;br>
-</span><span class='line'>КонецПроцедуры&lt;br>
-</span><span class='line'>&lt;br>
-</span><span class='line'>&lt;/font>&lt;/p></span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Процедура ДействияФормыСформировать(Кнопка)
+</span><span class='line'>  ЭлементыФормы.Результат.Очистить();
+</span><span class='line'>  
+</span><span class='line'>  //Скрипт=Новый COMОбъект("MSScriptControl.ScriptControl");
+</span><span class='line'>  //Скрипт.Language="javascript";
+</span><span class='line'>  //ТочкаСтарт=Скрипт.eval("new Date().getTime()");
+</span><span class='line'>  
+</span><span class='line'>  Заказы = КомпоновщикНастроек.Настройки.ПараметрыДанных.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("Заказ")).Значение;
+</span><span class='line'>  Если Заказы.Количество() = 1 Тогда
+</span><span class='line'>      СтрокаВЗаголовок = "Анализ заказа: ";
+</span><span class='line'>  Иначе
+</span><span class='line'>      СтрокаВЗаголовок = "Анализ заказов: ";
+</span><span class='line'>  КонецЕсли;
+</span><span class='line'>  
+</span><span class='line'>  Для Каждого СтрокаСЗаказом Из Заказы Цикл
+</span><span class='line'>      СтрокаВЗаголовок = СтрокаВЗаголовок + "№"+СтрокаСЗаказом.Значение.Номер+" от "+СтрокаСЗаказом.Значение.Дата+"; ";
+</span><span class='line'>  КонецЦикла;   
+</span><span class='line'>  КомпоновщикНастроек.Настройки.ПараметрыВывода.Элементы.Найти("Title").Значение = СтрокаВЗаголовок;
+</span><span class='line'>  
+</span><span class='line'>  КомпоновщикМакета=Новый КомпоновщикМакетаКомпоновкиДанных;
+</span><span class='line'>  МакетКомпоновкиДанных=КомпоновщикМакета.Выполнить(СхемаКомпоновкиДанных,КомпоновщикНастроек.Настройки,ДанныеРасшифровки);
+</span><span class='line'>  ПроцессорКомпоновкиДанных=Новый ПроцессорКомпоновкиДанных;
+</span><span class='line'>  // Здесь, при необходимости, следует добавить инициализацию внешних данных, если используется источник данных типа Объект.
+</span><span class='line'>  ПроцессорКомпоновкиДанных.Инициализировать(МакетКомпоновкиДанных,,ДанныеРасшифровки,Истина);
+</span><span class='line'>  ПроцессорВывода=Новый ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент;
+</span><span class='line'>  ПроцессорВывода.УстановитьДокумент(ЭлементыФормы.Результат);
+</span><span class='line'>  ПроцессорВывода.Вывести(ПроцессорКомпоновкиДанных);
+</span><span class='line'>  
+</span><span class='line'>  Если СвернутьГруппировки Тогда
+</span><span class='line'>      ЭлементыФормы.Результат.ПоказатьУровеньГруппировокСтрок(0);
+</span><span class='line'>  КонецЕсли;
+</span><span class='line'>  
+</span><span class='line'>  //ТочкаФиниш=Скрипт.eval("new Date().getTime()");
+</span><span class='line'>  //ЭлементыФормы.НадписьВремяФормирования.Заголовок=" Время формирования отчета: "+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+" мс";
+</span><span class='line'>  
+</span><span class='line'>  ЭлементыФормы.ДействияФормы.Кнопки.БазовыеНастройки.Пометка=Ложь;
+</span><span class='line'>  ЭлементыФормы.ПанельОсновная.ТекущаяСтраница=ЭлементыФормы.ПанельОсновная.Страницы.Отчет;
+</span><span class='line'>КонецПроцедуры</span></code></pre></td></tr></table></div></figure>
 
 
 
