@@ -1,0 +1,9 @@
+---
+layout: post
+title: "Пост номер раз"
+date: 2012-09-04 13:37
+comments: true
+categories: 
+---
+
+Вот такой пост а что делать?

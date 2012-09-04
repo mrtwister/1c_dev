@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: http://mrtwister.github.com/1c_dev
-title: 1C-developer
-subtitle: Блог о суровых реалиях тупого и жадного 1сника
-author: Роман Беляев
+title: My Octopress Blog
+subtitle: A blogging framework for hackers.
+author: Your Name
 simple_search: http://google.com/search
-description:Публикую заметки что бы хоть как то фиксировать накопленный опыт
+description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
