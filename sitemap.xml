@@ -1,11 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://mrtwister.github.com/1c_dev/blog/2012/09/04/post-nomier-raz/</loc>
+        <lastmod>2012-09-04T15:06:44+11:00</lastmod>
+    </url>
+    <url>
         <loc>http://mrtwister.github.com/1c_dev/blog/archives/</loc>
-        <lastmod>2012-09-04T13:06:48+11:00</lastmod>
+        <lastmod>2012-09-04T15:06:44+11:00</lastmod>
     </url>
     <url>
         <loc>http://mrtwister.github.com/1c_dev/</loc>
-        <lastmod>2012-09-04T13:06:48+11:00</lastmod>
+        <lastmod>2012-09-04T15:06:44+11:00</lastmod>
     </url>
 </urlset>
