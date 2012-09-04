@@ -4,7 +4,7 @@
   <title><![CDATA[1C-developer]]></title>
   <link href="http://mrtwister.github.com/1c_dev/atom.xml" rel="self"/>
   <link href="http://mrtwister.github.com/1c_dev/"/>
-  <updated>2012-09-04T18:57:12+11:00</updated>
+  <updated>2012-09-04T19:50:14+11:00</updated>
   <id>http://mrtwister.github.com/1c_dev/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -18,87 +18,7 @@
     <link href="http://mrtwister.github.com/1c_dev/blog/2012/09/04/provierka-kak-pokkazyvaietsia-kod/"/>
     <updated>2012-09-04T18:39:00+11:00</updated>
     <id>http://mrtwister.github.com/1c_dev/blog/2012/09/04/provierka-kak-pokkazyvaietsia-kod</id>
-    <content type="html"><![CDATA[
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Процедура ДействияФормыСформировать(Кнопка)
-</span><span class='line'>  ЭлементыФормы.Результат.Очистить();
-</span><span class='line'>  
-</span><span class='line'>  //Скрипт=Новый COMОбъект("MSScriptControl.ScriptControl");
-</span><span class='line'>  //Скрипт.Language="javascript";
-</span><span class='line'>  //ТочкаСтарт=Скрипт.eval("new Date().getTime()");
-</span><span class='line'>  
-</span><span class='line'>  Заказы = КомпоновщикНастроек.Настройки.ПараметрыДанных.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("Заказ")).Значение;
-</span><span class='line'>  Если Заказы.Количество() = 1 Тогда
-</span><span class='line'>      СтрокаВЗаголовок = "Анализ заказа: ";
-</span><span class='line'>  Иначе
-</span><span class='line'>      СтрокаВЗаголовок = "Анализ заказов: ";
-</span><span class='line'>  КонецЕсли;
-</span><span class='line'>  
-</span><span class='line'>  Для Каждого СтрокаСЗаказом Из Заказы Цикл
-</span><span class='line'>      СтрокаВЗаголовок = СтрокаВЗаголовок + "№"+СтрокаСЗаказом.Значение.Номер+" от "+СтрокаСЗаказом.Значение.Дата+"; ";
-</span><span class='line'>  КонецЦикла;   
-</span><span class='line'>  КомпоновщикНастроек.Настройки.ПараметрыВывода.Элементы.Найти("Title").Значение = СтрокаВЗаголовок;
-</span><span class='line'>  
-</span><span class='line'>  КомпоновщикМакета=Новый КомпоновщикМакетаКомпоновкиДанных;
-</span><span class='line'>  МакетКомпоновкиДанных=КомпоновщикМакета.Выполнить(СхемаКомпоновкиДанных,КомпоновщикНастроек.Настройки,ДанныеРасшифровки);
-</span><span class='line'>  ПроцессорКомпоновкиДанных=Новый ПроцессорКомпоновкиДанных;
-</span><span class='line'>  // Здесь, при необходимости, следует добавить инициализацию внешних данных, если используется источник данных типа Объект.
-</span><span class='line'>  ПроцессорКомпоновкиДанных.Инициализировать(МакетКомпоновкиДанных,,ДанныеРасшифровки,Истина);
-</span><span class='line'>  ПроцессорВывода=Новый ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент;
-</span><span class='line'>  ПроцессорВывода.УстановитьДокумент(ЭлементыФормы.Результат);
-</span><span class='line'>  ПроцессорВывода.Вывести(ПроцессорКомпоновкиДанных);
-</span><span class='line'>  
-</span><span class='line'>  Если СвернутьГруппировки Тогда
-</span><span class='line'>      ЭлементыФормы.Результат.ПоказатьУровеньГруппировокСтрок(0);
-</span><span class='line'>  КонецЕсли;
-</span><span class='line'>  
-</span><span class='line'>  //ТочкаФиниш=Скрипт.eval("new Date().getTime()");
-</span><span class='line'>  //ЭлементыФормы.НадписьВремяФормирования.Заголовок=" Время формирования отчета: "+ПолучитьПредставлениеВремени(ТочкаФиниш-ТочкаСтарт)+" мс";
-</span><span class='line'>  
-</span><span class='line'>  ЭлементыФормы.ДействияФормы.Кнопки.БазовыеНастройки.Пометка=Ложь;
-</span><span class='line'>  ЭлементыФормы.ПанельОсновная.ТекущаяСтраница=ЭлементыФормы.ПанельОсновная.Страницы.Отчет;
-</span><span class='line'>КонецПроцедуры</span></code></pre></td></tr></table></div></figure>
-
-
-
+    <content type="html"><![CDATA[<p>Liquid error: ClassNotFound: no lexer for alias &#8216;1S&#8217; found</p>
 ]]></content>
   </entry>
   
