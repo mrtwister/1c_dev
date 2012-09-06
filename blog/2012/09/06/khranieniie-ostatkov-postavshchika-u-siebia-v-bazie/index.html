@@ -114,57 +114,101 @@
 1. Загрузим из подсунутого экселя остатки поставщика
 2. Подсчитаем дельту, на которую надо скорректировать остатки.
 3. Создадим документ «КоорректировкаЗаписейРегистраНакопления» и в него зальем движения.
-И так: Читаем эксель в таблицу значений.
-{ %codeblock% }
-Функция ПрочитатьЭксель()</p>
+И так: Читаем эксель в таблицу значений.</p>
 
-<pre><code>КСАртикул = Новый КвалификаторыСтроки(25);
-Массив = Новый Массив;
-Массив.Добавить(Тип("Строка"));
-ОписаниеТиповАртикул = Новый ОписаниеТипов(Массив, , КСАртикул);
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Функция ПрочитатьЭксель()
+</span><span class='line'>  КСАртикул = Новый КвалификаторыСтроки(25);
+</span><span class='line'>  Массив = Новый Массив;
+</span><span class='line'>  Массив.Добавить(Тип("Строка"));
+</span><span class='line'>  ОписаниеТиповАртикул = Новый ОписаниеТипов(Массив, , КСАртикул);   
+</span><span class='line'>  
+</span><span class='line'>  Массив.Очистить();
+</span><span class='line'>  КЧ = Новый КвалификаторыЧисла(10);
+</span><span class='line'>  Массив.Добавить(Тип("Число"));
+</span><span class='line'>  ОписаниеТиповЧ = Новый ОписаниеТипов(Массив, , ,КЧ);    
+</span><span class='line'>  
+</span><span class='line'>  ТЗ = Новый ТаблицаЗначений;
+</span><span class='line'>  ТЗ.Колонки.Добавить("Артикул", ОписаниеТиповАртикул);
+</span><span class='line'>  ТЗ.Колонки.Добавить("Количество", ОписаниеТиповЧ);
+</span><span class='line'>  
+</span><span class='line'>  Попытка
+</span><span class='line'>      Excel = Новый COMОбъект("Excel.Application");
+</span><span class='line'>      //Excel.WorkBooks.Open("D:\Базы\НомеенклатураРулевойОбрезан.xls");
+</span><span class='line'>      Excel.WorkBooks.Open(ИмяФайла);
+</span><span class='line'>      Состояние("Обработка файла Microsoft Excel");
+</span><span class='line'>      ExcelЛист = Excel.Sheets(1);
+</span><span class='line'>  Исключение
+</span><span class='line'>      Сообщить("Не удалось обработать файл!");
+</span><span class='line'>      Возврат "";
+</span><span class='line'>  КонецПопытки;   
+</span><span class='line'>  
+</span><span class='line'>  Для СтрокаЭксель = СтрокаНачало По СтрокаОкончание Цикл
+</span><span class='line'>      Прогресс = (СтрокаЭксель / СтрокаОкончание) * 100;
+</span><span class='line'>      ЭлементыФормы.СтрокаСтатуса.Заголовок = "Считывается эксель в память " + СтрокаЭксель + " из " + СтрокаОкончание;
+</span><span class='line'>      
+</span><span class='line'>      Зн = ExcelЛист.Cells(СтрокаЭксель, КолонкаАртикул).Text;
+</span><span class='line'>      АртикулВДокумент = СокрЛ(ExcelЛист.Cells(СтрокаЭксель, КолонкаАртикул).Text);
+</span><span class='line'>      КолвоВДокумент = СокрЛ(ExcelЛист.Cells(СтрокаЭксель, КолонкаКоличество).Text);
+</span><span class='line'>      КолвоВДокумент = ?(КолвоВДокумент = "", 0, Число(КолвоВДокумент));
+</span><span class='line'>      
+</span><span class='line'>      НоваяСтрокаТЗ = ТЗ.Добавить();
+</span><span class='line'>      НоваяСтрокаТЗ.Артикул = АртикулВДокумент;
+</span><span class='line'>      НоваяСтрокаТЗ.Количество = КолвоВДокумент;
+</span><span class='line'>  КонецЦикла;   
+</span><span class='line'>  
+</span><span class='line'>  Excel.WorkBooks.Close();
+</span><span class='line'>  Excel = 0;
+</span><span class='line'>  Возврат ТЗ;
+</span><span class='line'>
+</span><span class='line'>КонецФункции // ПрочитатьЭксель()</span></code></pre></td></tr></table></div></figure>
 
-Массив.Очистить();
-КЧ = Новый КвалификаторыЧисла(10);
-Массив.Добавить(Тип("Число"));
-ОписаниеТиповЧ = Новый ОписаниеТипов(Массив, , ,КЧ);    
 
-ТЗ = Новый ТаблицаЗначений;
-ТЗ.Колонки.Добавить("Артикул", ОписаниеТиповАртикул);
-ТЗ.Колонки.Добавить("Количество", ОписаниеТиповЧ);
-
-Попытка
-    Excel = Новый COMОбъект("Excel.Application");
-    //Excel.WorkBooks.Open("D:\Базы\НомеенклатураРулевойОбрезан.xls");
-    Excel.WorkBooks.Open(ИмяФайла);
-    Состояние("Обработка файла Microsoft Excel");
-    ExcelЛист = Excel.Sheets(1);
-Исключение
-    Сообщить("Не удалось обработать файл!");
-    Возврат "";
-КонецПопытки;   
-
-Для СтрокаЭксель = СтрокаНачало По СтрокаОкончание Цикл
-    Прогресс = (СтрокаЭксель / СтрокаОкончание) * 100;
-    ЭлементыФормы.СтрокаСтатуса.Заголовок = "Считывается эксель в память " + СтрокаЭксель + " из " + СтрокаОкончание;
-
-    Зн = ExcelЛист.Cells(СтрокаЭксель, КолонкаАртикул).Text;
-    АртикулВДокумент = СокрЛ(ExcelЛист.Cells(СтрокаЭксель, КолонкаАртикул).Text);
-    КолвоВДокумент = СокрЛ(ExcelЛист.Cells(СтрокаЭксель, КолонкаКоличество).Text);
-    КолвоВДокумент = ?(КолвоВДокумент = "", 0, Число(КолвоВДокумент));
-
-    НоваяСтрокаТЗ = ТЗ.Добавить();
-    НоваяСтрокаТЗ.Артикул = АртикулВДокумент;
-    НоваяСтрокаТЗ.Количество = КолвоВДокумент;
-КонецЦикла;   
-
-Excel.WorkBooks.Close();
-Excel = 0;
-Возврат ТЗ;
-</code></pre>
-
-<p>КонецФункции // ПрочитатьЭксель()
-{ %endblock% }
-&nbsp;&nbsp;&nbsp;&nbsp;Я читаю эксель в типизизрованную таблицу значений, потому что для обработки таблицы запросом она должна быть типизирована. На форме есть надпись с названием «СтрокаСтатуса» которая рассказывает про текущий ход загрузки данных из экселя. Так же есть поля ввода в которых лежат номера колонок где артикул номенклатуры а где количество. Здесь вроде все настолько просто, что даже не знаю что тут прокомментировать. Ну раз с первым моментом нам все ясно, перейдем к вычислению дельты которую надо грузить в регистр. Для начала, что бы обращаться к этой таблице в запросе, надо ее поместить во временную таблицу, это не очень сложно и делается с помощью вот такого кода:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Я читаю эксель в типизизрованную таблицу значений, потому что для обработки таблицы запросом она должна быть типизирована. На форме есть надпись с названием «СтрокаСтатуса» которая рассказывает про текущий ход загрузки данных из экселя. Так же есть поля ввода в которых лежат номера колонок где артикул номенклатуры а где количество. Здесь вроде все настолько просто, что даже не знаю что тут прокомментировать. Ну раз с первым моментом нам все ясно, перейдем к вычислению дельты которую надо грузить в регистр. Для начала, что бы обращаться к этой таблице в запросе, надо ее поместить во временную таблицу, это не очень сложно и делается с помощью вот такого кода:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -181,17 +225,17 @@ Excel = 0;
 <span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>ТЗЭксель = ПрочитатьЭксель();
 </span><span class='line'>  
-</span><span class='line'>  МВТ = Новый МенеджерВременныхТаблиц;
-</span><span class='line'>  ТаблицаЭксель = Новый Запрос;
-</span><span class='line'>  ТаблицаЭксель.МенеджерВременныхТаблиц = МВТ;
-</span><span class='line'>  ТаблицаЭксель.Текст = 
-</span><span class='line'>      "Выбрать
-</span><span class='line'>      |   *
-</span><span class='line'>      |ПОМЕСТИТЬ ДокЭксель
-</span><span class='line'>      |ИЗ
-</span><span class='line'>      |&ТаблицаСДанными КАК Таблица";
-</span><span class='line'>  ТаблицаЭксель.УстановитьПараметр("ТаблицаСДанными", ТЗЭксель);
-</span><span class='line'>  ТаблицаЭксель.Выполнить();</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>МВТ = Новый МенеджерВременныхТаблиц;
+</span><span class='line'>ТаблицаЭксель = Новый Запрос;
+</span><span class='line'>ТаблицаЭксель.МенеджерВременныхТаблиц = МВТ;
+</span><span class='line'>ТаблицаЭксель.Текст = 
+</span><span class='line'>  "Выбрать
+</span><span class='line'>  |   *
+</span><span class='line'>  |ПОМЕСТИТЬ ДокЭксель
+</span><span class='line'>  |ИЗ
+</span><span class='line'>  |&ТаблицаСДанными КАК Таблица";
+</span><span class='line'>ТаблицаЭксель.УстановитьПараметр("ТаблицаСДанными", ТЗЭксель);
+</span><span class='line'>ТаблицаЭксель.Выполнить();</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Таблица есть, теперь перейдем к загрузке. Так как в экселе могут быть уже существующие записи или не быть тех которые есть в регистре, мы будем привязываться к справочнику номенклатура. Собственно вот он запрос:</p>
@@ -260,10 +304,10 @@ Excel = 0;
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>ДвиженияВДокумент = Запрос.Выполнить().Выгрузить();//"Склад,Номенклатура,Качество,Количество"
-</span><span class='line'>  НулевыеДвижения = ДвиженияВДокумент.НайтиСтроки(Новый Структура("Количество",0));
-</span><span class='line'>  Для Каждого СтрокаТаблицы Из НулевыеДвижения Цикл
-</span><span class='line'>      ДвиженияВДокумент.Удалить(СтрокаТаблицы);
-</span><span class='line'>  КонецЦикла;</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>НулевыеДвижения = ДвиженияВДокумент.НайтиСтроки(Новый Структура("Количество",0));
+</span><span class='line'>Для Каждого СтрокаТаблицы Из НулевыеДвижения Цикл
+</span><span class='line'>  ДвиженияВДокумент.Удалить(СтрокаТаблицы);
+</span><span class='line'>КонецЦикла;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Создать документ корректировки и добавить строку в ТЧ которая укажет на регистр, это нужно для отображения документа и обеспечения возможности его редактировать.</p>
@@ -276,12 +320,12 @@ Excel = 0;
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>НовыйДок = Документы.КорректировкаЗаписейРегистров.СоздатьДокумент();
-</span><span class='line'>  НовыйДок.Дата = ТекущаяДата();
-</span><span class='line'>  СтрокаТЧ = НовыйДок.ТаблицаРегистровНакопления.Добавить();
-</span><span class='line'>  СтрокаТЧ.Имя = "ТоварыНаСкладах";
-</span><span class='line'>  СтрокаТЧ.Представление = "Товары на складах";
-</span><span class='line'>  НовыйДок.Записать();
-</span><span class='line'>  НовыйДок = НовыйДок.Ссылка;</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>НовыйДок.Дата = ТекущаяДата();
+</span><span class='line'>СтрокаТЧ = НовыйДок.ТаблицаРегистровНакопления.Добавить();
+</span><span class='line'>СтрокаТЧ.Имя = "ТоварыНаСкладах";
+</span><span class='line'>СтрокаТЧ.Представление = "Товары на складах";
+</span><span class='line'>НовыйДок.Записать();
+</span><span class='line'>НовыйДок = НовыйДок.Ссылка;</span></code></pre></td></tr></table></div></figure>
 
 
 <p>И собственно загрузить данные в регистр</p>
@@ -291,9 +335,9 @@ Excel = 0;
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>НаборВРегистр = РегистрыНакопления.ТоварыНаСкладах.СоздатьНаборЗаписей();
-</span><span class='line'>  НаборВРегистр.Отбор.Регистратор.Значение = НовыйДок;
-</span><span class='line'>  НаборВРегистр.Загрузить(ДвиженияВДокумент.Скопировать(,"Период,Регистратор,Активность,ВидДвижения,Склад,Номенклатура,Качество,Количество"));
-</span><span class='line'>  НаборВРегистр.Записать();</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>НаборВРегистр.Отбор.Регистратор.Значение = НовыйДок;
+</span><span class='line'>НаборВРегистр.Загрузить(ДвиженияВДокумент.Скопировать(,"Период,Регистратор,Активность,ВидДвижения,Склад,Номенклатура,Качество,Количество"));
+</span><span class='line'>ЫНаборВРегистр.Записать();</span></code></pre></td></tr></table></div></figure>
 
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;Как вы могли заметить документ мы уже не трогаем, его не надо, не записывать, не проводить, он просто является основанием для записи в регистр.
