@@ -4,7 +4,7 @@
   <title><![CDATA[1C-developer]]></title>
   <link href="http://mrtwister.github.com/1c_dev/atom.xml" rel="self"/>
   <link href="http://mrtwister.github.com/1c_dev/"/>
-  <updated>2012-09-06T16:09:52+11:00</updated>
+  <updated>2012-09-06T16:11:33+11:00</updated>
   <id>http://mrtwister.github.com/1c_dev/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -18,7 +18,7 @@
     <link href="http://mrtwister.github.com/1c_dev/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie/"/>
     <updated>2012-09-06T15:47:00+11:00</updated>
     <id>http://mrtwister.github.com/1c_dev/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie</id>
-    <content type="html"><![CDATA[<p>В этой статье, я хотел бы рассказать об опыте настройки хранения остатков по складу поставщика. Почему именно об этом? Потому что:
+    <content type="html"><![CDATA[<p>В этой статье, я хотел бы рассказать об опыте настройки хранения остатков по складу поставщика. Почему именно об этом? Потому что:<!-- more -->
 1. В этом решении затрагивается механизм обращения и обработка в запросе таблицы значений. Что в целом может пригодиться.
 2. Затрагивается механизм формирования таблицы движений сразу в запросе.
 3. Решение имеет практическую ценность.
