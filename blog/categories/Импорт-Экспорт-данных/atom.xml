@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Импорт Экспорт данных | 1C-developer]]></title>
   <link href="http://mrtwister.github.com/1c_dev/blog/categories/Импорт-Экспорт-данных/atom.xml" rel="self"/>
   <link href="http://mrtwister.github.com/1c_dev/"/>
-  <updated>2012-09-06T16:25:46+11:00</updated>
+  <updated>2012-09-06T16:31:42+11:00</updated>
   <id>http://mrtwister.github.com/1c_dev/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -246,7 +246,11 @@
 </span><span class='line'>&lt;/code>&lt;/pre>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
-ЕСТЬNULL нам гарантирует возврат числа в случае работы соединений, разницу мы получаем в строках с 4 по 8, строки с 9й по 19ю формируют значения для загрузки данных в регистр, собственно все почти готово. Осталось выгрузить результат в таблицу и удалить те значения которые грузить не надо(количество = 0) :
+Не забываем, что для того что бы обратиться к временной таблице, нам надо указать менеджер временных таблиц:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Запрос.МенеджерВременныхТаблиц = МВТ;</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ЕСТЬNULL нам гарантирует возврат числа в случае работы соединений, разницу мы получаем в строках с 4 по 8, строки с 9й по 19ю формируют значения для загрузки данных в регистр, собственно все почти готово. Осталось выгрузить результат в таблицу и удалить те значения которые грузить не надо(количество = 0) :
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>

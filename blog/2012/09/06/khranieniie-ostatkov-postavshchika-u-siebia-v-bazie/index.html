@@ -296,6 +296,12 @@
 </span><span class='line'>  Товар.Артикул &lt;> ""</span></code></pre></td></tr></table></div></figure>
 
 
+<p>Не забываем, что для того что бы обратиться к временной таблице, нам надо указать менеджер временных таблиц:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Запрос.МенеджерВременныхТаблиц = МВТ;</span></code></pre></td></tr></table></div></figure>
+
+
 <p>ЕСТЬNULL нам гарантирует возврат числа в случае работы соединений, разницу мы получаем в строках с 4 по 8, строки с 9й по 19ю формируют значения для загрузки данных в регистр, собственно все почти готово. Осталось выгрузить результат в таблицу и удалить те значения которые грузить не надо(количество = 0) :</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
