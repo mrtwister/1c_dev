@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: СКД | 1C-developer]]></title>
-  <link href="http://mrtwister.github.com/1c_dev/blog/categories/СКД/atom.xml" rel="self"/>
-  <link href="http://mrtwister.github.com/1c_dev/"/>
-  <updated>2012-09-06T21:32:06+11:00</updated>
-  <id>http://mrtwister.github.com/1c_dev/</id>
+  <link href="http://developer1c.ru/blog/categories/СКД/atom.xml" rel="self"/>
+  <link href="http://developer1c.ru/"/>
+  <updated>2012-09-06T21:46:44+11:00</updated>
+  <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Основные моменты при работе с СКД]]></title>
-    <link href="http://mrtwister.github.com/1c_dev/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd/"/>
+    <link href="http://developer1c.ru/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd/"/>
     <updated>2012-09-05T21:09:00+11:00</updated>
-    <id>http://mrtwister.github.com/1c_dev/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd</id>
+    <id>http://developer1c.ru/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd</id>
     <content type="html"><![CDATA[<p>В данном топике я хотел бы затронуть, некоторые моменты работы с СКД: работа с формой отчета, использование нескольких схем компоновки данных, работа с параметрами и так по мелочи, что накопилось за время использования СКД. Итак:<!-- more --></p>
 
 <h2>Как использовать параметры в СКД?</h2>

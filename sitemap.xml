@@ -1,27 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>
-            http://mrtwister.github.com/1c_dev/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd/
-        </loc>
+        <loc>http://developer1c.ru/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd/</loc>
         <lastmod>2012-09-06T14:10:37+11:00</lastmod>
     </url>
     <url>
         <loc>
-            http://mrtwister.github.com/1c_dev/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie/
+            http://developer1c.ru/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie/
         </loc>
         <lastmod>2012-09-06T16:52:48+11:00</lastmod>
     </url>
     <url>
-        <loc>http://mrtwister.github.com/1c_dev/blog/archives/</loc>
+        <loc>http://developer1c.ru/blog/archives/</loc>
         <lastmod>2012-09-06T16:52:48+11:00</lastmod>
     </url>
     <url>
-        <loc>http://mrtwister.github.com/1c_dev/archives/</loc>
+        <loc>http://developer1c.ru/archives/</loc>
         <lastmod>2012-09-06T16:52:48+11:00</lastmod>
     </url>
     <url>
-        <loc>http://mrtwister.github.com/1c_dev/</loc>
+        <loc>http://developer1c.ru/</loc>
         <lastmod>2012-09-06T16:52:48+11:00</lastmod>
     </url>
 </urlset>
