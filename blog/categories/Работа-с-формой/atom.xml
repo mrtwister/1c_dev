@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Работа с формой | 1C-developer]]></title>
+  <link href="http://developer1c.ru/blog/categories/Работа-с-формой/atom.xml" rel="self"/>
+  <link href="http://developer1c.ru/"/>
+  <updated>2012-09-07T00:20:29+11:00</updated>
+  <id>http://developer1c.ru/</id>
+  <author>
+    <name><![CDATA[Роман Беляев]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Программное расположение элементов на форме]]></title>
+    <link href="http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie/"/>
+    <updated>2012-09-07T00:13:00+11:00</updated>
+    <id>http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie</id>
+    <content type="html"><![CDATA[<p>Иногда есть необходимость расположить табличное поле на форме программно, например когда нужно добавить неизвестное заранее количество закладок, хорошо если нужно просто добавить закладки, тогда можно просто отделаться :<!-- more -->
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ЭлементыФормы.ПанельСЗакладками.Страницы.Добавить("ЗакладкаСклад"+Склад.НомерСклада, Склад.Наименование);</span></code></pre></td></tr></table></div></figure></notextile></div>
+но на закладках должно, что то располагаться и это что то, должно иметь размеры, располагаться в конкретно указанном месте у него,  у него должны быть привязки, определены какие то свойства(которых прошу заметить может быть много) и тд, конечно самый логичный способ это нарисовать образец на форме а потом смотря свойства, просто это все перетащить. Должен получиться какой то такой код:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ЭлементыФормы.ПанельСЗакладками.Страницы.Добавить("ЗакладкаСклад"+Склад.НомерСклада, Склад.Наименование);
+</span><span class='line'>ЭлементыФормы.ПанельСЗакладками.ТекущаяСтраница = ЭлементыФормы.ПанельСЗакладками.Страницы["ЗакладкаСклад"+Склад.НомерСклада];
+</span><span class='line'>ТабличноеПоле = ЭлементыФормы.Добавить(Тип("ТабличноеПоле"),"ТабличноеПоле"+Склад.НомерСклада,Истина,ЭлементыФормы.ПанельСЗакладками);
+</span><span class='line'>ТабличноеПоле.Имя = "ТабличноеПоле"+Склад.НомерСклада;
+</span><span class='line'>ТабличноеПоле.Значение = ДвиженияПоСкладам[ТекущийСклад];
+</span><span class='line'>ТабличноеПоле.Верх = 6;
+</span><span class='line'>ТабличноеПоле.Высота = 566;
+</span><span class='line'>ТабличноеПоле.Ширина = 747;
+</span><span class='line'>ТабличноеПоле.Лево = 6;
+</span><span class='line'>ТабличноеПоле.ВертикальнаяПолосаПрокрутки = ИспользованиеПолосыПрокрутки.Использоватьавтоматически;
+</span><span class='line'>ТабличноеПоле.Вывод = ИспользованиеВывода.Авто;
+</span><span class='line'>ТабличноеПоле.ВысотаПодвала = 1;
+</span><span class='line'>ТабличноеПоле.ВысотаШапки = 1;
+</span><span class='line'>ТабличноеПоле.ГоризонтальнаяПолосаПрокрутки = ИспользованиеПолосыПрокрутки.Использоватьавтоматически;
+</span><span class='line'>ТабличноеПоле.ГоризонтальныеЛинии = Истина;
+</span><span class='line'>ТабличноеПоле.ПорядокОтображения = 1;
+</span><span class='line'>ТабличноеПоле.УстановитьПривязку(ГраницаЭлементаУправления.Низ,ЭтаФорма.Панель,ГраницаЭлементаУправления.Низ);
+</span><span class='line'>ТабличноеПоле.УстановитьПривязку(ГраницаЭлементаУправления.Право,ЭтаФорма.Панель,ГраницаЭлементаУправления.Право);
+</span><span class='line'>ТабличноеПоле.ТолькоПросмотр = Ложь;</span></code></pre></td></tr></table></div></figure></notextile></div>
+&nbsp;&nbsp;&nbsp;&nbsp;Но тут есть один нюанс, переписывать параметры руками, это просто жесть, всегда можно, что то забыть, не учесть, не заметить, да и не всегда удается угадать какой контрол, какой содержит элемент управления, но тут падам! к нам на выручку спешит чудесная штука ДекомпиляцияИАнализФорм_4.epf делаем формочку, настраиваем поведение, размеры, стили и прочие нужности, скармливаем обработке, она генерит нам нужный код, очень приятная вешь, про автора известно что это (MRAK) Роман Ершов, больше я про него ничего не знаю, он пожелал не раскрывать деталей. Собственно на этом все а комму нужно, может скачать  <a href="http://26226.selcdn.ru/1c_dev_files/files/%D0%94%D0%B5%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%86%D0%B8%D1%8F%D0%98%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%A4%D0%BE%D1%80%D0%BC_4.epf">обработку</a> которая поможет вам в нелегких буднях 1сника</p>
+]]></content>
+  </entry>
+  
+</feed>

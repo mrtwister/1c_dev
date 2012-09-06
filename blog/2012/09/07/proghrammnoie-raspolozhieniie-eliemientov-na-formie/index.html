@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Программное расположение элементов на форме - 1C-developer</title>
+  <meta name="author" content="Роман Беляев">
+
+  
+  <meta name="description" content="Иногда есть необходимость расположить табличное поле на форме программно, например когда нужно добавить неизвестное заранее количество закладок, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/1c_dev/atom.xml" rel="alternate" title="1C-developer" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34619019-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <!-- <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/1c_dev/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:developer1c.ru" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav> -->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Программное расположение элементов на форме</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T00:13:00+11:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Иногда есть необходимость расположить табличное поле на форме программно, например когда нужно добавить неизвестное заранее количество закладок, хорошо если нужно просто добавить закладки, тогда можно просто отделаться :<!-- more --></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ЭлементыФормы.ПанельСЗакладками.Страницы.Добавить("ЗакладкаСклад"+Склад.НомерСклада, Склад.Наименование);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>но на закладках должно, что то располагаться и это что то, должно иметь размеры, располагаться в конкретно указанном месте у него,  у него должны быть привязки, определены какие то свойства(которых прошу заметить может быть много) и тд, конечно самый логичный способ это нарисовать образец на форме а потом смотря свойства, просто это все перетащить. Должен получиться какой то такой код:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ЭлементыФормы.ПанельСЗакладками.Страницы.Добавить("ЗакладкаСклад"+Склад.НомерСклада, Склад.Наименование);
+</span><span class='line'>ЭлементыФормы.ПанельСЗакладками.ТекущаяСтраница = ЭлементыФормы.ПанельСЗакладками.Страницы["ЗакладкаСклад"+Склад.НомерСклада];
+</span><span class='line'>ТабличноеПоле = ЭлементыФормы.Добавить(Тип("ТабличноеПоле"),"ТабличноеПоле"+Склад.НомерСклада,Истина,ЭлементыФормы.ПанельСЗакладками);
+</span><span class='line'>ТабличноеПоле.Имя = "ТабличноеПоле"+Склад.НомерСклада;
+</span><span class='line'>ТабличноеПоле.Значение = ДвиженияПоСкладам[ТекущийСклад];
+</span><span class='line'>ТабличноеПоле.Верх = 6;
+</span><span class='line'>ТабличноеПоле.Высота = 566;
+</span><span class='line'>ТабличноеПоле.Ширина = 747;
+</span><span class='line'>ТабличноеПоле.Лево = 6;
+</span><span class='line'>ТабличноеПоле.ВертикальнаяПолосаПрокрутки = ИспользованиеПолосыПрокрутки.Использоватьавтоматически;
+</span><span class='line'>ТабличноеПоле.Вывод = ИспользованиеВывода.Авто;
+</span><span class='line'>ТабличноеПоле.ВысотаПодвала = 1;
+</span><span class='line'>ТабличноеПоле.ВысотаШапки = 1;
+</span><span class='line'>ТабличноеПоле.ГоризонтальнаяПолосаПрокрутки = ИспользованиеПолосыПрокрутки.Использоватьавтоматически;
+</span><span class='line'>ТабличноеПоле.ГоризонтальныеЛинии = Истина;
+</span><span class='line'>ТабличноеПоле.ПорядокОтображения = 1;
+</span><span class='line'>ТабличноеПоле.УстановитьПривязку(ГраницаЭлементаУправления.Низ,ЭтаФорма.Панель,ГраницаЭлементаУправления.Низ);
+</span><span class='line'>ТабличноеПоле.УстановитьПривязку(ГраницаЭлементаУправления.Право,ЭтаФорма.Панель,ГраницаЭлементаУправления.Право);
+</span><span class='line'>ТабличноеПоле.ТолькоПросмотр = Ложь;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Но тут есть один нюанс, переписывать параметры руками, это просто жесть, всегда можно, что то забыть, не учесть, не заметить, да и не всегда удается угадать какой контрол, какой содержит элемент управления, но тут падам! к нам на выручку спешит чудесная штука ДекомпиляцияИАнализФорм_4.epf делаем формочку, настраиваем поведение, размеры, стили и прочие нужности, скармливаем обработке, она генерит нам нужный код, очень приятная вешь, про автора известно что это (MRAK) Роман Ершов, больше я про него ничего не знаю, он пожелал не раскрывать деталей. Собственно на этом все а комму нужно, может скачать  <a href="http://26226.selcdn.ru/1c_dev_files/files/%D0%94%D0%B5%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%86%D0%B8%D1%8F%D0%98%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%A4%D0%BE%D1%80%D0%BC_4.epf">обработку</a> которая поможет вам в нелегких буднях 1сника</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Автор <span class="fn">Роман Беляев</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-07T00:13:00+11:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/Работа-с-формой/'>Работа с формой</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie/" data-via="belyaev_rs" data-counturl="http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie/" title="Previous Post: Хранение остатков поставщика у себя в базе">&laquo; Хранение остатков поставщика у себя в базе</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <a href="http://developer1c.ru" title="На главную"><img src="http://developer1c.ru/images/Home.png" alt="На главную"></a>
+  <a href="http://developer1c.ru/atom.xml" title="RSS"><img src="http://developer1c.ru/images/rss_big.png" alt="RSS"></a>
+  <a href="mailto:belyaev.rs@gmail.com" title="Написать автору"><img src="http://developer1c.ru/images/Envelope.png" alt="Написать автору"></a>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie/">Программное расположение элементов на форме</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie/">Хранение остатков поставщика у себя в базе</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd/">Основные моменты при работе с СКД</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("belyaev_rs", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/belyaev_rs" class="twitter-follow-button" data-show-count="false">Follow @belyaev_rs</a>
+  
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Роман Беляев -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
