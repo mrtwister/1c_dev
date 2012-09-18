@@ -4,7 +4,7 @@
   <title><![CDATA[1C-developer]]></title>
   <link href="http://developer1c.ru/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2012-09-19T00:19:05+11:00</updated>
+  <updated>2012-09-19T00:34:59+11:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -12,6 +12,16 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Лето закончилось...]]></title>
+    <link href="http://developer1c.ru/blog/2012/09/19/lieto-zakonchilos%27-dot-dot-dot/"/>
+    <updated>2012-09-19T00:33:00+11:00</updated>
+    <id>http://developer1c.ru/blog/2012/09/19/lieto-zakonchilos&#8217;-dot-dot-dot</id>
+    <content type="html"><![CDATA[<iframe width="960" height="720" src="http://www.youtube.com/embed/RpanUnEVCrk" frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Подключение сканера штрихкодов к 1С]]></title>
