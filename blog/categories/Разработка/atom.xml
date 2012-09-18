@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Разработка | 1C-developer]]></title>
+  <link href="http://developer1c.ru/blog/categories/Разработка/atom.xml" rel="self"/>
+  <link href="http://developer1c.ru/"/>
+  <updated>2012-09-18T23:51:45+11:00</updated>
+  <id>http://developer1c.ru/</id>
+  <author>
+    <name><![CDATA[Роман Беляев]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Подключение сканера штрихкодов к 1С]]></title>
+    <link href="http://developer1c.ru/blog/2012/09/18/podkliuchieniie-skaniera-shtrikhkodov-k-1s/"/>
+    <updated>2012-09-18T23:11:00+11:00</updated>
+    <id>http://developer1c.ru/blog/2012/09/18/podkliuchieniie-skaniera-shtrikhkodov-k-1s</id>
+    <content type="html"><![CDATA[<h2>Подключение сканера метролоджик ms 5145 к 1С Управление торговлей.</h2>
+
+<p>Для того что бы разобраться с подключением сканера, нужно понимать, как все работает и какие бывают режимы, что касается ms5145 то это USB сканер который начинает работать сразу после подключения к компьютеру. Если после подключения открыть блокнот и отсканировать штрихкод, то мы в блокноте увидим код который обозначает этот штрихкод, как будто мы набрали его на клавиатуре. То есть он работает сразу из коробки. Итак нам надо что бы сканер работал в 1С. При использовании сканера работает следующая схема: при сканировании штрихкод перехватывет драйвер и передает в 1С. Это специальный драйвер который сделан для того что бы перехватывать события сканирования, не путайте с драйвером самого сканера. В кратце схему можно изобразить так:
+<img src="http://26226.selcdn.ru/1c_dev_files/shema.png">
+При настройке сканера в 1С нужно указать com  порт (настройки мы рассмотрим внимательно чуть позже) а у нас сканер работает как клавиатура. Вариантов у нас несколько.
+1. Использование режима ввода с клавитуры. Перед сканированием в окне подбора, в документе ЧЕКККМ, Реализация товаров и услуг, нажать F7 и отсканировать штрихкод. Штрихкод отсканируется и сам нажмет ОК. Как будто это вы сами набрали штрихкод с клавиатуры.</p>
+
+<ol>
+<li><p>Использование старого драйвера Атол. Драйвер Атол платный и стоит нормальных денег, бесплатно он сканирует с 10ти секундной задержкой. Можно поискать в инете бесплатную версию DTO6_2009_02_11, при установке этого драйвера в списке ком портов появляется пункт клавиатура  указываем tго и все ок, поиск по штрихкоду происходит при сканировании штрихкода без лишних движений.</p></li>
+<li><p>Перевод сканера в режим эмуляции com порта для перевода. Если перевести сканер в режим эмуляции com порта то он будет делать вид, что подключен через com порт, который ура! можно подсунуть  1С. Для того, что бы перевести сканер в такой режим, надо отсканировать штрихкод из книжечки которая шла вместе со сканером, если книжечки нет ее можно скачать <a href="http://www.honeywellaidc.com/en-us/pages/Product.aspx?category=Laser&amp;cat=HSM&amp;pid=5145">на оффицальном сайте</a> и распечатать нужную страницу из руководства. После того как вы отсканируете код, сканер переключится на режим эмуляции ком порта, система найдет новое устройство и запросит драйвера, их можно взять с офф сайта по вышеприведенной ссылке или скачать <a href="http://26226.selcdn.ru/1c_dev_files/files/drv_metrolologik.zip">мою подборку</a>, откуда она собралась я уже не помню. Но она меня выручала не раз. Указываете путь к драйверу и у вас в системе новый ком порт, все можно его использовать. После этого вам нужно установить драйвер, который будет передавать штрихкод в программу 1С, здесь подойдет любой  драйвер штрихкода от фирмы 1С. Они все умеют перехватывать события от com порта. В случае если у вас сервер терминалов, то у каждого клиента, должен быть свой уникальный com порт, то есть у двух пользователей подключенных к одному серверу терминалов, сканеры должны висеть на разных com портах иначе сканер будет работать только у кого то одного.</p></li>
+<li><p>С 29.02.12 стадартный драйвер 1С версии 8.0.12.2 (на текущий момент акутальная версия 8.0.14.1 любая версия легко гуглится по версии драйвера например вот так (Scan_OPOS_8_0_14_1.rar)[http://goo.gl/poGiF] умеет работать с клавиатурными сканерами без танцев-бубнов, переключений в режим эмуляции и тд. После установки драйвера в списке com портов наблюдаем пункт клавиатура, который собственно и отрабатывает событие считывание штрихкода, сканером в режиме клавиатуры. Похоже это самое удобный способ.</p></li>
+</ol>
+
+
+<p>Перейдем к настройке сканера, настройка сканера происходит в меню Сервис -> Торговое оборудование -> Подключение и настройка торгового оборудования перейдем на закладку сканеры штрихкода там добавляем строку, открывается справочник торговое оборудование, здесь надо добавить наш сканер, указываем любое название и обработку обслуживания, если вы устанавливали конфигурацию, то ее можно взять в каталоге с шаблонами TradeWareEpf, где то здесь: C:\Users\admin\AppData\Roaming\1C\1Cv82\tmplts\1c\Retail\Номер<em>Релиза</em>Конфигурации если не устанавливали, то ищите на диске ИТС, если нет диска ИТС, придется его скачать или загуглить. Потом, указываем порт скорость и другие настройки com порта из диспетчера задач. Собственно все. Буду рад ответить на ваши вопросы в коментариях. Так же тут можно поклянчить обработки обслуживания торгового оборудования.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Программное расположение элементов на форме]]></title>
+    <link href="http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie/"/>
+    <updated>2012-09-07T00:13:00+11:00</updated>
+    <id>http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie</id>
+    <content type="html"><![CDATA[<p>Иногда есть необходимость расположить табличное поле на форме программно, например когда нужно добавить неизвестное заранее количество закладок, хорошо если нужно просто добавить закладки, тогда можно просто отделаться :<!-- more -->
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ЭлементыФормы.ПанельСЗакладками.Страницы.Добавить("ЗакладкаСклад"+Склад.НомерСклада, Склад.Наименование);</span></code></pre></td></tr></table></div></figure></notextile></div>
+но на закладках должно, что то располагаться и это что то, должно иметь размеры, располагаться в конкретно указанном месте у него,  у него должны быть привязки, определены какие то свойства(которых прошу заметить может быть много) и тд, конечно самый логичный способ это нарисовать образец на форме а потом смотря свойства, просто это все перетащить. Должен получиться какой то такой код:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ЭлементыФормы.ПанельСЗакладками.Страницы.Добавить("ЗакладкаСклад"+Склад.НомерСклада, Склад.Наименование);
+</span><span class='line'>ЭлементыФормы.ПанельСЗакладками.ТекущаяСтраница = ЭлементыФормы.ПанельСЗакладками.Страницы["ЗакладкаСклад"+Склад.НомерСклада];
+</span><span class='line'>ТабличноеПоле = ЭлементыФормы.Добавить(Тип("ТабличноеПоле"),"ТабличноеПоле"+Склад.НомерСклада,Истина,ЭлементыФормы.ПанельСЗакладками);
+</span><span class='line'>ТабличноеПоле.Имя = "ТабличноеПоле"+Склад.НомерСклада;
+</span><span class='line'>ТабличноеПоле.Значение = ДвиженияПоСкладам[ТекущийСклад];
+</span><span class='line'>ТабличноеПоле.Верх = 6;
+</span><span class='line'>ТабличноеПоле.Высота = 566;
+</span><span class='line'>ТабличноеПоле.Ширина = 747;
+</span><span class='line'>ТабличноеПоле.Лево = 6;
+</span><span class='line'>ТабличноеПоле.ВертикальнаяПолосаПрокрутки = ИспользованиеПолосыПрокрутки.Использоватьавтоматически;
+</span><span class='line'>ТабличноеПоле.Вывод = ИспользованиеВывода.Авто;
+</span><span class='line'>ТабличноеПоле.ВысотаПодвала = 1;
+</span><span class='line'>ТабличноеПоле.ВысотаШапки = 1;
+</span><span class='line'>ТабличноеПоле.ГоризонтальнаяПолосаПрокрутки = ИспользованиеПолосыПрокрутки.Использоватьавтоматически;
+</span><span class='line'>ТабличноеПоле.ГоризонтальныеЛинии = Истина;
+</span><span class='line'>ТабличноеПоле.ПорядокОтображения = 1;
+</span><span class='line'>ТабличноеПоле.УстановитьПривязку(ГраницаЭлементаУправления.Низ,ЭтаФорма.Панель,ГраницаЭлементаУправления.Низ);
+</span><span class='line'>ТабличноеПоле.УстановитьПривязку(ГраницаЭлементаУправления.Право,ЭтаФорма.Панель,ГраницаЭлементаУправления.Право);
+</span><span class='line'>ТабличноеПоле.ТолькоПросмотр = Ложь;</span></code></pre></td></tr></table></div></figure></notextile></div>
+&nbsp;&nbsp;&nbsp;&nbsp;Но тут есть один нюанс, переписывать параметры руками, это просто жесть, всегда можно, что то забыть, не учесть, не заметить, да и не всегда удается угадать какой контрол, какой содержит элемент управления, но тут падам! к нам на выручку спешит чудесная штука ДекомпиляцияИАнализФорм_4.epf делаем формочку, настраиваем поведение, размеры, стили и прочие нужности, скармливаем обработке, она генерит нам нужный код, очень приятная вешь, про автора известно что это (MRAK) Роман Ершов, больше я про него ничего не знаю, он пожелал не раскрывать деталей. Собственно на этом все а комму нужно, может скачать  <a href="http://26226.selcdn.ru/1c_dev_files/files/%D0%94%D0%B5%D0%BA%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%86%D0%B8%D1%8F%D0%98%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%A4%D0%BE%D1%80%D0%BC_4.epf">обработку</a> которая поможет вам в нелегких буднях 1сника</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Хранение остатков поставщика у себя в базе]]></title>
+    <link href="http://developer1c.ru/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie/"/>
+    <updated>2012-09-06T15:47:00+11:00</updated>
+    <id>http://developer1c.ru/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie</id>
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;В этой статье, я хотел бы рассказать об опыте настройки хранения остатков по складу поставщика. Почему именно об этом? Потому что:<!-- more --></p>
+
+<ol>
+<li>В этом решении затрагивается механизм обработки в запросе таблицы значений. Что в целом может пригодиться.</li>
+<li>Затрагивается механизм формирования таблицы движений сразу в запросе.</li>
+<li>Решение имеет практическую ценность.</li>
+<li>Было интересно :)</li>
+</ol>
+
+
+<p>Заказчиком было поставлено условие: изменение конфигурации, должно быть обоснованным и не происходить без надобности. Были найдены и рассмотрены следующие варианты:</p>
+
+<ol>
+<li>Добавление регистра в базу. Загрузка туда остатков, да и вообще всего что можно загрузить.</li>
+<li>Загрузка данных из экселя (Именно в этом формате поставщик хранит свои данные) каждый раз при открытии подбора в документ отгрузки.</li>
+<li>Создание нового склада, и загрузка данных туда корректирующим документом.</li>
+</ol>
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Первые два способа подразумевают модификацию обработки подбора в документ реализации  а один из них еще и добавление регистра, что само по себе не страшно конечно, но для заказчика не желательно. А во втором случае, надо каждый раз читать эксель, что тоже не очень хорошо. После <a href="http://www.forum.mista.ru/topic.php?id=619127">консультаций с комьюнити</a>, было выяснено, что вроде как все считают, что хранить  остатки у себя в базе нельзя, но почему, никто сказать не может. Решили остановиться на третьем варианте.</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;И так что мы будем делать:
+1. Загрузим из подсунутого экселя остатки поставщика
+2. Подсчитаем дельту, на которую надо скорректировать остатки.
+3. Создадим документ «КоорректировкаЗаписейРегистраНакопления» и в него зальем движения.
+И так: Читаем эксель в таблицу значений.
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Функция ПрочитатьЭксель()&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>КСАртикул = Новый КвалификаторыСтроки(25);
+</span><span class='line'>Массив = Новый Массив;
+</span><span class='line'>Массив.Добавить(Тип("Строка"));
+</span><span class='line'>ОписаниеТиповАртикул = Новый ОписаниеТипов(Массив, , КСАртикул);   
+</span><span class='line'>
+</span><span class='line'>Массив.Очистить();
+</span><span class='line'>КЧ = Новый КвалификаторыЧисла(10);
+</span><span class='line'>Массив.Добавить(Тип("Число"));
+</span><span class='line'>ОписаниеТиповЧ = Новый ОписаниеТипов(Массив, , ,КЧ);    
+</span><span class='line'>
+</span><span class='line'>ТЗ = Новый ТаблицаЗначений;
+</span><span class='line'>ТЗ.Колонки.Добавить("Артикул", ОписаниеТиповАртикул);
+</span><span class='line'>ТЗ.Колонки.Добавить("Количество", ОписаниеТиповЧ);
+</span><span class='line'>
+</span><span class='line'>Попытка
+</span><span class='line'>    Excel = Новый COMОбъект("Excel.Application");
+</span><span class='line'>    //Excel.WorkBooks.Open("D:\Базы\НомеенклатураРулевойОбрезан.xls");
+</span><span class='line'>    Excel.WorkBooks.Open(ИмяФайла);
+</span><span class='line'>    Состояние("Обработка файла Microsoft Excel");
+</span><span class='line'>    ExcelЛист = Excel.Sheets(1);
+</span><span class='line'>Исключение
+</span><span class='line'>    Сообщить("Не удалось обработать файл!");
+</span><span class='line'>    Возврат "";
+</span><span class='line'>КонецПопытки;   
+</span><span class='line'>
+</span><span class='line'>Для СтрокаЭксель = СтрокаНачало По СтрокаОкончание Цикл
+</span><span class='line'>    Прогресс = (СтрокаЭксель / СтрокаОкончание) * 100;
+</span><span class='line'>    ЭлементыФормы.СтрокаСтатуса.Заголовок = "Считывается эксель в память " + СтрокаЭксель + " из " + СтрокаОкончание;
+</span><span class='line'>
+</span><span class='line'>    Зн = ExcelЛист.Cells(СтрокаЭксель, КолонкаАртикул).Text;
+</span><span class='line'>    АртикулВДокумент = СокрЛ(ExcelЛист.Cells(СтрокаЭксель, КолонкаАртикул).Text);
+</span><span class='line'>    КолвоВДокумент = СокрЛ(ExcelЛист.Cells(СтрокаЭксель, КолонкаКоличество).Text);
+</span><span class='line'>    КолвоВДокумент = ?(КолвоВДокумент = "", 0, Число(КолвоВДокумент));
+</span><span class='line'>
+</span><span class='line'>    НоваяСтрокаТЗ = ТЗ.Добавить();
+</span><span class='line'>    НоваяСтрокаТЗ.Артикул = АртикулВДокумент;
+</span><span class='line'>    НоваяСтрокаТЗ.Количество = КолвоВДокумент;
+</span><span class='line'>КонецЦикла;   
+</span><span class='line'>
+</span><span class='line'>Excel.WorkBooks.Close();
+</span><span class='line'>Excel = 0;
+</span><span class='line'>Возврат ТЗ;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецФункции // ПрочитатьЭксель()</span></code></pre></td></tr></table></div></figure></notextile></div>
+&nbsp;&nbsp;&nbsp;&nbsp;Я читаю эксель в типизизрованную таблицу значений, потому что для обработки таблицы запросом она должна быть типизирована. На форме есть надпись с названием «СтрокаСтатуса» которая рассказывает про текущий ход загрузки данных из экселя. Так же есть поля ввода в которых лежат номера колонок где артикул номенклатуры а где количество. Здесь вроде все настолько просто, что даже не знаю что тут прокомментировать. Ну раз с первым моментом нам все ясно, перейдем к вычислению дельты которую надо грузить в регистр. Для начала, что бы обращаться к этой таблице в запросе, надо ее поместить во временную таблицу, это не очень сложно и делается с помощью вот такого кода:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ТЗЭксель = ПрочитатьЭксель();&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>МВТ = Новый МенеджерВременныхТаблиц;
+</span><span class='line'>ТаблицаЭксель = Новый Запрос;
+</span><span class='line'>ТаблицаЭксель.МенеджерВременныхТаблиц = МВТ;
+</span><span class='line'>ТаблицаЭксель.Текст =&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>"Выбрать
+</span><span class='line'>|   *
+</span><span class='line'>|ПОМЕСТИТЬ ДокЭксель
+</span><span class='line'>|ИЗ
+</span><span class='line'>|&amp;ТаблицаСДанными КАК Таблица";
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ТаблицаЭксель.УстановитьПараметр("ТаблицаСДанными", ТЗЭксель);
+</span><span class='line'>ТаблицаЭксель.Выполнить();</span></code></pre></td></tr></table></div></figure></notextile></div>
+Таблица есть, теперь перейдем к загрузке. Так как в экселе могут быть уже существующие записи или не быть тех которые есть в регистре, мы будем привязываться к справочнику номенклатура. Собственно вот он запрос:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ВЫБРАТЬ&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>ЕСТЬNULL(ТоварыНаСкладахОстатки.КоличествоОстаток, 0) КАК ОстатокНаСкладе,
+</span><span class='line'>ЕСТЬNULL(ДокЭксель.Количество, 0) КАК КоличествоЭксель,
+</span><span class='line'>ВЫБОР
+</span><span class='line'>    КОГДА ЕСТЬNULL(ДокЭксель.Количество, 0) - ЕСТЬNULL(ТоварыНаСкладахОстатки.КоличествоОстаток, 0) &lt; 0
+</span><span class='line'>        ТОГДА 0 - (ЕСТЬNULL(ДокЭксель.Количество, 0) - ЕСТЬNULL(ТоварыНаСкладахОстатки.КоличествоОстаток, 0))
+</span><span class='line'>    ИНАЧЕ ЕСТЬNULL(ДокЭксель.Количество, 0) - ЕСТЬNULL(ТоварыНаСкладахОстатки.КоличествоОстаток, 0)
+</span><span class='line'>КОНЕЦ КАК Количество,
+</span><span class='line'>&amp;Склад,
+</span><span class='line'>Товар.Ссылка КАК Номенклатура,
+</span><span class='line'>ЗНАЧЕНИЕ(Справочник.Качество.Новый) КАК Качество,
+</span><span class='line'>ВЫБОР
+</span><span class='line'>    КОГДА ЕСТЬNULL(ДокЭксель.Количество, 0) - ЕСТЬNULL(ТоварыНаСкладахОстатки.КоличествоОстаток, 0) &gt; 0
+</span><span class='line'>        ТОГДА ЗНАЧЕНИЕ(ВидДвиженияНакопления.Приход)
+</span><span class='line'>    ИНАЧЕ ЗНАЧЕНИЕ(ВидДвиженияНакопления.Расход)
+</span><span class='line'>КОНЕЦ КАК ВидДвижения,
+</span><span class='line'>ИСТИНА КАК Активность,
+</span><span class='line'>&amp;Период,
+</span><span class='line'>&amp;Док КАК Регистратор
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ИЗ&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Справочник.Номенклатура КАК Товар
+</span><span class='line'>    ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ТоварыНаСкладах.Остатки(, Склад = &amp;Склад) КАК ТоварыНаСкладахОстатки
+</span><span class='line'>    ПО Товар.Ссылка = ТоварыНаСкладахОстатки.Номенклатура
+</span><span class='line'>    ЛЕВОЕ СОЕДИНЕНИЕ ДокЭксель КАК ДокЭксель
+</span><span class='line'>    ПО Товар.Артикул = ДокЭксель.Артикул
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ГДЕ&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Товар.Артикул &lt;&gt; ""
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+Не забываем, что для того что бы обратиться к временной таблице, нам надо указать менеджер временных таблиц:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Запрос.МенеджерВременныхТаблиц = МВТ;</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>ЕСТЬNULL нам гарантирует возврат числа в случае работы соединений, разницу мы получаем в строках с 4 по 8, строки с 9й по 19ю формируют значения для загрузки данных в регистр, собственно все почти готово. Осталось выгрузить результат в таблицу и удалить те значения которые грузить не надо(количество = 0) :
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ДвиженияВДокумент = Запрос.Выполнить().Выгрузить();//"Склад,Номенклатура,Качество,Количество"
+</span><span class='line'>НулевыеДвижения = ДвиженияВДокумент.НайтиСтроки(Новый Структура("Количество",0));
+</span><span class='line'>Для Каждого СтрокаТаблицы Из НулевыеДвижения Цикл&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>ДвиженияВДокумент.Удалить(СтрокаТаблицы);
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецЦикла; &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
+Создать документ корректировки и добавить строку в ТЧ которая укажет на регистр, это нужно для отображения документа и обеспечения возможности его редактировать.
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>НовыйДок = Документы.КорректировкаЗаписейРегистров.СоздатьДокумент();
+</span><span class='line'>НовыйДок.Дата = ТекущаяДата();
+</span><span class='line'>СтрокаТЧ = НовыйДок.ТаблицаРегистровНакопления.Добавить();
+</span><span class='line'>СтрокаТЧ.Имя = "ТоварыНаСкладах";
+</span><span class='line'>СтрокаТЧ.Представление = "Товары на складах";
+</span><span class='line'>НовыйДок.Записать();
+</span><span class='line'>НовыйДок = НовыйДок.Ссылка;</span></code></pre></td></tr></table></div></figure></notextile></div>
+И собственно загрузить данные в регистр
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>НаборВРегистр = РегистрыНакопления.ТоварыНаСкладах.СоздатьНаборЗаписей();
+</span><span class='line'>НаборВРегистр.Отбор.Регистратор.Значение = НовыйДок;
+</span><span class='line'>НаборВРегистр.Загрузить(ДвиженияВДокумент.Скопировать(,"Период,Регистратор,Активность,ВидДвижения,Склад,Номенклатура,Качество,Количество"));
+</span><span class='line'>ЫНаборВРегистр.Записать();</span></code></pre></td></tr></table></div></figure></notextile></div>
+&nbsp;&nbsp;&nbsp;&nbsp;Как вы могли заметить документ мы уже не трогаем, его не надо, не записывать, не проводить, он просто является основанием для записи в регистр.
+Собственно на этом все, внимательный читатель наверняка уже нашел ошибку а вы? ;)
+Как обычно для тех кто дочитал или прокрутил до конца как обычно бонус: <a href="http://26226.selcdn.ru/1c_dev_files/files/%D0%97%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0%D0%92%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%D0%A1%D0%BA%D0%BB%D0%B0%D0%B4.epf">Обработка про которую я рассказывал в этом посте</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Основные моменты при работе с СКД]]></title>
+    <link href="http://developer1c.ru/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd/"/>
+    <updated>2012-09-05T21:09:00+11:00</updated>
+    <id>http://developer1c.ru/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd</id>
+    <content type="html"><![CDATA[<p>В данном топике я хотел бы затронуть, некоторые моменты работы с СКД: работа с формой отчета, использование нескольких схем компоновки данных, работа с параметрами и так по мелочи, что накопилось за время использования СКД. Итак:<!-- more --></p>
+
+<h2>Как использовать параметры в СКД?</h2>
+
+<p>При написании отчета для СКД иногда возникает потребность в использовании параметров, какие есть варианты? Для начала надо определиться что для того что бы параметры стали доступными, необходимо поставить галочку в схеме вот здесь:
+<img src="http://26226.selcdn.ru/1c_dev_files/pict_004.png"></p>
+
+<ol>
+<li>Тыкнуть по кнопочке настройки, и задать настройки на стандартной форме. Мы этот вариант даже рассматривать не будем, по той простой причине, что их видно на стандартной форме невооруженным глазом, достаточно тыкнуть на кнопку... Настройки конечно же.</li>
+<li>Сделать таблицу на форме и указать у нее источник.</li>
+<li>Добавить на форму отчета поля ввода и прописать изменение параметров СКД при их изменении</li>
+</ol>
+
+
+<p>Рассмотрим  все варианты по подробнее.</p>
+
+<h3>2. Вывод всех прописанных настроек в одной таблице</h3>
+
+<p>Это делается очень просто, добавляется таблица значений на форму а источником данных нужно указать: ОтчетОбъект -> КомпоновщикНастроек -> Настройки -> Параметры данных.</p>
+
+<h3>3. Вынесение параметров отчета на форму, как правило самый нужный и удобный метод установки параметров.</h3>
+
+<p>Для этого создадим форму отчета, если вы ее еще не создали (куда то, нам надо вынести параметры которые мы будем передавать в СКД) и добавим поле ввода нужного нам типа. И в событии "ПриИзменении" укажем следующий код:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>ПриИзменении </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Параметры = КомпоновщикНастроек.Настройки.ПараметрыДанных;
+</span><span class='line'>Параметр = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("ПараметрУказанныйВЗапросе"));
+</span><span class='line'>Если Параметр &lt;> Неопределено Тогда&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Параметр.Значение = ЗначениеКотороеМыХотимУстановить;
+</span><span class='line'>Параметр.Использование = Истина;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецЕсли;</span></code></pre></td></tr></table></div></figure></notextile></div>
+Готово! Теперь при изменении элемента на форме параметр будет автоматически загружаться в СКД.</p>
+
+<h2>Использование нескольких схем</h2>
+
+<p>Периодически бывает что один отчет должен показывать вроде бы одну и ту же информацию но в разрезе разных показателей. И вроде отчет тот же, только сменился тип аналитики, или убрали колонку, которая участвовала в расчетах, но "почти" это для пользователя, для разработчика это уже другой набор полей и уже скорее всего структура другая, вообщем необходимо делать другой отчет, но можно просто использовать несколько схем и переключаться между ними по мере надобности. Переключаться между схемами несложно, достаточно сделать кнопочку повешать на нее следующую процедуру:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Процедура СменитьСхему()&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>СхемаКомпоновкиДанных = ПолучитьМакет("ЗдесьНадоУказатьИмяСхемы");
+</span><span class='line'>Настройки = СхемаКомпоновкиДанных.НастройкиПоУмолчанию;
+</span><span class='line'>КомпоновщикНастроек.ЗагрузитьНастройки(Настройки);
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецПроцедуры</span></code></pre></td></tr></table></div></figure></notextile></div>
+Как видите, все просто, при желании можно сократить до двух строк или даже одной, но не уверен, что это пойдет на пользу читаемости кода. Но тут есть свой нюанс, при загрузке новых настроек старые параметры сотрутся, что на самом деле логично, но нас такое положение дел совершенно не устраивает. Какой из этого есть выход? Я думаю надо перед сменой компоновки параметры, надо сохранить в какой то буфер, а потом их восстановить. Как получить\записать параметр я уже говорил выше и не буду на это останавливаться. Так как параметров как правило больше чем два, особенно если это сложный отчет, то неправильно будет, писать
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Параметр1 = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("ПараметрУказанныйВЗапросе"));
+</span><span class='line'>СохраненноеЗначение1 = Параметр1.Значение;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Параметр2 = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("ПараметрУказанныйВЗапросе2"));
+</span><span class='line'>СохраненноеЗначение2 = Параметр2.Значение;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>...//смена схемы компоновки&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Параметр1 = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("ПараметрУказанныйВЗапросе"));
+</span><span class='line'>Параметр1.Значение = СохраненноеЗначение1;
+</span><span class='line'>Параметр1.Использование = Истина;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Параметр2 = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных("ПараметрУказанныйВЗапросе2"));
+</span><span class='line'>Параметр2.Значение = СохраненноеЗначение2;
+</span><span class='line'>Параметр2.Использование = Истина;
+</span><span class='line'>//и тд</span></code></pre></td></tr></table></div></figure></notextile></div>
+Я надеюсь, что вы понимаете, что этот код написан для примера и не стоит использовать перемнные с именами "СохраненноеЗначение1","СохраненноеЗначение2", но даже если не понимаете, все равно не используйте.
+Надо бы указать: СохраниСписокПараметров("ЗдесьСписокПараметров"); потом сменить схему и сделать ВосстановиСписокПараметров("ЗдесьСписокПараметров"); Этим мы и займемся, для этого далее я напишу эти две процедуры, одна будет сохранять параметры в спецально для этого отведнную структуру, другая будет из нее восстанавливать параметры. Вот они:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Функция СохранитьПараметры(ИменаПараметров)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Параметры = КомпоновщикНастроек.Настройки.ПараметрыДанных;
+</span><span class='line'>МассивСИменами = ОбщегоНазначения.РазложитьСтрокуВМассивПодстрок(ИменаПараметров,",");
+</span><span class='line'>СтруктураДляПараметров = Новый Структура;
+</span><span class='line'>Для Каждого ИмяПараметра Из МассивСИменами Цикл
+</span><span class='line'>    Параметр = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных(ИмяПараметра));
+</span><span class='line'>    Если Параметр &lt;&gt; Неопределено Тогда
+</span><span class='line'>        СтруктураДляПараметров.Вставить(ИмяПараметра, Параметр.Значение);
+</span><span class='line'>    КонецЕсли; 
+</span><span class='line'>КонецЦикла;   
+</span><span class='line'>
+</span><span class='line'>Возврат СтруктураДляПараметров;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецФункции&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Процедура ЗагрузитьПараметры(СтруктураСПараметрами)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Параметры = КомпоновщикНастроек.Настройки.ПараметрыДанных;
+</span><span class='line'>Для Каждого ТекущийПараметр Из СтруктураСПараметрами Цикл
+</span><span class='line'>    Параметр = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных(ТекущийПараметр.Ключ));
+</span><span class='line'>    Если Параметр &lt;&gt; Неопределено Тогда
+</span><span class='line'>        Параметр.Значение = ТекущийПараметр.Значение;
+</span><span class='line'>        Параметр.Использование = Истина;
+</span><span class='line'>    КонецЕсли; 
+</span><span class='line'>КонецЦикла;   
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецПроцедуры</span></code></pre></td></tr></table></div></figure></notextile></div>
+Остановлюсь, что бы более подробно объяснить, что происходит. Функция СохранитьПараметры принимает на входе строку с именами тех параметров которые надо сохранить. Затем в строке 6 она находит по имени нужный параметр и сохраняет в структуру, которую возвращает по окончании перебора всех параметров полученых из строки. То же самое, только наоборот делает процедура загрузить, она принимает структуру и загружает из нее в СКД параметры. Далее надо собрать все вместе, выглядеть это будет примерно так:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Функция СохранитьПараметры(ИменаПараметров)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Параметры = КомпоновщикНастроек.Настройки.ПараметрыДанных;
+</span><span class='line'>МассивСИменами = ОбщегоНазначения.РазложитьСтрокуВМассивПодстрок(ИменаПараметров,",");
+</span><span class='line'>СтруктураДляПараметров = Новый Структура;
+</span><span class='line'>Для Каждого ИмяПараметра Из МассивСИменами Цикл
+</span><span class='line'>    Параметр = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных(ИмяПараметра));
+</span><span class='line'>    Если Параметр &lt;&gt; Неопределено Тогда
+</span><span class='line'>        СтруктураДляПараметров.Вставить(ИмяПараметра, Параметр.Значение);
+</span><span class='line'>    КонецЕсли; 
+</span><span class='line'>КонецЦикла;   
+</span><span class='line'>
+</span><span class='line'>Возврат СтруктураДляПараметров;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецФункции&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Процедура ЗагрузитьПараметры(СтруктураСПараметрами)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>Параметры = КомпоновщикНастроек.Настройки.ПараметрыДанных;
+</span><span class='line'>Для Каждого ТекущийПараметр Из СтруктураСПараметрами Цикл
+</span><span class='line'>    Параметр = Параметры.НайтиЗначениеПараметра(Новый ПараметрКомпоновкиДанных(ТекущийПараметр.Ключ));
+</span><span class='line'>    Если Параметр &lt;&gt; Неопределено Тогда
+</span><span class='line'>        Параметр.Значение = ТекущийПараметр.Значение;
+</span><span class='line'>        Параметр.Использование = Истина;
+</span><span class='line'>    КонецЕсли; 
+</span><span class='line'>КонецЦикла;   
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецПроцедуры&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Процедура СменитьСхему()&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>СтруктураСНастройками = СохранитьПараметры("Параметр1,Параметр2,Параметр3");
+</span><span class='line'>СхемаКомпоновкиДанных = ПолучитьМакет("ЗдесьИмяНужнойВамСхемы");
+</span><span class='line'>Настройки = СхемаКомпоновкиДанных.НастройкиПоУмолчанию;
+</span><span class='line'>КомпоновщикНастроек.ЗагрузитьНастройки(Настройки);
+</span><span class='line'>ЗагрузитьПараметры(СтруктураСНастройками);
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>КонецПроцедуры</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Вывод СКД в отчет</h2>
+
+<p>Если вы создали форму отчета у СКД(то есть если у вас отчет и есть схема компоновки данных), то по умолчанию на кнопке "Сформировать" висит предустанновленная команда "Сфрмировать", которая запустит текущую схему, но можно туда повесить свой обработчик, если нужно перед формированием сделать какие нибудь манипуляции, вот код который можно туда повесить:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>КомпоновщикМакета=Новый КомпоновщикМакетаКомпоновкиДанных;
+</span><span class='line'>МакетКомпоновкиДанных=КомпоновщикМакета.Выполнить(СхемаКомпоновкиДанных,КомпоновщикНастроек.Настройки,ДанныеРасшифровки);
+</span><span class='line'>ПроцессорКомпоновкиДанных=Новый ПроцессорКомпоновкиДанных;
+</span><span class='line'>ПроцессорКомпоновкиДанных.Инициализировать(МакетКомпоновкиДанных,,ДанныеРасшифровки,Истина);
+</span><span class='line'>ПроцессорВывода=Новый ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент;
+</span><span class='line'>ПроцессорВывода.УстановитьДокумент(ЭлементыФормы.Результат);
+</span><span class='line'>ПроцессорВывода.Вывести(ПроцессорКомпоновкиДанных);</span></code></pre></td></tr></table></div></figure></notextile></div>
+например перед формированием отчета, можно установить заголовок, в зависимости от установленных параметров или свернуть группировки после формирования, или время там формирования засечь, всякое бывает. Также можно вывести разом, а можно управлять выводом, посмотреть детали можно в синтаксис помощнике по адресу Общие объекты -> Система компоновки данных -> Работа с механизмом -> ПроцессорВыводаРезультатаКомпоновкиДанных</p>
+
+<h3>Установка в качестве параметра списка значений.</h3>
+
+<p>Когда нужно использовать список значений, для параметра необходимо установить галочку "Доступен список значений" иначе, даже если на входе будет список, СКД все равно будет брать только первое значение, галочка вот здесь:
+<img src="http://26226.selcdn.ru/1c_dev_files/pict_003.png">
+С этой галочкой в штатном списке параметров СКД, вы бонусом получаете красивый и удобный список для подбора ваших значений.</p>
+
+<h3>Вывод СКД в таблицу.</h3>
+
+<p>Бывает нужен, если нужно проанализировать или что то сделать с результатами работы, что бы получить результат работы  СКД в таблицу значений или в дерево значений, вам поможет следующий код:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>КомпоновщикМакета=Новый КомпоновщикМакетаКомпоновкиДанных;
+</span><span class='line'>МакетКомпоновкиДанных=КомпоновщикМакета.Выполнить(СхемаКомпоновкиДанных,КомпоновщикНастроек.Настройки,,,Тип("ГенераторМакетаКомпоновкиДанныхДляКоллекцииЗначений"));
+</span><span class='line'>ПроцессорКомпоновкиДанных=Новый ПроцессорКомпоновкиДанных;
+</span><span class='line'>ПроцессорКомпоновкиДанных.Инициализировать(МакетКомпоновкиДанных);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ТЗДляВывода = Новый ТаблицаЗначений;//здесь может быть и дерево значений
+</span><span class='line'>ПроцессорВывода = Новый ПроцессорВыводаРезультатаКомпоновкиДанныхВКоллекциюЗначений;
+</span><span class='line'>ПроцессорВывода.УстановитьОбъект(ТЗДляВывода);
+</span><span class='line'>ПроцессорВывода.Вывести(ПроцессорКомпоновкиДанных);</span></code></pre></td></tr></table></div></figure></notextile></div>
+собственно здесь в ТЗДляВывода мы получаем результат формирования отчета. Собственно если не касаться непосредствнно самого СКД, то здесь описаны практически все моменты работы с формой отчета построенного на СКД.</p>
+
+<h3>Бонусы</h3>
+
+<p>Тому кто домучал до конца эту длинную повесть, пригодятся бонусы:
+Курс от гилева про СКД, что бы не искать информацию про СКД, можно скачать <a href="http://www.spec8.ru/kurs-po-skd-besplatno">бесплатный курс по СКД</a>
+Можно взять <a href="http://26226.selcdn.ru/1c_dev_files/files/%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.erf">шаблон, в котором есть все нужные для оформления фичи</a></p>
+]]></content>
+  </entry>
+  
+</feed>
