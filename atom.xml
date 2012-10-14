@@ -4,7 +4,7 @@
   <title><![CDATA[Разработчик 1С]]></title>
   <link href="http://developer1c.ru/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2012-10-14T18:31:35+11:00</updated>
+  <updated>2012-10-14T18:33:27+11:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -21,15 +21,7 @@
     <content type="html"><![CDATA[<blockquote><p>Вновь остановлен рабочий процесс. Рульная прога 1С!</p></blockquote>
 
 
-<p>  <audio controls></p>
-
-<pre><code>&lt;source src="http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.ogg" type='audio/ogg; codecs=vorbis'&gt;
-&lt;source src="http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.mp3" type="audio/mpeg"&gt;
-Тег audio не поддерживается вашим браузером. &lt;a href="http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.mp3"&gt;Скачайте музыку&lt;/a&gt;.
-</code></pre>
-
-<p>  </audio>
-А у вас какая музыка стоит на звонке?</p>
+<p>А у вас какая музыка стоит на звонке?</p>
 ]]></content>
   </entry>
   
