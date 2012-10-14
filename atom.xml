@@ -4,7 +4,7 @@
   <title><![CDATA[Разработчик 1С]]></title>
   <link href="http://developer1c.ru/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2012-10-14T18:33:27+11:00</updated>
+  <updated>2012-10-14T18:43:01+11:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -21,7 +21,8 @@
     <content type="html"><![CDATA[<blockquote><p>Вновь остановлен рабочий процесс. Рульная прога 1С!</p></blockquote>
 
 
-<p>А у вас какая музыка стоит на звонке?</p>
+<p><audio controls><source src='http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.mp3'><source src='http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.ogg'></audio>
+А что у вас стоит на звонке?</p>
 ]]></content>
   </entry>
   
