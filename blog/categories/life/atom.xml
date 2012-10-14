@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Life | Разработчик 1С]]></title>
+  <link href="http://developer1c.ru/blog/categories/life/atom.xml" rel="self"/>
+  <link href="http://developer1c.ru/"/>
+  <updated>2012-10-14T18:31:35+11:00</updated>
+  <id>http://developer1c.ru/</id>
+  <author>
+    <name><![CDATA[Роман Беляев]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Рульная прога 1С!]]></title>
+    <link href="http://developer1c.ru/blog/2012/10/14/rul%27naia-progha-1s/"/>
+    <updated>2012-10-14T18:07:00+11:00</updated>
+    <id>http://developer1c.ru/blog/2012/10/14/rul'naia-progha-1s</id>
+    <content type="html"><![CDATA[<p><blockquote><p>Вновь остановлен рабочий процесс. Рульная прога 1С!</p></blockquote>
+  <audio controls></p>
+
+<pre><code>&lt;source src="http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.ogg" type='audio/ogg; codecs=vorbis'&gt;
+&lt;source src="http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.mp3" type="audio/mpeg"&gt;
+Тег audio не поддерживается вашим браузером. &lt;a href="http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.mp3"&gt;Скачайте музыку&lt;/a&gt;.
+</code></pre>
+
+<p>  </audio>
+А у вас какая музыка стоит на звонке?</p>
+]]></content>
+  </entry>
+  
+</feed>
