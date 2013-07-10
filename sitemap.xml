@@ -2,50 +2,54 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://developer1c.ru/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd/</loc>
-        <lastmod>2012-09-18T23:13:12+11:00</lastmod>
+        <lastmod>2012-11-26T03:15:35-08:00</lastmod>
     </url>
     <url>
         <loc>
             http://developer1c.ru/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie/
         </loc>
-        <lastmod>2012-09-18T23:12:52+11:00</lastmod>
+        <lastmod>2012-11-26T03:15:35-08:00</lastmod>
     </url>
     <url>
         <loc>
             http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie/
         </loc>
-        <lastmod>2012-09-23T21:04:50+11:00</lastmod>
+        <lastmod>2012-11-26T03:15:35-08:00</lastmod>
     </url>
     <url>
         <loc>
             http://developer1c.ru/blog/2012/09/18/podkliuchieniie-skaniera-shtrikhkodov-k-1s/
         </loc>
-        <lastmod>2012-09-29T01:40:06+11:00</lastmod>
+        <lastmod>2012-11-26T03:15:35-08:00</lastmod>
     </url>
     <url>
         <loc>http://developer1c.ru/blog/2012/09/19/lieto-zakonchilos%27-dot-dot-dot/</loc>
-        <lastmod>2012-09-19T00:34:38+11:00</lastmod>
+        <lastmod>2012-11-26T03:15:35-08:00</lastmod>
     </url>
     <url>
         <loc>
             http://developer1c.ru/blog/2012/09/23/piechat%27-etikietok-iz-postuplieniia-tol%27ko-otmiechiennoi-nomienklatury/
         </loc>
-        <lastmod>2012-09-23T21:23:11+11:00</lastmod>
+        <lastmod>2012-11-26T03:15:35-08:00</lastmod>
     </url>
     <url>
         <loc>http://developer1c.ru/blog/2012/10/14/rul%27naia-progha-1s/</loc>
-        <lastmod>2012-10-14T18:44:27+11:00</lastmod>
-    </url>
-    <url>
-        <loc>http://developer1c.ru/blog/archives/</loc>
-        <lastmod>2012-10-14T18:44:27+11:00</lastmod>
+        <lastmod>2013-07-10T03:12:05-07:00</lastmod>
     </url>
     <url>
         <loc>http://developer1c.ru/archives/</loc>
-        <lastmod>2012-10-14T18:44:27+11:00</lastmod>
+        <lastmod>2013-07-10T03:12:05-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://developer1c.ru/blog/archives/</loc>
+        <lastmod>2013-07-10T03:12:05-07:00</lastmod>
     </url>
     <url>
         <loc>http://developer1c.ru/</loc>
-        <lastmod>2012-10-14T18:44:27+11:00</lastmod>
+        <lastmod>2013-07-10T03:12:05-07:00</lastmod>
+    </url>
+    <url>
+        <loc>http://developer1c.ru/ut11/</loc>
+        <lastmod>2013-07-10T01:50:38-07:00</lastmod>
     </url>
 </urlset>

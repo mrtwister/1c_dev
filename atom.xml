@@ -4,7 +4,7 @@
   <title><![CDATA[Разработчик 1С]]></title>
   <link href="http://developer1c.ru/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2012-10-14T18:48:22+11:00</updated>
+  <updated>2013-07-10T03:21:14-07:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -14,11 +14,19 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Рульная прога 1С!]]></title>
+    <title type="html"><![CDATA[Rul'naia Progha 1s]]></title>
     <link href="http://developer1c.ru/blog/2012/10/14/rul%27naia-progha-1s/"/>
-    <updated>2012-10-14T18:07:00+11:00</updated>
+    <updated>2012-10-14T00:00:00-07:00</updated>
     <id>http://developer1c.ru/blog/2012/10/14/rul&#8217;naia-progha-1s</id>
-    <content type="html"><![CDATA[<blockquote><p>Вновь остановлен рабочий процесс. Рульная прога 1С!</p></blockquote>
+    <content type="html"><![CDATA[<p>﻿&#8212;
+layout: post
+title: &#8220;Рульная прога 1С&#8221;
+date: 2012-10-14 18:07
+comments: true</p>
+
+<h2>categories: Life </h2>
+
+<blockquote><p>Вновь остановлен рабочий процесс. Рульная прога 1С!</p></blockquote>
 
 
 <p><audio controls><source src='http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.mp3'><source src='http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.ogg'></audio></p>
@@ -30,7 +38,7 @@
   <entry>
     <title type="html"><![CDATA[Печать этикеток из поступления только отмеченной номенклатуры]]></title>
     <link href="http://developer1c.ru/blog/2012/09/23/piechat%27-etikietok-iz-postuplieniia-tol%27ko-otmiechiennoi-nomienklatury/"/>
-    <updated>2012-09-23T20:53:00+11:00</updated>
+    <updated>2012-09-23T20:53:00-07:00</updated>
     <id>http://developer1c.ru/blog/2012/09/23/piechat&#8217;-etikietok-iz-postuplieniia-tol&#8217;ko-otmiechiennoi-nomienklatury</id>
     <content type="html"><![CDATA[<p>Попросил как то меня клиент, &#8220;А можно мне галочку в табличную часть документа поступления, что бы можно было печатать этикетки только у определенной номенклатуры, а не для всех 2000 позиций которые пришли с этим поступлением?&#8221; Да не вопрос, 5 минут и готово! Ответил я и закатав рукава, приступил к работе, оказалость что я не учел несколько деталей&#8230;<!-- more --></p>
 
@@ -193,7 +201,7 @@
   <entry>
     <title type="html"><![CDATA[Лето закончилось...]]></title>
     <link href="http://developer1c.ru/blog/2012/09/19/lieto-zakonchilos%27-dot-dot-dot/"/>
-    <updated>2012-09-19T00:33:00+11:00</updated>
+    <updated>2012-09-19T00:33:00-07:00</updated>
     <id>http://developer1c.ru/blog/2012/09/19/lieto-zakonchilos&#8217;-dot-dot-dot</id>
     <content type="html"><![CDATA[<iframe width="960" height="720" src="http://www.youtube.com/embed/RpanUnEVCrk" frameborder="0" allowfullscreen></iframe>
 
@@ -203,7 +211,7 @@
   <entry>
     <title type="html"><![CDATA[Подключение сканера штрихкодов к 1С]]></title>
     <link href="http://developer1c.ru/blog/2012/09/18/podkliuchieniie-skaniera-shtrikhkodov-k-1s/"/>
-    <updated>2012-09-18T23:11:00+11:00</updated>
+    <updated>2012-09-18T23:11:00-07:00</updated>
     <id>http://developer1c.ru/blog/2012/09/18/podkliuchieniie-skaniera-shtrikhkodov-k-1s</id>
     <content type="html"><![CDATA[<h2>Подключение сканера метролоджик ms 5145 к 1С Управление торговлей.</h2>
 
@@ -226,7 +234,7 @@
   <entry>
     <title type="html"><![CDATA[Программное расположение элементов на форме]]></title>
     <link href="http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie/"/>
-    <updated>2012-09-07T00:13:00+11:00</updated>
+    <updated>2012-09-07T00:13:00-07:00</updated>
     <id>http://developer1c.ru/blog/2012/09/07/proghrammnoie-raspolozhieniie-eliemientov-na-formie</id>
     <content type="html"><![CDATA[<p>Иногда есть необходимость расположить табличное поле на форме программно, например когда нужно добавить неизвестное заранее количество закладок, хорошо если нужно просто добавить закладки, тогда можно просто отделаться :<!-- more --></p>
 
@@ -283,7 +291,7 @@
   <entry>
     <title type="html"><![CDATA[Хранение остатков поставщика у себя в базе]]></title>
     <link href="http://developer1c.ru/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie/"/>
-    <updated>2012-09-06T15:47:00+11:00</updated>
+    <updated>2012-09-06T15:47:00-07:00</updated>
     <id>http://developer1c.ru/blog/2012/09/06/khranieniie-ostatkov-postavshchika-u-siebia-v-bazie</id>
     <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;В этой статье, я хотел бы рассказать об опыте настройки хранения остатков по складу поставщика. Почему именно об этом? Потому что:<!-- more --></p>
 
@@ -551,7 +559,7 @@
   <entry>
     <title type="html"><![CDATA[Основные моменты при работе с СКД]]></title>
     <link href="http://developer1c.ru/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd/"/>
-    <updated>2012-09-05T21:09:00+11:00</updated>
+    <updated>2012-09-05T21:09:00-07:00</updated>
     <id>http://developer1c.ru/blog/2012/09/05/osnovnyie-momienty-pri-rabotie-s-skd</id>
     <content type="html"><![CDATA[<p>В данном топике я хотел бы затронуть, некоторые моменты работы с СКД: работа с формой отчета, использование нескольких схем компоновки данных, работа с параметрами и так по мелочи, что накопилось за время использования СКД. Итак:<!-- more --></p>
 
