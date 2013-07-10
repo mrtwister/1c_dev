@@ -1,0 +1,10 @@
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<div id="hypercomments_widget"></div>
+<script type="text/javascript">
+var _hcp = _hcp || {};_hcp.widget_id = 2839;_hcp.widget = "Stream";
+(function() { 
+var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://widget.hypercomments.com/apps/js/hc.js";
+var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hcc, s.nextSibling); 
+})();
+</script>
