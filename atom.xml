@@ -4,7 +4,7 @@
   <title><![CDATA[Разработчик 1С]]></title>
   <link href="http://developer1c.ru/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2013-07-10T03:36:24-07:00</updated>
+  <updated>2013-07-10T03:39:03-07:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -12,28 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Rul'naia Progha 1s]]></title>
-    <link href="http://developer1c.ru/blog/2012/10/14/rul%27naia-progha-1s/"/>
-    <updated>2012-10-14T00:00:00-07:00</updated>
-    <id>http://developer1c.ru/blog/2012/10/14/rul&#8217;naia-progha-1s</id>
-    <content type="html"><![CDATA[<p>﻿&#8212;
-layout: post
-title: &#8220;Рульная прога 1С!&#8221;
-date: 2012-10-14 18:07
-comments: true</p>
-
-<h2>categories: Life </h2>
-
-<blockquote><p>Вновь остановлен рабочий процесс. Рульная прога 1С!</p></blockquote>
-
-
-<p><audio controls><source src='http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.mp3'><source src='http://26226.selcdn.ru/1c_dev_files/files/rul_prog_1s.ogg'></audio></p>
-
-<p>А что у вас стоит на звонке?</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Печать этикеток из поступления только отмеченной номенклатуры]]></title>
