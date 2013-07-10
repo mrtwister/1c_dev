@@ -1,6 +1,6 @@
----
+﻿---
 layout: post
-title: "Рульная прога 1С!"
+title: "Рульная прога 1С"
 date: 2012-10-14 18:07
 comments: true
 categories: Life 
