@@ -4,7 +4,7 @@
   <title><![CDATA[Разработчик 1С]]></title>
   <link href="http://developer1c.ru/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2013-09-09T03:24:37-07:00</updated>
+  <updated>2013-09-09T03:40:37-07:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -38,7 +38,7 @@
 
 <p>Поиск лишних штрихкодов. Сам поиск достататочно банален: нужно воспользоваться функций КОЛИЧЕСТВО(РАЗЛИЧНЫЕ СюдаУказатьПолеДляГруппировки). В самом простом случае, запрос будет выглядеть вот так:</p>
 
-<p style="text-align: left; font-family: courier new,courier; color: black">
+<figure class="code"><p style="text-align: left; font-family: courier new,courier; color: black">
 <font color=blue>ВЫБРАТЬ<br>
 &nbsp; &nbsp; </font>Штрихкоды.Штрихкод<font color=blue>,<br>
 &nbsp; &nbsp; </font><font color=brown>КОЛИЧЕСТВО</font><font color=blue>(РАЗЛИЧНЫЕ </font>Штрихкоды.Владелец<font color=blue>) КАК </font>Владелец<br>
@@ -46,7 +46,7 @@
 &nbsp; &nbsp; </font>РегистрСведений.Штрихкоды <font color=blue>КАК </font>Штрихкоды<br>
 <br>
 <font color=blue>СГРУППИРОВАТЬ ПО<br>
-&nbsp; &nbsp; </font>Штрихкоды.Штрихкод</p>
+&nbsp; &nbsp; </font>Штрихкоды.Штрихкод</p></figure>
 
 
 <p>Для того, что бы отфильтровать результаты запроса необходимо его обернуть во вложеный запрос и тогда уже можно накладывать условия на результат его работы. В данном случае, мы сделаем вот так:

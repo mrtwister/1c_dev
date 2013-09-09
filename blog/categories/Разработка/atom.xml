@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Разработка | Разработчик 1С]]></title>
   <link href="http://developer1c.ru/blog/categories/Разработка/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2013-09-09T03:24:37-07:00</updated>
+  <updated>2013-09-09T03:40:37-07:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -38,18 +38,19 @@
 
 <p>Поиск лишних штрихкодов. Сам поиск достататочно банален: нужно воспользоваться функций КОЛИЧЕСТВО(РАЗЛИЧНЫЕ СюдаУказатьПолеДляГруппировки). В самом простом случае, запрос будет выглядеть вот так:</p>
 
-<p style="text-align: left; font-family: courier new,courier; color: black">
+<p><figure class="code"><p style="text-align: left; font-family: courier new,courier; color: black">
 <font color=blue>ВЫБРАТЬ<br>
 &nbsp; &nbsp; </font>Штрихкоды.Штрихкод<font color=blue>,<br>
 &nbsp; &nbsp; </font><font color=brown>КОЛИЧЕСТВО</font><font color=blue>(РАЗЛИЧНЫЕ </font>Штрихкоды.Владелец<font color=blue>) КАК </font>Владелец<br>
 <font color=blue>ИЗ<br>
-&nbsp; &nbsp; </font>РегистрСведений.Штрихкоды <font color=blue>КАК </font>Штрихкоды<br>
+&nbsp; &nbsp; </font>РегистрСведений.Штрихкоды <font color=blue>КАК </font>Штрихкоды<br></p>
+
 <br>
-<font color=blue>СГРУППИРОВАТЬ ПО<br>
-&nbsp; &nbsp; </font>Штрихкоды.Штрихкод</p>
 
 
-<p>Для того, что бы отфильтровать результаты запроса необходимо его обернуть во вложеный запрос и тогда уже можно накладывать условия на результат его работы. В данном случае, мы сделаем вот так:
+<p><font color=blue>СГРУППИРОВАТЬ ПО<br>
+&nbsp; &nbsp; </font>Штрихкоды.Штрихкод</p></figure>
+Для того, что бы отфильтровать результаты запроса необходимо его обернуть во вложеный запрос и тогда уже можно накладывать условия на результат его работы. В данном случае, мы сделаем вот так:
 <img src="http://26226.selcdn.ru/from_st/1/1.gif" title="Сделать вложенный запрос" alt="Картинка с вкладыванием запроса" />
 Вот результат этих действий. Ну вот вроде все нормльно, но как то неудобно, для удобства наверно не помешает сгруппировать результаты по штрихкодам. В результате мы можем получить вот такой запрос. Вот результат его работы в консоли.
 <img src="https://api.monosnap.com/image/download?id=5e8qdGdh0ss6sMzCTYOarse6J" title="Результат работы запроса в консоли" alt="Результат работы запроса" />
