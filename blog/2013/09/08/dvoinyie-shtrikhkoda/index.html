@@ -140,23 +140,21 @@
 <img src="https://api.monosnap.com/image/download?id=5e8qdGdh0ss6sMzCTYOarse6J" title="Результат работы запроса в консоли" alt="Результат работы запроса" />
 Этот вариант удобен для первого варианта поиска, сделать запрос для второго варианта по аналогии не должно составить труда. Запросы готовы, но не будет же пользователь смотреть на результат его работы из консоли. Здесь нам и поможет дерево значений. Смысл работы с деревом следующий: дерево содержит колекцию колонок и строк. Коллекция колонок не отличается от коллекции колонок в таблице значений и нас не интересует. Коллекция строк немного инетереснее, каждая строка ее может содержать такую же коллекцию строк, каждая строка которой&#8230; вообщем я думаю мысль понятна, таким образом и организуется иерархия. Используем обход результатов запроса по группировкам, для того что сформировать удобное дерево:</p>
 
-<p><code class><p style="text-align: left; font-family: courier new,courier; color: blue">
+<div class="highlight"><p style="text-align: left; font-family: courier new,courier; color: blue">
 &nbsp; &nbsp; Выборка <font color=red>= </font>Запрос<font color=red>.</font>Выполнить<font color=red>().</font>Выбрать<font color=red>(</font>ОбходРезультатаЗапроса<font color=red>.</font>ПоГруппировкам<font color=red>);<br>
-&nbsp; &nbsp; </font>ЭтаФорма<font color=red>.</font>Заголовок <font color=red>= </font><font color=black>"Найдено " </font><font color=red>+ </font>Выборка<font color=red>.</font>Количество<font color=red>();<br>
+&nbsp; &nbsp; </font>ЭтаФорма<font color=red>.</font>Заголовок <font color=red>= </font><font color=black>&#8220;Найдено &#8221; </font><font color=red>+ </font>Выборка<font color=red>.</font>Количество<font color=red>();<br>
 &nbsp; &nbsp; Пока </font>Выборка<font color=red>.</font>Следующий<font color=red>() Цикл<br>
 &nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаТП <font color=red>= </font>ТабличноеПоле<font color=red>.</font>Строки<font color=red>.</font>Добавить<font color=red>();<br>
-&nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаТП<font color=red>.</font>Номенклатура <font color=red>= </font>Выборка<font color=red>.</font>Штрихкод<font color=red>;<br></p>
-
+&nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаТП<font color=red>.</font>Номенклатура <font color=red>= </font>Выборка<font color=red>.</font>Штрихкод<font color=red>;<br>
 <br>
-
-
-<p>&nbsp; &nbsp; &nbsp; &nbsp; </font>ВыборкаШтрихКода <font color=red>= </font>Выборка<font color=red>.</font>Выбрать<font color=red>();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>ВыборкаШтрихКода <font color=red>= </font>Выборка<font color=red>.</font>Выбрать<font color=red>();<br>
 &nbsp; &nbsp; &nbsp; &nbsp; Пока </font>ВыборкаШтрихКода<font color=red>.</font>Следующий<font color=red>() Цикл<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаВладелец <font color=red>= </font>НоваяСтрокаТП<font color=red>.</font>Строки<font color=red>.</font>Добавить<font color=red>();<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаВладелец<font color=red>.</font>Номенклатура <font color=red>= </font>ВыборкаШтрихКода<font color=red>.</font>Владелец<font color=red>;<br>
 &nbsp; &nbsp; &nbsp; &nbsp; КонецЦикла;<br>
 &nbsp; &nbsp; КонецЦикла;<br>
-</font></p></code></p>
+</font></p></div>
+
 
 <p>Как следствие мы можем получить вот такую форму:
 <img src="https://api.monosnap.com/image/download?id=wDPn9V8vDlujcauOfMSIonqUr" title="Сгруппированные штрихкода на форме" alt="Форма обработки" /></p>
