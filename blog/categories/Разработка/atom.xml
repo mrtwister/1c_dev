@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Разработка | Разработчик 1С]]></title>
   <link href="http://developer1c.ru/blog/categories/Разработка/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2013-09-09T12:17:44-07:00</updated>
+  <updated>2013-09-09T12:19:53-07:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -79,7 +79,7 @@
 
 <p>Когда есть все нужные данные можно начинать работать с регистром штрихкодов. Так как у нас ищутся не только штрихкода с несколькими владельцами, но и владельцы с несколькими штрихкодами, то состав табличного поля может быть разным, это необходимо учитывать. Приступим к реализации п1 - Удалить все штрихкода кроме выделенного. Для этого подготовим данные для записи в регистр. Выделим значение отобора и штрихкод который нам надо оставить:</p>
 
-<p style="text-align: left; font-family: courier new,courier; color: blue">
+<div class="highlight"><p style="text-align: left; font-family: courier new,courier; color: blue">
 &nbsp; &nbsp; СтруктураВРегистр <font color=red>= Новый </font>Структура<font color=red>(</font><font color=black>"КлючОтбора, ЗначениеОтбора, ШтрихКод, Владелец"</font><font color=red>);<br>
 <br>
 &nbsp; &nbsp; Если </font>ТипЗнч<font color=red>(</font>СтрокаДерева<font color=red>.</font>Номенклатура<font color=red>) = </font>Тип<font color=red>(</font><font color=black>"СправочникСсылка.Номенклатура"</font><font color=red>)<br>
@@ -96,7 +96,7 @@
 &nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>Штрихкод <font color=red>= </font>СтрокаДерева<font color=red>.</font>Номенклатура<font color=red>;<br>
 &nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>Владелец <font color=red>= </font>СтрокаДерева<font color=red>.</font>Родитель<font color=red>.</font>Номенклатура<font color=red>;<br>
 &nbsp; &nbsp; КонецЕсли;<br>
-</font></p>
+</font></p></div>
 
 
 <p>Теперь надо удалить все "лишние" штрихкода кроме конкретного, того на который указал пользователь. Я решил этот вопрос просто: я очищаю набор по указанному отбору и добавляю нужный штрихкод. По моему это самый простой и быстрый способ. Вот код:</p>
