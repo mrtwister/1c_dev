@@ -163,7 +163,7 @@
 
 <p>Когда есть все нужные данные можно начинать работать с регистром штрихкодов. Так как у нас ищутся не только штрихкода с несколькими владельцами, но и владельцы с несколькими штрихкодами, то состав табличного поля может быть разным, это необходимо учитывать. Приступим к реализации п1 - Удалить все штрихкода кроме выделенного. Для этого подготовим данные для записи в регистр. Выделим значение отобора и штрихкод который нам надо оставить:</p>
 
-<div class="highlight"><p style="text-align: left; font-family: courier new,courier; color: blue">
+<div class="1kod"><p style="text-align: left; font-family: courier new,courier; color: blue">
 &nbsp; &nbsp; СтруктураВРегистр <font color=red>= Новый </font>Структура<font color=red>(</font><font color=black>&#8220;КлючОтбора, ЗначениеОтбора, ШтрихКод, Владелец&#8221;</font><font color=red>);<br>
 <br>
 &nbsp; &nbsp; Если </font>ТипЗнч<font color=red>(</font>СтрокаДерева<font color=red>.</font>Номенклатура<font color=red>) = </font>Тип<font color=red>(</font><font color=black>&#8220;СправочникСсылка.Номенклатура&#8221;</font><font color=red>)<br>
