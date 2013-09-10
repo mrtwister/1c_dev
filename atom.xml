@@ -4,7 +4,7 @@
   <title><![CDATA[Разработчик 1С]]></title>
   <link href="http://developer1c.ru/atom.xml" rel="self"/>
   <link href="http://developer1c.ru/"/>
-  <updated>2013-09-10T15:28:54-07:00</updated>
+  <updated>2013-09-10T15:30:25-07:00</updated>
   <id>http://developer1c.ru/</id>
   <author>
     <name><![CDATA[Роман Беляев]]></name>
@@ -55,7 +55,7 @@
 <img src="https://api.monosnap.com/image/download?id=5e8qdGdh0ss6sMzCTYOarse6J" title="Результат работы запроса в консоли" alt="Результат работы запроса" />
 Этот вариант удобен для первого варианта поиска, сделать запрос для второго варианта по аналогии не должно составить труда. Запросы готовы, но не будет же пользователь смотреть на результат его работы из консоли. Здесь нам и поможет дерево значений. Смысл работы с деревом следующий: дерево содержит колекцию колонок и строк. Коллекция колонок не отличается от коллекции колонок в таблице значений и нас не интересует. Коллекция строк немного инетереснее, каждая строка ее может содержать такую же коллекцию строк, каждая строка которой&#8230; вообщем я думаю мысль понятна, таким образом и организуется иерархия. Используем обход результатов запроса по группировкам, для того что сформировать удобное дерево:</p>
 
-<div class="highlight"><p style="text-align: left; font-family: courier new,courier; color: blue">
+<div class="1cod"><p style="text-align: left; font-family: courier new,courier; color: blue">
 &nbsp; &nbsp; Выборка <font color=red>= </font>Запрос<font color=red>.</font>Выполнить<font color=red>().</font>Выбрать<font color=red>(</font>ОбходРезультатаЗапроса<font color=red>.</font>ПоГруппировкам<font color=red>);<br>
 &nbsp; &nbsp; </font>ЭтаФорма<font color=red>.</font>Заголовок <font color=red>= </font><font color=black>&#8220;Найдено &#8221; </font><font color=red>+ </font>Выборка<font color=red>.</font>Количество<font color=red>();<br>
 &nbsp; &nbsp; Пока </font>Выборка<font color=red>.</font>Следующий<font color=red>() Цикл<br>
