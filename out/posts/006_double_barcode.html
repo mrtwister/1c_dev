@@ -1,0 +1,285 @@
+  <!DOCTYPE html>
+<!--[if IE 8]> <html lang="ru" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="ru" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="ru"> <!--<![endif]-->
+<head>
+  <title>Двойные штрихкода и история одной обработки | Разработчик 1C</title>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1C программирование, 1С разработка, СКД">
+  <meta name="author" content="Роман Беляев">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="http://yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <!-- Theme CSS -->
+  <link id="theme-style" rel="stylesheet" href="/css/styles.css">
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+  <!-- ******HEADER****** -->
+  <header class="header">
+    <div class="container">
+      <img class="profile-image img-responsive pull-left" src="/images/profile.png" alt="Роман Беляев" />
+      <div class="profile-content pull-left">
+        <h1 class="name">Роман Беляев</h1>
+        <h2 class="desc">1С Разработчик</h2>
+        <ul class="social list-inline">
+          <li><a href="https://twitter.com/belyaev_rs" target="blank"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://plus.google.com/u/0/+%D0%91%D0%B5%D0%BB%D1%8F%D0%B5%D0%B2%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD" target="blank"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div><!--//profile-->
+       <a class="btn btn-cta-primary pull-right" href="/"><i class="fa fa-paper-plane"></i>На главную</a>
+    </div><!--//container-->
+  </header><!--//header-->
+
+  <div class="container sections-wrapper">
+    <div class="row">
+      <div class="primary col-md-8 col-sm-12 col-xs-12">
+
+
+        <section class="projects section">
+          <div class="section-inner">
+            <p><i class="fa fa-calendar"></i> Опубликовано 8 сентября 2013 г., 22:03</p>
+            <h2 class="heading">Двойные штрихкода и история одной обработки</h2>
+            <div class="content">
+              <div class="item">
+                <h3 id="-">Преамбула</h3>
+<p>В какой то момент в базе встала проблема двойных штрихкодов. Причем ситация до того как на нее обратили внимание, приобрела катосторофический характер и имела полторы тысячи дублей штрихкодов (когда один штрихкод принадлежит нескольким товарам) и порядка 25ти тысяч дублей товаров (когда у одного товарам есть несколько штрихкодов). Что тому виной? На текущий момент уже сложно сказать. Возможно РИБ, когда одному и тому же товару присваивают штрихкод в разных базах. Возможно свою лепту внесли слияния нескольких баз с одинаковым товаром, но разными штрихкодами. Скорее всего все вместе + какой то еще фактор, который мы пока не можем найти. Слишком много вышло дублей, почти четверть базы. Так или иначе встала задача с этими штрихкодами что то сделать.</p>
+<h3 id="-">Постановка задачи.</h3>
+<p>Необходимо найти задублирововашиеся штрихкода и показить пользователю в удобном виде. Дать возможность что то сделать сразу с этими штрихкодами без необходимости лазить по справочникам и регистрам. Если говорить конкретно, то у пользователя должна быть возможность:</p>
+<ol>
+<li>Удалить все штрихкода у владельца, кроме выделенного.</li>
+<li>Удалить конкретный лишний штрихкод.</li>
+<li>Одним махом удалить все лишние дубли, оставив по одному на владельца.</li>
+<li>Удалить все штрихкода которые засветились как задублированные.</li>
+</ol>
+<h3 id="-">Приступим к реализации первой части.</h3>
+<p>Поиск лишних штрихкодов. Сам поиск достататочно банален: нужно воспользоваться функций КОЛИЧЕСТВО(РАЗЛИЧНЫЕ СюдаУказатьПолеДляГруппировки). В самом простом случае, запрос будет выглядеть вот так:</p>
+<p><p style="text-align: left; font-family: courier new,courier; color: black"></p>
+<p><font color=blue>ВЫБРАТЬ<br>
+&nbsp; &nbsp; </font>Штрихкоды.Штрихкод<font color=blue>,<br>
+&nbsp; &nbsp; </font><font color=brown>КОЛИЧЕСТВО</font><font color=blue>(РАЗЛИЧНЫЕ </font>Штрихкоды.Владелец<font color=blue>) КАК </font>Владелец<br></p>
+<p><font color=blue>ИЗ<br>
+&nbsp; &nbsp; </font>РегистрСведений.Штрихкоды <font color=blue>КАК </font>Штрихкоды<br>
+<br></p>
+<p><font color=blue>СГРУППИРОВАТЬ ПО<br>
+&nbsp; &nbsp; </font>Штрихкоды.Штрихкод</p>
+Для того, что бы отфильтровать результаты запроса необходимо его обернуть во вложеный запрос и тогда уже можно накладывать условия на результат его работы. В целом нормально, но как то неудобно, для удобства наверно не помешает сгруппировать результаты по штрихкодам. В результате мы можем получить вот такой запрос. Вот результат его работы в консоли.
+<img src="https://api.monosnap.com/image/download?id=5e8qdGdh0ss6sMzCTYOarse6J" alt="Результат работы запроса" title="Результат работы запроса в консоли">
+Этот вариант удобен для первого варианта поиска, сделать запрос для второго варианта по аналогии не должно составить труда. Запросы готовы, но не будет же пользователь смотреть на результат его работы из консоли. Здесь нам и поможет дерево значений. Смысл работы с деревом следующий: дерево содержит колекцию колонок и строк. Коллекция колонок не отличается от коллекции колонок в таблице значений и нас не интересует. Коллекция строк немного инетереснее, каждая строка ее может содержать такую же коллекцию строк, каждая строка которой... вообщем я думаю мысль понятна, таким образом и организуется иерархия. Используем обход результатов запроса по группировкам, для того что сформировать удобное дерево:</p>
+<pre><p>&nbsp; &nbsp; Выборка <font color=red>= </font>Запрос<font color=red>.</font>Выполнить<font color=red>().</font>Выбрать<font color=red>(</font>ОбходРезультатаЗапроса<font color=red>.</font>ПоГруппировкам<font color=red>);<br>
+&nbsp; &nbsp; </font>ЭтаФорма<font color=red>.</font>Заголовок <font color=red>= </font><font color=black>"Найдено " </font><font color=red>+ </font>Выборка<font color=red>.</font>Количество<font color=red>();<br>
+&nbsp; &nbsp; Пока </font>Выборка<font color=red>.</font>Следующий<font color=red>() Цикл<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаТП <font color=red>= </font>ТабличноеПоле<font color=red>.</font>Строки<font color=red>.</font>Добавить<font color=red>();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаТП<font color=red>.</font>Номенклатура <font color=red>= </font>Выборка<font color=red>.</font>Штрихкод<font color=red>;<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>ВыборкаШтрихКода <font color=red>= </font>Выборка<font color=red>.</font>Выбрать<font color=red>();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Пока </font>ВыборкаШтрихКода<font color=red>.</font>Следующий<font color=red>() Цикл<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаВладелец <font color=red>= </font>НоваяСтрокаТП<font color=red>.</font>Строки<font color=red>.</font>Добавить<font color=red>();<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>НоваяСтрокаВладелец<font color=red>.</font>Номенклатура <font color=red>= </font>ВыборкаШтрихКода<font color=red>.</font>Владелец<font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; КонецЦикла;<br>
+&nbsp; &nbsp; КонецЦикла;</font></p></pre>
+
+<p>Как следствие мы можем получить вот такую форму:
+<img src="https://api.monosnap.com/image/download?id=wDPn9V8vDlujcauOfMSIonqUr" alt="Форма обработки" title="Сгруппированные штрихкода на форме"></p>
+<h3 id="-">Работа с регистром штрихкодов</h3>
+<p>Когда есть все нужные данные можно начинать работать с регистром штрихкодов. Так как у нас ищутся не только штрихкода с несколькими владельцами, но и владельцы с несколькими штрихкодами, то состав табличного поля может быть разным, это необходимо учитывать. Приступим к реализации п1 - Удалить все штрихкода кроме выделенного. Для этого подготовим данные для записи в регистр. Выделим значение отобора и штрихкод который нам надо оставить:</p>
+<pre><p>&nbsp; &nbsp; СтруктураВРегистр <font color=red>= Новый </font>Структура<font color=red>(</font><font color=black>"КлючОтбора, ЗначениеОтбора, ШтрихКод, Владелец"</font><font color=red>);<br>
+<br>
+&nbsp; &nbsp; Если </font>ТипЗнч<font color=red>(</font>СтрокаДерева<font color=red>.</font>Номенклатура<font color=red>) = </font>Тип<font color=red>(</font><font color=black>"СправочникСсылка.Номенклатура"</font><font color=red>)<br>
+&nbsp; &nbsp; &nbsp; &nbsp; ИЛИ </font>ТипЗнч<font color=red>(</font>СтрокаДерева<font color=red>.</font>Номенклатура<font color=red>) = </font>Тип<font color=red>(</font><font color=black>"СправочникСсылка.ИнформационныеКарты"</font><font color=red>) Тогда<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>КлючОтбора <font color=red>= </font><font color=black>"Штрихкод"</font><font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>ЗначениеОтбора <font color=red>= </font>СтрокаДерева<font color=red>.</font>Родитель<font color=red>.</font>Номенклатура<font color=red>;<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>Штрихкод <font color=red>= </font>СтрокаДерева<font color=red>.</font>Родитель<font color=red>.</font>Номенклатура<font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>Владелец <font color=red>= </font>СтрокаДерева<font color=red>.</font>Номенклатура<font color=red>;<br>
+&nbsp; &nbsp; Иначе<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>КлючОтбора <font color=red>= </font><font color=black>"Владелец"</font><font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>ЗначениеОтбора <font color=red>= </font>СтрокаДерева<font color=red>.</font>Родитель<font color=red>.</font>Номенклатура<font color=red>;<br>
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>Штрихкод <font color=red>= </font>СтрокаДерева<font color=red>.</font>Номенклатура<font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураВРегистр<font color=red>.</font>Владелец <font color=red>= </font>СтрокаДерева<font color=red>.</font>Родитель<font color=red>.</font>Номенклатура<font color=red>;<br>
+&nbsp; &nbsp; КонецЕсли;<br></font></p></pre>
+
+<p>Теперь надо удалить все &quot;лишние&quot; штрихкода кроме конкретного, того на который указал пользователь. Я решил этот вопрос просто: я очищаю набор по указанному отбору и добавляю нужный штрихкод. По моему это самый простой и быстрый способ. Вот код:</p>
+<pre><p>
+НаборЗаписей <font color=red>= </font>РегистрыСведений<font color=red>.</font>Штрихкоды<font color=red>.</font>СоздатьНаборЗаписей<font color=red>();<br>
+</font>НаборЗаписей<font color=red>.</font>Отбор<font color=red>[</font>СтруктураСДанными<font color=red>.</font>КлючОтбора<font color=red>].</font>Установить<font color=red>(</font>СтруктураСДанными<font color=red>.</font>ЗначениеОтбора<font color=red>);<br>
+</font>НаборЗаписей<font color=red>.</font>Записать<font color=red>();<br>
+<br>
+</font>НоваяЗаписьНабора <font color=red>= </font>НаборЗаписей<font color=red>.</font>Добавить<font color=red>();<br>
+</font>НоваяЗаписьНабора<font color=red>.</font>Владелец <font color=red>= </font>СтруктураСДанными<font color=red>.</font>Владелец<font color=red>;<br>
+</font>НоваяЗаписьНабора<font color=red>.</font>ЕдиницаИзмерения <font color=red>= </font>СтруктураСДанными<font color=red>.</font>Владелец<font color=red>.</font>ЕдиницаХраненияОстатков<font color=red>;<br>
+</font>НоваяЗаписьНабора<font color=red>.</font>ТипШтрихкода <font color=red>= </font>ПланыВидовХарактеристик<font color=red>.</font>ТипыШтрихкодов<font color=red>.</font>EAN13<font color=red>;<br>
+</font>НоваяЗаписьНабора<font color=red>.</font>Штрихкод <font color=red>= </font>СтруктураСДанными<font color=red>.</font>ШтрихКод<font color=red>;<br>
+</font>НоваяЗаписьНабора<font color=red>.</font>Качество <font color=red>= </font>Справочники<font color=red>.</font>Качество<font color=red>.</font>Новый<font color=red>;<br>
+<br>
+</font>НаборЗаписей<font color=red>.</font>Записать<font color=red>();</font></p></pre>
+
+<p>Перебирая строки дерева значений можно реализовать и п.3. Мы же идем дальше и приступаем к п.2. Для этих целей я использовал менеджер записи, в целом тут все просто до безобразия:</p>
+<p><pre><p>&nbsp; &nbsp; <font color=red>Если </font>ТипЗнч<font color=red>(</font>ЭлементыФормы<font color=red>.</font>ТабличноеПоле<font color=red>.</font>ТекущиеДанные<font color=red>.</font>Номенклатура<font color=red>) = </font>Тип<font color=red>(</font><font color=black>&quot;СправочникСсылка.Номенклатура&quot;</font><font color=red>)<br>
+&nbsp; &nbsp; &nbsp; &nbsp; ИЛИ </font>ТипЗнч<font color=red>(</font>ЭлементыФормы<font color=red>.</font>ТабличноеПоле<font color=red>.</font>ТекущиеДанные<font color=red>.</font>Номенклатура<font color=red>) = </font>Тип<font color=red>(</font><font color=black>&quot;СправочникСсылка.ИнформационныеКарты&quot;</font><font color=red>) Тогда<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>Штрихкод <font color=red>= </font>ЭлементыФормы<font color=red>.</font>ТабличноеПоле<font color=red>.</font>ТекущаяСтрока<font color=red>.</font>Родитель<font color=red>.</font>Номенклатура<font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>Владелец <font color=red>= </font>ЭлементыФормы<font color=red>.</font>ТабличноеПоле<font color=red>.</font>ТекущиеДанные<font color=red>.</font>Номенклатура<font color=red>;<br>
+&nbsp; &nbsp; Иначе<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>Штрихкод <font color=red>= </font>ЭлементыФормы<font color=red>.</font>ТабличноеПоле<font color=red>.</font>ТекущиеДанные<font color=red>.</font>Номенклатура<font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>Владелец <font color=red>= </font>ЭлементыФормы<font color=red>.</font>ТабличноеПоле<font color=red>.</font>ТекущаяСтрока<font color=red>.</font>Родитель<font color=red>.</font>Номенклатура<font color=red>;<br>
+&nbsp; &nbsp; КонецЕсли;<br>
+<br>
+</font>МенеджерЗаписи <font color=red>= </font>РегистрыСведений<font color=red>.</font>Штрихкоды<font color=red>.</font>СоздатьМенеджерЗаписи<font color=red>();<br>
+</font>МенеджерЗаписи<font color=red>.</font>Штрихкод <font color=red>= </font>Штрихкод<font color=red>;<br>
+</font>МенеджерЗаписи<font color=red>.</font>Владелец <font color=red>= </font>Владелец<font color=red>;<br>
+</font>МенеджерЗаписи<font color=red>.</font>ТипШтрихкода <font color=red>= </font>ПланыВидовХарактеристик<font color=red>.</font>ТипыШтрихкодов<font color=red>.</font>EAN13<font color=red>;<br>
+</font>МенеджерЗаписи<font color=red>.</font>ЕдиницаИзмерения <font color=red>= </font>Владелец<font color=red>.</font>ЕдиницаХраненияОстатков<font color=red>;<br>
+</font>МенеджерЗаписи<font color=red>.</font>Качество <font color=red>= </font>Справочники<font color=red>.</font>Качество<font color=red>.</font>Новый<font color=red>;<br>
+</font>МенеджерЗаписи<font color=red>.</font>Прочитать<font color=red>();<br>
+</font>МенеджерЗаписи<font color=red>.</font>Удалить<font color=red>();</font></p></pre>
+Остался последний самый простой пункт. Я думаю тут даже код не нужен. Все и так просто. Делаем отбор в наборе и записываем не читая. Вот такая получилась обработка. Почти весь нужный код для работы обработки в этой статье есть. За бортом осталась косметика, украшательства и тд, то, что каждый настраивает по своему вкусу, но если все таки у вас не вышло собрать обработку, то обработку можно <a href="http://infostart.ru/public/200131/">скачать на инфостарте</a>.</p>
+
+              </div><!--//item-->
+
+            </div><!--//content-->
+          </div><!--//section-inner-->
+        </section><!--//section-->
+
+      </div><!--//primary-->
+      <div class="secondary col-md-4 col-sm-12 col-xs-12">
+  <aside class="education aside section">
+    <div class="section-inner">
+      <h2 class="heading">Категории</h2>
+      <div class="content">
+        <div class="item">
+          <h3 class="title"><a href="/develop1c.html">Разработка 1С</a></h3>
+          <h4 class="university">В этом разделе я пишу об своих экспериментах в разработке 1С.</h4>
+        </div><!--//item-->
+        <div class="item">
+          <h3 class="title"><a href="/skd.html">СКД</a></h3>
+          <h4 class="university">Здесь я пишу об СКД. Правда пишу об этом немного.</h4>
+        </div><!--//item-->
+      </div><!--//content-->
+    </div><!--//section-inner-->
+  </aside>
+
+
+
+  <aside class="info aside section">
+    <div class="section-inner">
+      <h2 class="heading sr-only">Basic Information</h2>
+      <div class="content">
+        <ul class="list-unstyled">
+          <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>Комсомольск-на-Амуре</li>
+          <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="mailto:roman.belyaev@me.com">roman.belyaev@me.com</a></li>
+          <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="http://www.1c-cod.ru/" target="blank">1c-cod.ru</a></li>
+        </ul>
+      </div><!--//content-->
+    </div><!--//section-inner-->
+  </aside><!--//aside-->
+
+  <aside class="skills aside section">
+    <div class="section-inner">
+      <h2 class="heading">Навыки</h2>
+      <div class="content">
+        <p class="intro">
+          Моя приблизительная оценка своих навыков в программировании и знании 1С Предприятия.</p>
+
+          <div class="skillset">
+
+            <div class="item">
+              <h3 class="level-title">1С программирование<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to add more info...">Специалист</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="80%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">СКД<span class="level-label">Проффесионал</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="60%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление зарплатой<span class="level-label">Проффесионал</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="60%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление торговлей 10.3<span class="level-label">Специалист</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="90%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление бухгалтерией<span class="level-label">Пользователь</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="10%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">Python<span class="level-label">Начинающий</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="30%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">HTML<span class="level-label">Начинающий</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="10%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+          </div>
+        </div><!--//content-->
+      </div><!--//section-inner-->
+    </aside><!--//section-->
+
+
+  </div><!--//secondary-->
+</div><!--//row-->
+</div><!--//masonry-->
+
+<!-- ******FOOTER****** -->
+<footer class="footer">
+<div class="container text-center">
+  <p><small class="copyright">Ребята из <a href="http://themes.3rdwavemedia.com" target="_blank">3rd Wave Media</a> сделали красивый шаблон для моего сайта, спасибо им за это.</small></p>
+  <p><small class="copyright">Developer1c.ru© При использовании материалов с сайта оставляйте пожалуйста ссылку на первоисточник.</small></p>
+</div><!--//container-->
+</footer><!--//footer-->
+
+<!-- Javascript -->
+<script type="text/javascript" src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script> -->
+<!-- custom js -->
+<script type="text/javascript" src="/js/main-min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+<%- @partial('header') %>
+<div class="container sections-wrapper">
+  <div class="row">
+    <div class="primary col-md-8 col-sm-12 col-xs-12">
+    <p>Темы в категории "СКД"</p>
+    <% for page in @getCollection("skd").toJSON(): %>
+    <section class="projects section">
+      <div class="section-inner">
+        <p><i class="fa fa-calendar"></i> Опубликовано <%= @formatDate(page.date) %></p>
+        <h3 class="heading"><%= page.title %></h2>
+        <div class="content">
+          <div class="item">
+            <%- page.description %>
+          </div><!--//item-->
+          <a class="btn btn-cta-secondary" href="<%= page.url %>"<i class="fa fa-chevron-right"></i>Читать ></a>
+        </div><!--//content-->
+      </div><!--//section-inner-->
+    </section><!--//section-->
+
+    <% end %>
+    </div><!--//primary-->
+    <%- @partial('footer') %>

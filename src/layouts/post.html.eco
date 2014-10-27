@@ -1,0 +1,21 @@
+  <%- @partial('header') %>
+  <div class="container sections-wrapper">
+    <div class="row">
+      <div class="primary col-md-8 col-sm-12 col-xs-12">
+
+
+        <section class="projects section">
+          <div class="section-inner">
+            <p><i class="fa fa-calendar"></i> Опубликовано <%= @formatDate(@document.date) %></p>
+            <h2 class="heading"><%= @document.title %></h2>
+            <div class="content">
+              <div class="item">
+                <%- @content %>
+              </div><!--//item-->
+
+            </div><!--//content-->
+          </div><!--//section-inner-->
+        </section><!--//section-->
+
+      </div><!--//primary-->
+      <%- @partial('footer') %>

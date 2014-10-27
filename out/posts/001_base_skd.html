@@ -1,0 +1,330 @@
+  <!DOCTYPE html>
+<!--[if IE 8]> <html lang="ru" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="ru" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="ru"> <!--<![endif]-->
+<head>
+  <title>Основные моменты при работе с СКД | Разработчик 1C</title>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1C программирование, 1С разработка, СКД">
+  <meta name="author" content="Роман Беляев">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="http://yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <!-- Theme CSS -->
+  <link id="theme-style" rel="stylesheet" href="/css/styles.css">
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+  <!-- ******HEADER****** -->
+  <header class="header">
+    <div class="container">
+      <img class="profile-image img-responsive pull-left" src="/images/profile.png" alt="Роман Беляев" />
+      <div class="profile-content pull-left">
+        <h1 class="name">Роман Беляев</h1>
+        <h2 class="desc">1С Разработчик</h2>
+        <ul class="social list-inline">
+          <li><a href="https://twitter.com/belyaev_rs" target="blank"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://plus.google.com/u/0/+%D0%91%D0%B5%D0%BB%D1%8F%D0%B5%D0%B2%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD" target="blank"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div><!--//profile-->
+       <a class="btn btn-cta-primary pull-right" href="/"><i class="fa fa-paper-plane"></i>На главную</a>
+    </div><!--//container-->
+  </header><!--//header-->
+
+  <div class="container sections-wrapper">
+    <div class="row">
+      <div class="primary col-md-8 col-sm-12 col-xs-12">
+
+
+        <section class="projects section">
+          <div class="section-inner">
+            <p><i class="fa fa-calendar"></i> Опубликовано 5 сентября 2012 г., 21:09</p>
+            <h2 class="heading">Основные моменты при работе с СКД</h2>
+            <div class="content">
+              <div class="item">
+                <h2 id="-">Как использовать параметры в СКД?</h2>
+<p>При написании отчета для СКД иногда возникает потребность в использовании параметров, какие есть варианты? Для начала надо определиться что для того что бы параметры стали доступными, необходимо поставить галочку в схеме вот здесь:
+<img src="http://i.imgur.com/zJHEInG.png" alt="Доступность параметра"></p>
+<ol>
+<li>Тыкнуть по кнопочке настройки, и задать настройки на стандартной форме. Мы этот вариант даже рассматривать не будем, по той простой причине, что их видно на стандартной форме невооруженным глазом, достаточно тыкнуть на кнопку... Настройки конечно же.</li>
+<li>Сделать таблицу на форме и указать у нее источник.</li>
+<li>Добавить на форму отчета поля ввода и прописать изменение параметров СКД при их изменении</li>
+</ol>
+<p>Рассмотрим  все варианты по подробнее.</p>
+<h3 id="2-">2. Вывод всех прописанных настроек в одной таблице</h3>
+<p>Это делается очень просто, добавляется таблица значений на форму а источником данных нужно указать: ОтчетОбъект -&gt; КомпоновщикНастроек -&gt; Настройки -&gt; Параметры данных.</p>
+<h3 id="3-">3. Вынесение параметров отчета на форму, как правило самый нужный и удобный метод установки параметров.</h3>
+<p>Для этого создадим форму отчета, если вы ее еще не создали (куда то, нам надо вынести параметры которые мы будем передавать в СКД) и добавим поле ввода нужного нам типа. И в событии &quot;ПриИзменении&quot; укажем следующий код:</p>
+<p><pre><p>Параметры <font color=red>= </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыДанных<font color=red>;<br>
+</font>Параметр <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font><font color=black>&quot;ПараметрУказанныйВЗапросе&quot;</font><font color=red>));<br>
+Если </font>Параметр <font color=red>&lt;&gt; Неопределено Тогда<br>
+&nbsp; &nbsp; </font>Параметр<font color=red>.</font>Значение <font color=red>= </font>ЗначениеКотороеМыХотимУстановить<font color=red>;<br>
+&nbsp; &nbsp; </font>Параметр<font color=red>.</font>Использование <font color=red>= Истина;<br>
+КонецЕсли;</font></p></pre>
+Готово! Теперь при изменении элемента на форме параметр будет автоматически загружаться в СКД.</p>
+<h2 id="-">Использование нескольких схем</h2>
+<p>Периодически бывает что один отчет должен показывать вроде бы одну и ту же информацию но в разрезе разных показателей. И вроде отчет тот же, только сменился тип аналитики, или убрали колонку, которая участвовала в расчетах, но &quot;почти&quot; это для пользователя, для разработчика это уже другой набор полей и уже скорее всего структура другая, вообщем необходимо делать другой отчет, но можно просто использовать несколько схем и переключаться между ними по мере надобности. Переключаться между схемами несложно, достаточно сделать кнопочку повешать на нее следующую процедуру:</p>
+<p><pre><p><font color=red>Процедура </font>СменитьСхему<font color=red>()<br>
+&nbsp; &nbsp; </font>СхемаКомпоновкиДанных <font color=red>= </font>ПолучитьМакет<font color=red>(</font><font color=black>&quot;ЗдесьНадоУказатьИмяСхемы&quot;</font><font color=red>);<br>
+&nbsp; &nbsp; </font>Настройки <font color=red>= </font>СхемаКомпоновкиДанных<font color=red>.</font>НастройкиПоУмолчанию<font color=red>;<br>
+&nbsp; &nbsp; </font>КомпоновщикНастроек<font color=red>.</font>ЗагрузитьНастройки<font color=red>(</font>Настройки<font color=red>);<br>
+КонецПроцедуры</font></p></pre>
+Как видите, все просто, при желании можно сократить до двух строк или даже одной, но не уверен, что это пойдет на пользу читаемости кода. Но тут есть свой нюанс, при загрузке новых настроек старые параметры сотрутся, что на самом деле логично, но нас такое положение дел совершенно не устраивает. Какой из этого есть выход? Я думаю надо перед сменой компоновки параметры, надо сохранить в какой то буфер, а потом их восстановить. Как получить\записать параметр я уже говорил выше и не буду на это останавливаться. Так как параметров как правило больше чем два, особенно если это сложный отчет, то неправильно будет, писать</p>
+<p><pre><p>Параметр1 <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font><font color=black>&quot;ПараметрИзЗапроса&quot;</font><font color=red>));<br>
+</font>СохраненноеЗначение1 <font color=red>= </font>Параметр1<font color=red>.</font>Значение<font color=red>;<br>
+<br>
+</font>Параметр2 <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font><font color=black>&quot;ПараметрИзЗапроса2&quot;</font><font color=red>));<br>
+</font>СохраненноеЗначение2 <font color=red>= </font>Параметр2<font color=red>.</font>Значение<font color=red>;<br>
+<br>
+</font><font color=green>//смена схемы компоновки<br>
+<br>
+</font>Параметр1 <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font><font color=black>&quot;ПараметрИзЗапроса&quot;</font><font color=red>));<br>
+</font>Параметр1<font color=red>.</font>Значение <font color=red>= </font>СохраненноеЗначение1<font color=red>;<br>
+</font>Параметр1<font color=red>.</font>Использование <font color=red>= Истина;<br>
+<br>
+</font>Параметр2 <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font><font color=black>&quot;ПараметрИзЗапроса2&quot;</font><font color=red>));<br>
+</font>Параметр2<font color=red>.</font>Значение <font color=red>= </font>СохраненноеЗначение2<font color=red>;<br>
+</font>Параметр2<font color=red>.</font>Использование <font color=red>= Истина;<br>
+</font><font color=green>//и тд</font></p></pre>
+<em>Я надеюсь, что вы понимаете, что этот код написан для примера и не стоит использовать перемнные с именами &quot;СохраненноеЗначение1&quot;,&quot;СохраненноеЗначение2&quot;, но даже если не понимаете, все равно не используйте.</em>
+Хочется оптимизировать вышеприведенный код, что бы просто указать: <code>СохраниСписокПараметров(&quot;ЗдесьСписокПараметров&quot;);</code> потом сменить схему и сделать <code>ВосстановиСписокПараметров(&quot;ЗдесьСписокПараметров&quot;);</code> Написанием этих процедур мы и займемся, для этого далее я напишу эти две процедуры, одна будет сохранять параметры в спецально для этого отведнную структуру, другая будет из нее восстанавливать параметры. Вот они обе:</p>
+<p><pre><p><font color=red>Функция </font>СохранитьПараметры<font color=red>(</font>ИменаПараметров<font color=red>)<br>
+&nbsp; &nbsp; </font>Параметры <font color=red>= </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыДанных<font color=red>;<br>
+&nbsp; &nbsp; </font>МассивСИменами <font color=red>= </font>ОбщегоНазначения<font color=red>.</font>РазложитьСтрокуВМассивПодстрок<font color=red>(</font>ИменаПараметров<font color=red>,</font><font color=black>&quot;,&quot;</font><font color=red>);<br>
+&nbsp; &nbsp; </font>СтруктураДляПараметров <font color=red>= Новый </font>Структура<font color=red>;<br>
+&nbsp; &nbsp; Для Каждого </font>ИмяПараметра <font color=red>Из </font>МассивСИменами <font color=red>Цикл<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>Параметр <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font>ИмяПараметра<font color=red>));<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Если </font>Параметр <font color=red>&lt;&gt; Неопределено Тогда<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураДляПараметров<font color=red>.</font>Вставить<font color=red>(</font>ИмяПараметра<font color=red>, </font>Параметр<font color=red>.</font>Значение<font color=red>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; КонецЕсли;<br>
+&nbsp; &nbsp; КонецЦикла;<br>
+<br>
+&nbsp; &nbsp; Возврат </font>СтруктураДляПараметров<font color=red>;<br>
+КонецФункции<br>
+<br>
+Процедура </font>ЗагрузитьПараметры<font color=red>(</font>СтруктураСПараметрами<font color=red>)<br>
+&nbsp; &nbsp; </font>Параметры <font color=red>= </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыДанных<font color=red>;<br>
+&nbsp; &nbsp; Для Каждого </font>ТекущийПараметр <font color=red>Из </font>СтруктураСПараметрами <font color=red>Цикл<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>Параметр <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font>ТекущийПараметр<font color=red>.</font>Ключ<font color=red>));<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Если </font>Параметр <font color=red>&lt;&gt; Неопределено Тогда<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>Параметр<font color=red>.</font>Значение <font color=red>= </font>ТекущийПараметр<font color=red>.</font>Значение<font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>Параметр<font color=red>.</font>Использование <font color=red>= Истина;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; КонецЕсли;<br>
+&nbsp; &nbsp; КонецЦикла;<br>
+КонецПроцедуры<br></font></p></pre>
+Остановлюсь, что бы более подробно объяснить, что происходит. Функция СохранитьПараметры принимает на входе строку с именами тех параметров которые надо сохранить. Затем она находит по имени нужный параметр и сохраняет в структуру, которую возвращает по окончании перебора всех параметров полученых из строки. То же самое, только наоборот делает процедура загрузить, она принимает структуру и загружает из нее в СКД параметры. Далее надо собрать все вместе, выглядеть это будет примерно так:</p>
+<p><pre><p></p>
+<p><font color=red>Функция </font>СохранитьПараметры<font color=red>(</font>ИменаПараметров<font color=red>)<br>
+&nbsp; &nbsp; </font>Параметры <font color=red>= </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыДанных<font color=red>;<br>
+&nbsp; &nbsp; </font>МассивСИменами <font color=red>= </font>ОбщегоНазначения<font color=red>.</font>РазложитьСтрокуВМассивПодстрок<font color=red>(</font>ИменаПараметров<font color=red>,</font><font color=black>&quot;,&quot;</font><font color=red>);<br>
+&nbsp; &nbsp; </font>СтруктураДляПараметров <font color=red>= Новый </font>Структура<font color=red>;<br>
+&nbsp; &nbsp; Для Каждого </font>ИмяПараметра <font color=red>Из </font>МассивСИменами <font color=red>Цикл<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>Параметр <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font>ИмяПараметра<font color=red>));<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Если </font>Параметр <font color=red>&lt;&gt; Неопределено Тогда<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>СтруктураДляПараметров<font color=red>.</font>Вставить<font color=red>(</font>ИмяПараметра<font color=red>, </font>Параметр<font color=red>.</font>Значение<font color=red>);<br>
+&nbsp; &nbsp; &nbsp; &nbsp; КонецЕсли;<br>
+&nbsp; &nbsp; КонецЦикла;<br>
+<br>
+Возврат </font>СтруктураДляПараметров<font color=red>;<br>
+КонецФункции<br>
+<br>
+<br>
+Процедура </font>ЗагрузитьПараметры<font color=red>(</font>СтруктураСПараметрами<font color=red>)<br>
+&nbsp; &nbsp; </font>Параметры <font color=red>= </font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>.</font>ПараметрыДанных<font color=red>;<br>
+&nbsp; &nbsp; Для Каждого </font>ТекущийПараметр <font color=red>Из </font>СтруктураСПараметрами <font color=red>Цикл<br>
+&nbsp; &nbsp; &nbsp; &nbsp; </font>Параметр <font color=red>= </font>Параметры<font color=red>.</font>НайтиЗначениеПараметра<font color=red>(Новый </font>ПараметрКомпоновкиДанных<font color=red>(</font>ТекущийПараметр<font color=red>.</font>Ключ<font color=red>));<br>
+&nbsp; &nbsp; &nbsp; &nbsp; Если </font>Параметр <font color=red>&lt;&gt; Неопределено Тогда<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>Параметр<font color=red>.</font>Значение <font color=red>= </font>ТекущийПараметр<font color=red>.</font>Значение<font color=red>;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </font>Параметр<font color=red>.</font>Использование <font color=red>= Истина;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; КонецЕсли;<br>
+&nbsp; &nbsp; КонецЦикла;<br>
+КонецПроцедуры<br>
+<br>
+<br>
+Процедура </font>СменитьСхему<font color=red>()<br>
+&nbsp; &nbsp; </font>СтруктураСНастройками <font color=red>= </font>СохранитьПараметры<font color=red>(</font><font color=black>&quot;Параметр1,Параметр2,Параметр3&quot;</font><font color=red>);<br>
+&nbsp; &nbsp; </font>СхемаКомпоновкиДанных <font color=red>= </font>ПолучитьМакет<font color=red>(</font><font color=black>&quot;ЗдесьИмяНужнойВамСхемы&quot;</font><font color=red>);<br>
+&nbsp; &nbsp; </font>Настройки <font color=red>= </font>СхемаКомпоновкиДанных<font color=red>.</font>НастройкиПоУмолчанию<font color=red>;<br>
+&nbsp; &nbsp; </font>КомпоновщикНастроек<font color=red>.</font>ЗагрузитьНастройки<font color=red>(</font>Настройки<font color=red>);<br>
+&nbsp; &nbsp; </font>ЗагрузитьПараметры<font color=red>(</font>СтруктураСНастройками<font color=red>);<br>
+КонецПроцедуры</font></p></pre></p>
+<h2 id="-">Вывод СКД в отчет</h2>
+<p>Если вы создали форму отчета у СКД(то есть если у вас отчет и есть схема компоновки данных), то по умолчанию на кнопке &quot;Сформировать&quot; висит предустанновленная команда &quot;Сфрмировать&quot;, которая запустит текущую схему, но можно туда повесить свой обработчик, если нужно перед формированием сделать какие нибудь манипуляции, вот код который можно туда повесить:</p>
+<p><pre><p>КомпоновщикМакета<font color=red>=Новый </font>КомпоновщикМакетаКомпоновкиДанных<font color=red>;<br>
+</font>МакетКомпоновкиДанных<font color=red>=</font>КомпоновщикМакета<font color=red>.</font>Выполнить<font color=red>(</font>СхемаКомпоновкиДанных<font color=red>,</font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>,</font>ДанныеРасшифровки<font color=red>);<br>
+</font>ПроцессорКомпоновкиДанных<font color=red>=Новый </font>ПроцессорКомпоновкиДанных<font color=red>;<br>
+</font>ПроцессорКомпоновкиДанных<font color=red>.</font>Инициализировать<font color=red>(</font>МакетКомпоновкиДанных<font color=red>,,</font>ДанныеРасшифровки<font color=red>,Истина);<br>
+</font>ПроцессорВывода<font color=red>=Новый </font>ПроцессорВыводаРезультатаКомпоновкиДанныхВТабличныйДокумент<font color=red>;<br>
+</font>ПроцессорВывода<font color=red>.</font>УстановитьДокумент<font color=red>(</font>ЭлементыФормы<font color=red>.</font>Результат<font color=red>);<br>
+</font>ПроцессорВывода<font color=red>.</font>Вывести<font color=red>(</font>ПроцессорКомпоновкиДанных<font color=red>);</font></p></pre>
+Если вы не понимаете, что вообще происходит, просто сделайте кнопку на форме, и засуньте в обработчик этот код, сразу станет понятно, что все просто и что в целом то даже процессом вывода можно управлять, например перед формированием отчета, можно установить заголовок, в зависимости от установленных параметров или свернуть группировки после формирования, или время там формирования засечь, всякое бывает. Также можно вывести разом, а можно построчно, посмотреть детали можно в синтаксис помощнике по адресу Общие объекты -&gt; Система компоновки данных -&gt; Работа с механизмом -&gt; ПроцессорВыводаРезультатаКомпоновкиДанных</p>
+<h3 id="-">Установка в качестве параметра списка значений.</h3>
+<p>Когда нужно использовать список значений, для параметра необходимо установить галочку &quot;Доступен список значений&quot; иначе, даже если на входе будет список, СКД все равно будет брать только первое значение, галочка вот здесь:
+<img src="http://i.imgur.com/1ENucxo.png" alt="Параметр в списке">
+С этой галочкой в штатном списке параметров СКД, вы бонусом получаете красивый и удобный список для подбора ваших значений.</p>
+<h3 id="-">Вывод СКД в таблицу.</h3>
+<p>Бывает нужен, если нужно проанализировать или что то сделать с результатами работы, что бы получить результат работы  СКД в таблицу значений или в дерево значений, вам поможет следующий код:</p>
+<p><pre><p>КомпоновщикМакета<font color=red>=Новый </font>КомпоновщикМакетаКомпоновкиДанных<font color=red>;<br>
+</font>МакетКомпоновкиДанных<font color=red>=</font>КомпоновщикМакета<font color=red>.</font>Выполнить<font color=red>(</font>СхемаКомпоновкиДанных<font color=red>,</font>КомпоновщикНастроек<font color=red>.</font>Настройки<font color=red>,,,</font>Тип<font color=red>(</font><font color=black>&quot;ГенераторМакетаКомпоновкиДанныхДляКоллекцииЗначений&quot;</font><font color=red>));<br>
+</font>ПроцессорКомпоновкиДанных<font color=red>=Новый </font>ПроцессорКомпоновкиДанных<font color=red>;<br>
+</font>ПроцессорКомпоновкиДанных<font color=red>.</font>Инициализировать<font color=red>(</font>МакетКомпоновкиДанных<font color=red>);<br>
+<br>
+</font>ТЗДляВывода <font color=red>= Новый </font>ТаблицаЗначений<font color=red>;</font><font color=green>//здесь может быть и дерево значений<br>
+</font>ПроцессорВывода <font color=red>= Новый </font>ПроцессорВыводаРезультатаКомпоновкиДанныхВКоллекциюЗначений<font color=red>;<br>
+</font>ПроцессорВывода<font color=red>.</font>УстановитьОбъект<font color=red>(</font>ТЗДляВывода<font color=red>);<br>
+</font>ПроцессорВывода<font color=red>.</font>Вывести<font color=red>(</font>ПроцессорКомпоновкиДанных<font color=red>);</font></p>
+</pre>
+собственно здесь в ТЗДляВывода мы получаем результат формирования отчета. Собственно если не касаться непосредствнно самого СКД, то здесь описаны практически все моменты работы с формой отчета построенного на СКД.</p>
+<h3 id="-">Бонусы</h3>
+<p>Тому кто домучал до конца эту длинную повесть, пригодятся бонусы:
+Курс от гилева про СКД, что бы не искать информацию про СКД, можно скачать <a href="http://www.spec8.ru/kurs-po-skd-besplatno">бесплатный курс по СКД</a>
+Можно взять <a href="https://googledrive.com/host/0BxFnXEinPWUJckpLWkVCVjc0dUU/%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.erf">шаблон, в котором есть все нужные для оформления фичи</a></p>
+
+              </div><!--//item-->
+
+            </div><!--//content-->
+          </div><!--//section-inner-->
+        </section><!--//section-->
+
+      </div><!--//primary-->
+      <div class="secondary col-md-4 col-sm-12 col-xs-12">
+  <aside class="education aside section">
+    <div class="section-inner">
+      <h2 class="heading">Категории</h2>
+      <div class="content">
+        <div class="item">
+          <h3 class="title"><a href="/develop1c.html">Разработка 1С</a></h3>
+          <h4 class="university">В этом разделе я пишу об своих экспериментах в разработке 1С.</h4>
+        </div><!--//item-->
+        <div class="item">
+          <h3 class="title"><a href="/skd.html">СКД</a></h3>
+          <h4 class="university">Здесь я пишу об СКД. Правда пишу об этом немного.</h4>
+        </div><!--//item-->
+      </div><!--//content-->
+    </div><!--//section-inner-->
+  </aside>
+
+
+
+  <aside class="info aside section">
+    <div class="section-inner">
+      <h2 class="heading sr-only">Basic Information</h2>
+      <div class="content">
+        <ul class="list-unstyled">
+          <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>Комсомольск-на-Амуре</li>
+          <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="mailto:roman.belyaev@me.com">roman.belyaev@me.com</a></li>
+          <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="http://www.1c-cod.ru/" target="blank">1c-cod.ru</a></li>
+        </ul>
+      </div><!--//content-->
+    </div><!--//section-inner-->
+  </aside><!--//aside-->
+
+  <aside class="skills aside section">
+    <div class="section-inner">
+      <h2 class="heading">Навыки</h2>
+      <div class="content">
+        <p class="intro">
+          Моя приблизительная оценка своих навыков в программировании и знании 1С Предприятия.</p>
+
+          <div class="skillset">
+
+            <div class="item">
+              <h3 class="level-title">1С программирование<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to add more info...">Специалист</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="80%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">СКД<span class="level-label">Проффесионал</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="60%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление зарплатой<span class="level-label">Проффесионал</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="60%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление торговлей 10.3<span class="level-label">Специалист</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="90%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление бухгалтерией<span class="level-label">Пользователь</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="10%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">Python<span class="level-label">Начинающий</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="30%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">HTML<span class="level-label">Начинающий</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="10%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+          </div>
+        </div><!--//content-->
+      </div><!--//section-inner-->
+    </aside><!--//section-->
+
+
+  </div><!--//secondary-->
+</div><!--//row-->
+</div><!--//masonry-->
+
+<!-- ******FOOTER****** -->
+<footer class="footer">
+<div class="container text-center">
+  <p><small class="copyright">Ребята из <a href="http://themes.3rdwavemedia.com" target="_blank">3rd Wave Media</a> сделали красивый шаблон для моего сайта, спасибо им за это.</small></p>
+  <p><small class="copyright">Developer1c.ru© При использовании материалов с сайта оставляйте пожалуйста ссылку на первоисточник.</small></p>
+</div><!--//container-->
+</footer><!--//footer-->
+
+<!-- Javascript -->
+<script type="text/javascript" src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script> -->
+<!-- custom js -->
+<script type="text/javascript" src="/js/main-min.js"></script>
+</body>
+</html>
+
