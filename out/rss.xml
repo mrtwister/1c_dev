@@ -5,9 +5,9 @@
         <description><![CDATA[Разработчик 1C]]></description>
         <link>http://localhost:9778</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 27 Oct 2014 12:13:21 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 27 Oct 2014 12:47:39 GMT</lastBuildDate>
         <atom:link href="http://localhost:9778/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 27 Oct 2014 12:13:18 GMT</pubDate>
+        <pubDate>Mon, 27 Oct 2014 12:47:36 GMT</pubDate>
         <item>
             <title><![CDATA[Двойные штрихкода и история одной обработки]]></title>
             <description><![CDATA[<h3 id="-">Преамбула</h3>
