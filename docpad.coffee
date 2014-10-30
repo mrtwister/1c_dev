@@ -30,6 +30,9 @@ docpadConfig = {
     ghpages:
         deployRemote: 'origin'
         deployBranch: 'gh-pages'
+
+    cleanurls:
+        static: true
 }
 
 # Export the DocPad Configuration
