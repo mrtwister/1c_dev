@@ -1,0 +1,17 @@
+<%- @partial('header') %>
+<div class="container sections-wrapper">
+  <div class="row">
+    <div class="primary col-md-8 col-sm-12 col-xs-12">
+    <section class="projects section">
+      <div class="section-inner">
+        <h3 class="heading">Ой кажется ошибочка вышла. Которая 404.</h2>
+        <div class="content">
+          <div class="item">
+            <p>Тут точно была эта страница, но она куда то делась... Посморите на <a href="/">Главной.</a> Может она там?</p>
+          </div><!--//item-->
+
+        </div><!--//content-->
+      </div><!--//section-inner-->
+    </section><!--//section-->
+    </div><!--//primary-->
+    <%- @partial('footer') %>
