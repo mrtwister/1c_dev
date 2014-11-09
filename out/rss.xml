@@ -5,9 +5,9 @@
         <description><![CDATA[Разработчик 1C]]></description>
         <link>http://localhost:9778</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Fri, 07 Nov 2014 11:57:57 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 09 Nov 2014 11:53:26 GMT</lastBuildDate>
         <atom:link href="http://localhost:9778/rss.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Fri, 07 Nov 2014 11:57:53 GMT</pubDate>
+        <pubDate>Sun, 09 Nov 2014 11:18:55 GMT</pubDate>
         <item>
             <title><![CDATA[Анализ списка инвентаризаций одним махом.]]></title>
             <description><![CDATA[<h3 id="-">Постановка задачи</h3>
