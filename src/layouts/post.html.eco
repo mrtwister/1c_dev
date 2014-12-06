@@ -30,8 +30,16 @@
           s.parentNode.insertBefore(hcc, s.nextSibling);
           })();
           </script>
-          
+
         </section><!--//section-->
 
       </div><!--//primary-->
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:728px;height:90px"
+           data-ad-client="ca-pub-7174222518387271"
+           data-ad-slot="9820385141"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
       <%- @partial('footer') %>
