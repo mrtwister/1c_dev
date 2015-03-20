@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url> <loc>http://localhost:9778/posts/001_base_skd</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/posts/002_storage_of_residues</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/posts/003_elements_on_form</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/posts/004_plug_scaner_ut10</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/posts/005_mark_in_table</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/posts/006_double_barcode</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/develop1c</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/skd</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/posts/007_inventory_and_skd</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/404</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/posts/008_start_wiki</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://localhost:9778/posts/009_SliceLast</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+</urlset>

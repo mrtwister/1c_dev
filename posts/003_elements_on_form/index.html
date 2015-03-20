@@ -1,0 +1,272 @@
+  <!DOCTYPE html>
+<!--[if IE 8]> <html lang="ru" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="ru" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="ru"> <!--<![endif]-->
+<head>
+  <title>Программное расположение элементов на форме | Разработчик 1C</title>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1C программирование, 1С разработка, СКД">
+  <meta name="author" content="Роман Беляев">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="http://yastatic.net/bootstrap/3.1.1/css/bootstrap.min.css">
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <!-- Theme CSS -->
+  <link id="theme-style" rel="stylesheet" href="/css/styles.css">
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+  <!-- ******HEADER****** -->
+  <header class="header">
+    <div class="container">
+      <img class="profile-image img-responsive pull-left" src="/images/profile.png" alt="Роман Беляев" />
+      <div class="profile-content pull-left">
+        <h1 class="name">Роман Беляев</h1>
+        <h2 class="desc">1С Разработчик</h2>
+        <ul class="social list-inline">
+          <li><a href="https://twitter.com/belyaev_rs" target="blank"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://plus.google.com/u/0/+%D0%91%D0%B5%D0%BB%D1%8F%D0%B5%D0%B2%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD" target="blank"><i class="fa fa-google-plus"></i></a></li>
+          <li><a href="https://www.linkedin.com/profile/view?id=302920341" target="blank"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div><!--//profile-->
+       <a class="btn btn-cta-primary pull-right" href="/"><i class="fa fa-paper-plane"></i>На главную</a>
+    </div><!--//container-->
+  </header><!--//header-->
+
+  <div class="container sections-wrapper">
+    <div class="row">
+      <div class="primary col-md-8 col-sm-12 col-xs-12">
+
+
+        <section class="projects section">
+          <div class="section-inner">
+            <p><i class="fa fa-calendar"></i> Опубликовано 7 сентября 2012 г., 00:13</p>
+            <h2 class="heading">Программное расположение элементов на форме</h2>
+            <div class="content">
+              <div class="item">
+                <p>Иногда есть необходимость расположить табличное поле на форме программно, например когда нужно добавить неизвестное заранее количество закладок, хорошо если нужно просто добавить закладки, тогда можно просто отделаться :</p>
+<p><pre><p>ЭлементыФормы<font color=red>.</font>ПанельСЗакладками<font color=red>.</font>Страницы<font color=red>.</font>Добавить<font color=red>(</font><font color=black>&quot;ЗакладкаСклад&quot;</font><font color=red>+</font>Склад<font color=red>.</font>НомерСклада<font color=red>, </font>Склад<font color=red>.</font>Наименование<font color=red>);</font></p></pre>
+но на закладках должно, что то располагаться и это что то, должно иметь размеры, располагаться в конкретно указанном месте у него,  у него должны быть привязки, определены какие то свойства(которых прошу заметить может быть много) и тд, конечно самый логичный способ это нарисовать образец на форме а потом смотря свойства, просто это все перетащить. Должен получиться какой то такой код:</p>
+<p><pre><p>ЭлементыФормы<font color=red>.</font>ПанельСЗакладками<font color=red>.</font>Страницы<font color=red>.</font>Добавить<font color=red>(</font><font color=black>&quot;ЗакладкаСклад&quot;</font><font color=red>+</font>Склад<font color=red>.</font>НомерСклада<font color=red>, </font>Склад<font color=red>.</font>Наименование<font color=red>);<br>
+</font>ЭлементыФормы<font color=red>.</font>ПанельСЗакладками<font color=red>.</font>ТекущаяСтраница <font color=red>= </font>ЭлементыФормы<font color=red>.</font>ПанельСЗакладками<font color=red>.</font>Страницы<font color=red>[</font><font color=black>&quot;ЗакладкаСклад&quot;</font><font color=red>+</font>Склад<font color=red>.</font>НомерСклада<font color=red>];<br>
+</font>ТабличноеПоле <font color=red>= </font>ЭлементыФормы<font color=red>.</font>Добавить<font color=red>(</font>Тип<font color=red>(</font><font color=black>&quot;ТабличноеПоле&quot;</font><font color=red>),</font><font color=black>&quot;ТабличноеПоле&quot;</font><font color=red>+</font>Склад<font color=red>.</font>НомерСклада<font color=red>,Истина,</font>ЭлементыФормы<font color=red>.</font>ПанельСЗакладками<font color=red>);<br>
+</font>ТабличноеПоле<font color=red>.</font>Имя <font color=red>= </font><font color=black>&quot;ТабличноеПоле&quot;</font><font color=red>+</font>Склад<font color=red>.</font>НомерСклада<font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>Значение <font color=red>= </font>ДвиженияПоСкладам<font color=red>[</font>ТекущийСклад<font color=red>];<br>
+</font>ТабличноеПоле<font color=red>.</font>Верх <font color=red>= </font><font color=black>6</font><font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>Высота <font color=red>= </font><font color=black>566</font><font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>Ширина <font color=red>= </font><font color=black>747</font><font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>Лево <font color=red>= </font><font color=black>6</font><font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>ВертикальнаяПолосаПрокрутки <font color=red>= </font>ИспользованиеПолосыПрокрутки<font color=red>.</font>Использоватьавтоматически<font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>Вывод <font color=red>= </font>ИспользованиеВывода<font color=red>.</font>Авто<font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>ВысотаПодвала <font color=red>= </font><font color=black>1</font><font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>ВысотаШапки <font color=red>= </font><font color=black>1</font><font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>ГоризонтальнаяПолосаПрокрутки <font color=red>= </font>ИспользованиеПолосыПрокрутки<font color=red>.</font>Использоватьавтоматически<font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>ГоризонтальныеЛинии <font color=red>= Истина;<br>
+</font>ТабличноеПоле<font color=red>.</font>ПорядокОтображения <font color=red>= </font><font color=black>1</font><font color=red>;<br>
+</font>ТабличноеПоле<font color=red>.</font>УстановитьПривязку<font color=red>(</font>ГраницаЭлементаУправления<font color=red>.</font>Низ<font color=red>,</font>ЭтаФорма<font color=red>.</font>Панель<font color=red>,</font>ГраницаЭлементаУправления<font color=red>.</font>Низ<font color=red>);<br>
+</font>ТабличноеПоле<font color=red>.</font>УстановитьПривязку<font color=red>(</font>ГраницаЭлементаУправления<font color=red>.</font>Право<font color=red>,</font>ЭтаФорма<font color=red>.</font>Панель<font color=red>,</font>ГраницаЭлементаУправления<font color=red>.</font>Право<font color=red>);<br>
+</font>ТабличноеПоле<font color=red>.</font>ТолькоПросмотр <font color=red>= Ложь;</font></p></pre>
+&nbsp;&nbsp;&nbsp;&nbsp;Но тут есть один нюанс, переписывать параметры руками, это просто жесть, всегда можно, что то забыть, не учесть,
+не заметить, да и не всегда удается угадать какой контрол, какой содержит элемент управления, но тут падам!
+К нам на выручку спешит чудесная штука ДекомпиляцияИАнализФорм_4.epf делаем формочку, настраиваем поведение, размеры, стили и прочие нужности,
+скармливаем обработке, она генерит нам нужный код, очень приятная вешь, про автора известно что это (MRAK) Роман Ершов, больше я про него ничего не знаю,
+он пожелал не раскрывать деталей. Собственно на этом все а кому нужно, может скачать
+<a href="https://googledrive.com/host/0BxFnXEinPWUJckpLWkVCVjc0dUU/ДекомпиляцияИАнализФорм_4.epf">обработку</a> которая поможет вам в нелегких буднях 1сника.</p>
+
+              </div><!--//item-->
+
+            </div><!--//content-->
+            <!-- БлокНаДевелоперс1с -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-7174222518387271"
+                 data-ad-slot="9820385141"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div><!--//section-inner-->
+
+          <div id="hypercomments_widget"></div>
+          <script type="text/javascript">
+          _hcwp = window._hcwp || [];
+          _hcwp.push({widget:"Stream", widget_id: 2839});
+          (function() {
+          if("HC_LOAD_INIT" in window)return;
+          HC_LOAD_INIT = true;
+          var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+          var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+          hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/2839/"+lang+"/widget.js";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hcc, s.nextSibling);
+          })();
+          </script>
+
+        </section><!--//section-->
+
+      </div><!--//primary-->
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+      <div class="secondary col-md-4 col-sm-12 col-xs-12">
+  <aside class="education aside section">
+    <div class="section-inner">
+      <h2 class="heading">Категории</h2>
+      <div class="content">
+        <div class="item">
+          <h3 class="title"><a href="/develop1c">Разработка 1С</a></h3>
+          <h4 class="university">В этом разделе я пишу об своих экспериментах в разработке 1С.</h4>
+        </div><!--//item-->
+        <div class="item">
+          <h3 class="title"><a href="/skd">СКД</a></h3>
+          <h4 class="university">Здесь я пишу об СКД. Правда пишу об этом немного.</h4>
+        </div><!--//item-->
+      </div><!--//content-->
+    </div><!--//section-inner-->
+  </aside>
+
+
+
+  <aside class="info aside section">
+    <div class="section-inner">
+      <h2 class="heading">Контакты</h2>
+      <div class="content">
+        <ul class="list-unstyled">
+          <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>Комсомольск-на-Амуре</li>
+          <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="mailto:belyaev.rs@gmail.com">belyaev.rs@gmail.com</a></li>
+          <li><i class="fa fa-link"></i><span class="sr-only">Website:</span><a href="http://www.1c-cod.ru/" target="blank">1c-cod.ru</a></li>
+        </ul>
+      </div><!--//content-->
+    </div><!--//section-inner-->
+  </aside><!--//aside-->
+
+  <aside class="skills aside section">
+    <div class="section-inner">
+      <h2 class="heading">Навыки</h2>
+      <div class="content">
+        <p class="intro">
+          Моя приблизительная оценка своих навыков в программировании и знании 1С Предприятия.</p>
+
+          <div class="skillset">
+
+            <div class="item">
+              <h3 class="level-title">1С программирование<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to add more info...">Специалист</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="80%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">СКД<span class="level-label">Профессионал</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="60%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление зарплатой<span class="level-label">Профессионал</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="60%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление торговлей 10.3<span class="level-label">Специалист</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="90%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">1С управление бухгалтерией<span class="level-label">Пользователь</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="10%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">Python<span class="level-label">Начинающий</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="30%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+            <div class="item">
+              <h3 class="level-title">HTML<span class="level-label">Начинающий</span></h3>
+              <div class="level-bar">
+                <div class="level-bar-inner" data-level="10%">
+                </div>
+              </div><!--//level-bar-->
+            </div><!--//item-->
+
+          </div>
+        </div><!--//content-->
+      </div><!--//section-inner-->
+    </aside><!--//section-->
+    <aside class="testimonials aside section">
+      <div class="section-inner">
+        <h2 class="heading">Вы же понимаете что...</h2>
+        <div class="content">
+          <div class="item">
+            <blockquote class="quote">
+              <p><i class="fa fa-quote-left"></i>Есть две больших разницы, между тем, что программист хотел написать, и тем что он действительно написал.</p>
+            </blockquote>
+            <p class="source"><span class="name">ptsecurity</span><br><span class="title">Habrahabr</span></p>
+          </div><!--//item-->
+
+          <p><a class="more-link" href="http://habrahabr.ru/company/pt/blog/244159/#comment_8145777"><i class="fa fa-external-link"></i> Линк :)</a></p>
+
+        </div><!--//content-->
+      </div><!--//section-inner-->
+    </aside>
+
+  </div><!--//secondary-->
+</div><!--//row-->
+</div><!--//masonry-->
+
+<!-- ******FOOTER****** -->
+<footer class="footer">
+<div class="container text-center">
+  <p><small class="copyright">Ребята из <a href="http://themes.3rdwavemedia.com" target="_blank">3rd Wave Media</a> сделали красивый шаблон для моего сайта, спасибо им за это.</small></p>
+  <p><small class="copyright">Developer1c.ru© При использовании материалов с сайта оставляйте пожалуйста ссылку на первоисточник.</small></p>
+</div><!--//container-->
+</footer><!--//footer-->
+
+<!-- Javascript -->
+<script type="text/javascript" src="http://yastatic.net/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://yastatic.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="assets/plugins/jquery-rss/dist/jquery.rss.min.js"></script> -->
+<!-- custom js -->
+<script type="text/javascript" src="/js/main-min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-34619019-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
+
